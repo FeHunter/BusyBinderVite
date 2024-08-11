@@ -11,3 +11,18 @@
     justify-content: space-around;
     width: 100%;
 }
+
+.sliderShowContent {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 2% 0;
+    background-color: antiquewhite;
+}
+
+.sliderShowItem {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin: 1%;
+}
