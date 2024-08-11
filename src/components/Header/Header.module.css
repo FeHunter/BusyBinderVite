@@ -1,0 +1,75 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.5% 2%;
+    background-color: antiquewhite;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    margin-right: 5%;
+    padding: 2%;
+}
+.buttons:hover {
+    cursor: pointer;
+}
+.buttonsMobileMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 30%;
+    width: 100%;
+}
+.buttonsMobileMenuLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid black;
+    width: 100%;
+    height: 100%;
+}
+
+.buttonsDesktop {
+    display: none;
+}
+
+.cart {
+    display: none;
+}
+
+.floatWindow {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 1% 2%;
+    top: 0; right: 0;
+    width: 90%;
+    height: 100%;
+    background-color: gray;
+}
+
+@media screen and (min-width: 900px) {
+    .header {
+        justify-content: space-between;
+        padding: .5% 2%;
+    }
+    .buttons {
+        display: none;
+    }
+    .buttonsDesktop {
+        display: flex;
+        justify-content: space-between;
+        width: 40%;
+    }
+    .cart {
+        display: flex;
+    }
+    .floatWindow {
+        display: none !important;
+    }
+}

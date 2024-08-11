@@ -1,12 +1,19 @@
-import './App.css'
+import { unstable_HistoryRouter as HistoryRouter, Route, Routes } from 'react-router-dom';
+import { history } from './history';
+
+import './App.css';
+import { HomePage } from './pages/HomePage';
+import PagesRoutes from './assets/PagesRoutes';
 
 function App() {
 
   return (
-    <>
-      <h1>F</h1>
-    </>
+    <HistoryRouter history={history}>
+      <Routes>
+        <Route path={PagesRoutes.HomePage} element={<HomePage />} />
+      </Routes>
+    </HistoryRouter>
   )
 }
 
-export default App
+export default App;
