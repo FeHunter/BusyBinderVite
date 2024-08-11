@@ -1,24 +1,26 @@
 import style from "./Header.module.css";
+import { motion } from "framer-motion";
 import PagesRoutes from "../../assets/PagesRoutes";
 import { Logo } from "../Logo/Logo";
 import { LinkToPage } from "../Link/LinkToPage";
 import { useEffect, useState } from "react";
 
-export function Header (){
+export function Header () {
 
     const [mobileMenu, setMobileMenu] = useState(false);
-    const [mobileMenuStyle, setMobileMenuStyle] = useState({ display: 'none' });
 
-    useEffect(()=>{
-        setMobileMenuStyle(mobileMenu ? { display: 'flex' } : { display: 'none' });
-    }, [mobileMenu]);
+    // floating menu animation
+    const menuVariants = {
+        hidden: { x: "100%" },
+        visible: { x: 0 },
+    };
 
     return (
         <header className={style.header}>
             {/* Logo */}
-            <Logo/>
-            {/* Buttons */}
-            <div className={style.buttons} onClick={()=>{setMobileMenu(!mobileMenu)}}>
+            <Logo />
+            {/* button mobile */}
+            <div className={style.buttons} onClick={() => { setMobileMenu(!mobileMenu) }}>
                 =
             </div>
             <div className={style.buttonsDesktop}>
@@ -26,7 +28,7 @@ export function Header (){
                 <LinkToPage to={PagesRoutes.HomePage}>About Us</LinkToPage>
                 <LinkToPage to={PagesRoutes.HomePage}>Contacts</LinkToPage>
             </div>
-            {/* Cart */}
+            {/* cart */}
             <div className={style.cart}>
                 <svg
                     width={30}
@@ -38,9 +40,29 @@ export function Header (){
                 </svg>
             </div>
 
-            {/* float menu */}
-            <div style={mobileMenuStyle} className={style.floatWindow}>
-                <div className={style.buttons} onClick={()=>{setMobileMenu(!mobileMenu)}}>
+            {/* floating window */}
+            <motion.div
+                className={style.floatWindow}
+                style={{
+                    position: 'absolute',
+                    display: mobileMenu ? 'flex' : 'none',
+                    flexDirection: 'column',
+                    width: '90%',
+                    height: '100%',
+                    top: 0,
+                    right: 0,
+                    background: 'whitesmoke'
+                }}
+                initial="hidden"
+                animate={mobileMenu ? "visible" : "hidden"}
+                variants={menuVariants}
+                transition={{
+                    type: "spring",
+                    damping: 20,
+                    stiffness: 150,
+                }}
+            >
+                <div className={style.buttons} onClick={() => { setMobileMenu(!mobileMenu) }}>
                     =
                 </div>
                 <div className={style.buttonsMobileMenu}>
@@ -48,7 +70,7 @@ export function Header (){
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.HomePage}>About Us</LinkToPage></span>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.HomePage}>Contacts</LinkToPage></span>
                 </div>
-            </div>
+            </motion.div>
         </header>
     );
 }
