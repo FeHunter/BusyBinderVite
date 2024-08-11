@@ -1,0 +1,14 @@
+.buttonToBuy {
+    width: 90%;
+    padding: 4% 2%;
+    background-color: white;
+    border: 1px solid brown;
+    border-radius: 5px;
+    transition: .2s;
+}
+.buttonToBuy:hover {
+    cursor: pointer;
+    background-color: brown;
+    transition: .2s;
+    color: white;
+}
