@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import PagesRoutes from "../../assets/PagesRoutes";
 import { Logo } from "../Logo/Logo";
 import { LinkToPage } from "../Link/LinkToPage";
-import { useEffect, useState } from "react";
-import { Cart } from "../Cart/Cart";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CartIcon } from "../Cart/CartIcon/CartIcon";
 
 export function Header () {
 
@@ -29,7 +29,7 @@ export function Header () {
             <Logo onClick={()=>{ navigate(PagesRoutes.HomePage) }} />
             {/* button mobile */}
             <div className={style.mobileContent}>
-                <Cart/>
+                <CartIcon/>
                 <div className={style.buttons} onClick={() => { setMobileMenu(!mobileMenu) }}>
                     =
                 </div>
@@ -43,7 +43,7 @@ export function Header () {
             </div>
             {/* cart */}
             <div className={style.cart}>
-                <Cart/>
+                <CartIcon/>
             </div>
 
             {/* floating window */}

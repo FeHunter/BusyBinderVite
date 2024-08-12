@@ -11,6 +11,7 @@ Development Progress (Front-End):
 * Product Card [ok]
 * Header [ok]
 * Cart Icon [ok]
+* Cart Item (name, price, amount, total price, remove) []
 * Register Product []
 * Product List []
 * Product Page []
