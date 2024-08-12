@@ -1,7 +1,11 @@
 .CartPage {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
-    height: 300px;
+}
+
+.CartItens {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 }
