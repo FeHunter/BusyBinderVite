@@ -70,6 +70,7 @@ export function Header () {
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.HomePage}>Albums</LinkToPage></span>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.HomePage}>About Us</LinkToPage></span>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.HomePage}>Contacts</LinkToPage></span>
+                    <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.RegisterProduct}>Add new Product</LinkToPage></span>
                 </div>
             </motion.div>
         </header>

@@ -1,0 +1,29 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 5% 0;
+}
+
+.formContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 95%;
+    height: 200px;
+    padding: 2% 0;
+    margin: 2% 0;
+}
+
+.formItem {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.formInput {
+    width: 70%;
+}

@@ -6,13 +6,18 @@ npm install vite@latest
 run project:
 npm run dev
 
-Development Progress:
+Development Progress (Front-End):
 * Home Page [ok]
 * Product Card [ok]
 * Header [ok]
+* Cart Icon []
 * Register Product []
 * Product List []
 * Product Page []
+
+
+To do:
+* Fixe menu position when scroll page down
 
 
 Site criando:
