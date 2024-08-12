@@ -4,6 +4,7 @@ import { history } from './history';
 import './App.css';
 import { HomePage } from './pages/HomePage';
 import PagesRoutes from './assets/PagesRoutes';
+import { RegisterProduct } from './pages/RegisterProduct';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     <HistoryRouter history={history}>
       <Routes>
         <Route path={PagesRoutes.HomePage} element={<HomePage />} />
+        <Route path={PagesRoutes.RegisterProduct} element={<RegisterProduct/>} />
       </Routes>
     </HistoryRouter>
   )

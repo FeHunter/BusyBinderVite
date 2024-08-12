@@ -27,6 +27,7 @@ export function Header () {
                 <LinkToPage to={PagesRoutes.HomePage}>Albums</LinkToPage>
                 <LinkToPage to={PagesRoutes.HomePage}>About Us</LinkToPage>
                 <LinkToPage to={PagesRoutes.HomePage}>Contacts</LinkToPage>
+                <LinkToPage to={PagesRoutes.RegisterProduct}>Add new Product</LinkToPage>
             </div>
             {/* cart */}
             <div className={style.cart}>

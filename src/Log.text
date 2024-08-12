@@ -6,6 +6,14 @@ npm install vite@latest
 run project:
 npm run dev
 
+Development Progress:
+* Home Page [ok]
+* Product Card [ok]
+* Header [ok]
+* Register Product []
+* Product List []
+* Product Page []
+
 
 Site criando:
 https://cavazzanirafael.github.io/BusyBinder/

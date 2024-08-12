@@ -24,9 +24,9 @@ export function HomePage (){
 
             {/* products Highlights */}
             <section className={style.highlightsProducts}>
-                <ProdcutCard name={"Book 1"} price={12} imageSrc={"./src/Images/aux_book_1.png"} />
-                <ProdcutCard name={"Book 2"} price={25} imageSrc={"./src/Images/aux_book_2.png"} />
-                <ProdcutCard name={"Book 3"} price={34} imageSrc={"./src/Images/aux_book_3.png"} />
+                <ProdcutCard type={"Album"} name={"Book 1"} price={12} imageSrc={"./src/Images/aux_book_1.png"} />
+                <ProdcutCard type={"Album"} name={"Book 2"} price={25} imageSrc={"./src/Images/aux_book_2.png"} />
+                <ProdcutCard type={"Album"} name={"Book 3"} price={34} imageSrc={"./src/Images/aux_book_3.png"} />
             </section>
 
             <section className={style.sliderShowContent}>
