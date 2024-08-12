@@ -27,3 +27,10 @@
 .formInput {
     width: 70%;
 }
+
+@media screen and (min-width: 900px) {
+    .formContent {
+        width: 30%;
+        height: 400px;
+    }
+}

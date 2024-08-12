@@ -1,6 +1,9 @@
 .logo {
     width: 15%;
 }
+.logo:hover {
+    cursor: pointer;
+}
 
 @media screen and (min-width: 900px) {
     .logo {

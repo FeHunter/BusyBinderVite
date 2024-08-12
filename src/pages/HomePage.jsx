@@ -5,7 +5,6 @@ import { ImagesContent } from "../components/ImagesContent/ImagesContent";
 import { PageTitle } from "../components/PageTitle/PageTitle";
 import { ProdcutCard } from "../components/ProdcutCard/ProdcutCard";
 import style from "./HomePage.module.css";
-import { color } from "framer-motion";
 
 export function HomePage (){
     return (
