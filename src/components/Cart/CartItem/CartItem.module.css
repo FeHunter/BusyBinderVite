@@ -1,38 +1,66 @@
 .CartItemContent {
+    display: grid;
+    grid-auto-columns: 10% 20% 28% 16% 10% 16%;
+    grid-auto-rows: 100%;
+    grid-template-areas: 'delete image itemName ItemPrice ItemAmount ItemTotal';
+    width: 100%;
+    height: 80px;
+    background-color: antiquewhite;
+}
+
+.CartItemContent input{
+    width: 100%;
+    text-align: center;
+}
+
+/* All items */
+.ItemRevome, .ItemImage, .ItemName, .ItemPrice, .ItemAmount, .ItemTotal {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 45%;
-    padding: 1%;
-    margin: 1%;
-    border: 1px solid black;
-}
-
-.CartItem {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1%;
-    border-top: 1px solid gray;
-}
-
-.CartItemImage {
-    display: flex;
     justify-content: center;
-    border: none;
-    padding: 1%;
-}
-
-.CartItemImage img {
     width: 100%;
+    height: 100%;
+    padding: 2%;
+    border: 1px solid gray;
 }
 
-.CartItem p {
-    color: gray;
+.ItemRevome {
+    grid-area: delete;
 }
 
-.itemInformation {
-    text-align: center;
-    color: black !important;
-    max-width: 40%;
+.ItemImage {
+    grid-area: image;
+}
+.ItemImage img {
+    width: 80%;
+    height: 90%;
+}
+
+.ItemName {
+    grid-area: itemName;
+}
+
+.ItemPrice {
+    grid-area: ItemPrice;
+}
+
+.ItemAmount {
+    grid-area: ItemAmount;
+}
+
+.ItemTotal {
+    grid-area: ItemTotal;
+}
+
+
+@media screen and (min-width: 900px) {
+    .CartItemContent {
+        width: 80%;
+        height: 100px;
+    }
+    .ItemImage img {
+        width: 30%;
+        height: 100%;
+    }
 }

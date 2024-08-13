@@ -12,28 +12,23 @@ export function CartItem ({name, price, amount, image, onClick}){
 
     return (
         <div className={style.CartItemContent}>
-            <div className={style.CartItemImage}>
+            <div className={style.ItemRevome}>
+                <button><i class="fa-solid fa-delete-left"></i></button>
+            </div>
+            <div className={style.ItemImage}>
                 <img src={image} />
             </div>
-            <div className={style.CartItem}>
-                <p>Item</p>
+            <div className={style.ItemName}>
                 <p className={style.itemInformation}>{name}</p>
             </div>
-            <div className={style.CartItem}>
-                <p>Price</p>
+            <div className={style.ItemPrice}>
                 <p className={style.itemInformation}>${price}</p>
             </div>
-            <div className={style.CartItem}>
-                <p>Amout</p>
+            <div className={style.ItemAmount}>
                 <input className={style.itemInformation} type="number" min="1" value={itemAmount} onChange={(e)=>{setItemAmount(e.target.value)}} />
             </div>
-            <div className={style.CartItem}>
-                <p>Total Price</p>
+            <div className={style.ItemTotal}>
                 <p className={style.itemInformation}>${totalPrice}</p>
-            </div>
-            <div className={style.CartItem}>
-                <p>Remove</p>
-                <button>Delete</button>
             </div>
         </div>
     );
