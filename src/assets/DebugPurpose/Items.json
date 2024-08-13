@@ -1,0 +1,23 @@
+[
+    {
+        "id": "1",
+        "img" : "./src/Images/aux_book_1.png",
+        "name" : "album - pink",
+        "price" : "12",
+        "amount" : "1"
+    },
+    {
+        "id": "2",
+        "img" : "./src/Images/aux_book_2.png",
+        "name" : "album - blue",
+        "price" : "34",
+        "amount" : "3"
+    },
+    {
+        "id": "23",
+        "img" : "./src/Images/aux_book_3.png",
+        "name" : "album - orange",
+        "price" : "15",
+        "amount" : "2"
+    }
+]

@@ -3,10 +3,28 @@ import { Header } from "../components/Header/Header";
 import { CartItem } from "../components/Cart/CartItem/CartItem";
 import { useNavigate } from "react-router-dom";
 import PagesRoutes from "../assets/PagesRoutes";
+import { useEffect, useState } from "react";
+import { PaymentForm } from "../components/PaymentForm/PaymentForm";
 
 export function CartPage (){
 
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // site navigation
+    const [items, setItems] = useState(null);
+
+    useEffect(()=>{
+        // loadCartItems();
+    },[]);
+
+    // Load Itens from firebase - debugging load from local
+    // const loadCartItems = () => {
+    //     fetch("../assets/DebugPurpose/Items.json")
+    //     .then(response => response.json())
+    //     .then(json => console.log(json));
+    // }
+
+    const changeItemAmount = () => {
+
+    }
 
     return (
         <>
@@ -47,10 +65,12 @@ export function CartPage (){
                     </div>
                 </section>
 
-                <p>Payment Informations</p>
-                <div>
-                    <button>Go to payment</button>
-                </div>
+                <section className={style.sectionContent}>
+                    <p>Payment Informations</p>
+                    <div>
+                        <PaymentForm />
+                    </div>
+                </section>
             </section>
         </>
     );
