@@ -22,5 +22,29 @@
         "type" : "Album",
         "price" : "15",
         "amount" : "2"
+    },
+    {
+        "id": "4",
+        "img" : "./src/Images/aux_book_1.png",
+        "name" : "album - Marron",
+        "type" : "Album",
+        "price" : "32",
+        "amount" : "1"
+    },
+    {
+        "id": "5",
+        "img" : "./src/Images/aux_book_2.png",
+        "name" : "album - Preto",
+        "type" : "Album",
+        "price" : "24",
+        "amount" : "3"
+    },
+    {
+        "id": "6",
+        "img" : "./src/Images/aux_book_3.png",
+        "name" : "album - Azul",
+        "type" : "Album",
+        "price" : "4",
+        "amount" : "2"
     }
 ]
