@@ -2,8 +2,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1%;
     margin: 5% 0;
+    width: 100%;
+}
+
+.contentTitle {
+    font-weight: bold;
+    width: 100%;
+    padding-left: 10%;
 }
 
 .CartPage {

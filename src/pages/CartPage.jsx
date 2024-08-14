@@ -4,7 +4,8 @@ import { CartItem } from "../components/Cart/CartItem/CartItem";
 import { useNavigate } from "react-router-dom";
 import PagesRoutes from "../assets/PagesRoutes";
 import { useEffect, useState } from "react";
-import { PaymentForm } from "../components/PaymentForm/PaymentForm";
+import { PaymentForm } from "../components/Forms/PaymentForm/PaymentForm";
+import { AdressForm } from "../components/Forms/AdressForm/AdressForm";
 
 export function CartPage (){
 
@@ -26,13 +27,10 @@ export function CartPage (){
         <>
             <Header/>
             <section className={style.CartPage}>
-                
-                <div>
-                    <button onClick={()=>{navigate(PagesRoutes.HomePage)}}>Keep buying</button>
-                </div>
 
+                {/* My Order */}
                 <section className={style.sectionContent}>
-                    <p>My Order</p>
+                    <p className={style.contentTitle}>My Order</p>
                     <div className={style.CartItemsHeader}>
                         <p>Item</p>
                         <p>Price</p>
@@ -60,12 +58,39 @@ export function CartPage (){
                     </div>
                 </section>
 
+                {/* Payment Form */}
                 <section className={style.sectionContent}>
-                    <p>Payment Informations</p>
-                    <div>
-                        <PaymentForm />
-                    </div>
+                    <p className={style.contentTitle}>Payment Informations</p>
+                    <PaymentForm />
                 </section>
+
+                {/* Adress Form */}
+                <section className={style.sectionContent}>
+                    <p className={style.contentTitle}>Delivre adress</p>
+                    <AdressForm />
+                </section>
+
+                {/* Your Order - Resume */}
+                <section className={style.sectionContent}>
+                    <p className={style.contentTitle}>Your Order</p>
+                    <table style={{ border: '1px solid gray' }}>
+                        <thead style={{ background:'gray' }}>
+                            <th>Product</th>
+                            <th>Subtotal</th>
+                        </thead>
+                        <tbody style={{ background:'gray' }}>
+                            <tr>
+                                <td>Album de Velcro x 1</td>
+                                <td>$34</td>
+                            </tr>
+                            <tr>
+                                <td>Album de Velcro x 1</td>
+                                <td>$34</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
             </section>
         </>
     );

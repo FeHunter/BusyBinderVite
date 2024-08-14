@@ -9,7 +9,6 @@ export function PaymentForm (){
         surname: yup.string().required().min(5, "Surname to small"),
         phone: yup.string().required().min(8, "invalid phone number"),
         email: yup.string().required().min(8, "invalid phone email"),
-        adress: yup.string().required().min(10, "invalid adress"),
     })
 
     return (

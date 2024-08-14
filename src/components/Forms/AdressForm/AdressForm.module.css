@@ -2,14 +2,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
-    background-color: bisque;
+    width: 80%;
 }
 
 .itemForm {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
     margin: 3% 0;
 }
 
