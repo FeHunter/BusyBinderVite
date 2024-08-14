@@ -35,6 +35,11 @@
     width: 100%;
 }
 
+.OrderResumeTable {
+    width: 90%;
+    margin: 4% 0;
+}
+
 @media screen and (min-width: 900px) {
     .CartItens {
         display: flex;

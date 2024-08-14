@@ -11,16 +11,31 @@ export function CartPage (){
 
     const navigate = useNavigate(); // site navigation
     const [items, setItems] = useState(null);
+    const [totalValue, setTotalValue] = useState(0);
 
     useEffect(()=>{
-        loadCartItems();
-    },[]);
+        loadCartItems()
+    },[])
+
+    useEffect(()=>{
+        getTotalValue()
+    }, [items])
 
     // Load Itens from firebase - debugging load from local
     const loadCartItems = () => {
         fetch("/src/assets/DebugPurpose/Items.json")
         .then(response => response.json())
         .then(json => setItems(json));
+    }
+
+    const getTotalValue = () => {
+        let count = 0;
+        if (items != null){
+            for (let i=0; i < items.length; i++){
+                count += parseFloat(items[i].price);
+            }
+        }
+        setTotalValue(count);
     }
 
     return (
@@ -73,22 +88,32 @@ export function CartPage (){
                 {/* Your Order - Resume */}
                 <section className={style.sectionContent}>
                     <p className={style.contentTitle}>Your Order</p>
-                    <table style={{ border: '1px solid gray' }}>
-                        <thead style={{ background:'gray' }}>
+                    <table className={style.OrderResumeTable}>
+                        <thead style={{ textAlign: 'left' }}>
                             <th>Product</th>
                             <th>Subtotal</th>
                         </thead>
-                        <tbody style={{ background:'gray' }}>
+                        <tbody>
+                            {
+                                items != null ?
+                                    items.map((item, index) => {
+                                        return (
+                                            <tr key={`table_row_${index}`}>
+                                                <td style={{ borderBottom: '1px dashed gray' }}>{item.name} x {item.amount}</td>
+                                                <td style={{ textAlign: 'center', borderBottom: '1px dashed gray' }}>${item.price}</td>
+                                            </tr>
+                                        )
+                                    })
+                                :
+                                <></>
+                            }
                             <tr>
-                                <td>Album de Velcro x 1</td>
-                                <td>$34</td>
-                            </tr>
-                            <tr>
-                                <td>Album de Velcro x 1</td>
-                                <td>$34</td>
+                                <td>Total</td>
+                                <td style={{ textAlign: 'center' }}>${totalValue}</td>
                             </tr>
                         </tbody>
                     </table>
+                    <button>Confirm Order</button>
                 </section>
 
             </section>
