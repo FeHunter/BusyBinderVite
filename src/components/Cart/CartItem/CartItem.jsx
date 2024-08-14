@@ -14,7 +14,7 @@ export function CartItem ({name, price, amount, image, onClick}){
     return (
         <div className={style.CartItemContent}>
             <div className={style.ItemRevome}>
-                <ButtonToDelete icon={<i class="fa-solid fa-delete-left"></i>} onClick={()=>{}} />
+                <ButtonToDelete icon={<i class="fa-solid fa-trash"></i>} onClick={()=>{}} />
             </div>
             <div className={style.ItemImage}>
                 <img src={image} />

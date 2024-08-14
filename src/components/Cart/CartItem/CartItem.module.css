@@ -5,7 +5,7 @@
     grid-template-areas: 'delete image itemName ItemPrice ItemAmount ItemTotal';
     width: 100%;
     height: 80px;
-    background-color: antiquewhite;
+    margin: .5%;
 }
 
 .CartItemContent input{
@@ -22,7 +22,8 @@
     width: 100%;
     height: 100%;
     padding: 2%;
-    border: 1px solid gray;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
 }
 
 .ItemRevome {
@@ -58,6 +59,7 @@
     .CartItemContent {
         width: 80%;
         height: 100px;
+        margin: .2% 0;
     }
     .ItemImage img {
         width: 30%;

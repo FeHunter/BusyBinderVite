@@ -22,3 +22,9 @@
 .errorMessage {
     color: red;
 }
+
+@media screen and (min-width: 900px) {
+    .itemForm {
+        margin: 0;
+    }
+}
