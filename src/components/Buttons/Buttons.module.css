@@ -28,3 +28,24 @@
 .buttonToDelete:active {
     color: black;
 }
+
+
+
+.buttonToConfirm {
+    width: 70%;
+    height: 30px;
+    margin: auto;
+    border: none;
+    border-radius: 10px;
+    color: black;
+    font-weight: bold;
+    background-color: yellowgreen;
+}
+.buttonToConfirm:hover {
+    color: white;
+    cursor: pointer;
+}
+.buttonToConfirm:active {
+    background-color: white;
+    color: black;
+}

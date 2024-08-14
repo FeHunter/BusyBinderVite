@@ -6,6 +6,7 @@ import PagesRoutes from "../assets/PagesRoutes";
 import { useEffect, useState } from "react";
 import { PaymentForm } from "../components/Forms/PaymentForm/PaymentForm";
 import { AdressForm } from "../components/Forms/AdressForm/AdressForm";
+import { ButtonToConfirm } from "../components/Buttons/Buttons";
 
 export function CartPage (){
 
@@ -43,9 +44,9 @@ export function CartPage (){
             <Header/>
             <section className={style.CartPage}>
 
-                {/* My Order */}
-                <section className={style.sectionContent}>
-                    <p className={style.contentTitle}>My Order</p>
+                {/* My Order - Cart */}
+                <section className={style.sectionContentCart}>
+                    <p className={style.contentTitle}> <i class="fa-solid fa-cart-shopping"></i> My Order</p>
                     <div className={style.CartItemsHeader}>
                         <p>Item</p>
                         <p>Price</p>
@@ -74,20 +75,20 @@ export function CartPage (){
                 </section>
 
                 {/* Payment Form */}
-                <section className={style.sectionContent}>
-                    <p className={style.contentTitle}>Payment Informations</p>
+                <section className={style.sectionContentPaymentForm}>
+                    <p className={style.contentTitle}> <i class="fa-solid fa-bag-shopping"></i> Payment Informations</p>
                     <PaymentForm />
                 </section>
 
                 {/* Adress Form */}
-                <section className={style.sectionContent}>
-                    <p className={style.contentTitle}>Delivre adress</p>
+                <section className={style.sectionContentAdressForm}>
+                    <p className={style.contentTitle}> <i class="fa-solid fa-truck"></i> Delivre adress</p>
                     <AdressForm />
                 </section>
 
-                {/* Your Order - Resume */}
-                <section className={style.sectionContent}>
-                    <p className={style.contentTitle}>Your Order</p>
+                {/* Order - Resume */}
+                <section className={style.sectionContentOrderResume}>
+                    <p className={style.contentTitle}> <i class="fa-solid fa-bag-shopping"></i> Your Order</p>
                     <table className={style.OrderResumeTable}>
                         <thead style={{ textAlign: 'left' }}>
                             <th>Product</th>
@@ -113,7 +114,7 @@ export function CartPage (){
                             </tr>
                         </tbody>
                     </table>
-                    <button>Confirm Order</button>
+                    <ButtonToConfirm icon={"Confirm Order"} onClick={()=>{}} />
                 </section>
 
             </section>

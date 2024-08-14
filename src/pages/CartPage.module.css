@@ -1,15 +1,14 @@
-.sectionContent {
+.sectionContentCart, .sectionContentPaymentForm, .sectionContentAdressForm, .sectionContentOrderResume {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 5% 0;
+    margin: 10% 0;
     width: 100%;
 }
 
 .contentTitle {
     font-weight: bold;
-    width: 100%;
-    padding-left: 10%;
+    width: 90%;
 }
 
 .CartPage {
@@ -36,11 +35,37 @@
 }
 
 .OrderResumeTable {
-    width: 90%;
-    margin: 4% 0;
+    width: 80%;
+    margin: 4% 0 10% 0;
 }
 
 @media screen and (min-width: 900px) {
+    
+    .CartPage {
+        display: grid;
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 30% 70%;
+        grid-template-areas: 'cart' 'forms';
+        background-color: aquamarine;
+    }
+
+    .sectionContentCart {
+        grid-area: cart;
+        background-color: red;
+    }
+    .sectionContentPaymentForm {
+        grid-area: forms;
+        background-color: rebeccapurple;
+    }
+    .sectionContentAdressForm {
+        grid-area: forms;
+        background-color: rebeccapurple;
+    }
+    .sectionContentOrderResume {
+        grid-area: forms;
+        background-color: rebeccapurple;
+    }
+
     .CartItens {
         display: flex;
         flex-direction: column;

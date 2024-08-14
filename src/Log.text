@@ -11,11 +11,12 @@ Development Progress (Front-End):
 * Product Card [ok]
 * Header [ok]
 * Cart Icon [ok]
-* Cart Item (name, price, amount, total price, remove) []
+* Cart Item []
 * Register Product []
+* Edit Product []
 * Product List []
 * Product Page []
-* Cart Page []
+* Cart Page [ok]
 
 
 To do:

@@ -7,3 +7,7 @@ export function ButtonToBuy ({label, onclick}){
 export function ButtonToDelete ({icon, onClick}){
     return <button className={style.buttonToDelete} onclick={onClick}>{icon}</button>
 }
+
+export function ButtonToConfirm ({icon, onClick}){
+    return <button className={style.buttonToConfirm} onclick={onClick}>{icon}</button>
+}
