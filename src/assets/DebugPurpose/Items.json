@@ -22,53 +22,5 @@
         "type" : "Album",
         "price" : "15",
         "amount" : "2"
-    },
-    {
-        "id": "1",
-        "img" : "./src/Images/aux_book_1.png",
-        "name" : "album - pink",
-        "type" : "Album",
-        "price" : "12",
-        "amount" : "1"
-    },
-    {
-        "id": "2",
-        "img" : "./src/Images/aux_book_2.png",
-        "name" : "album - blue",
-        "type" : "Album",
-        "price" : "34",
-        "amount" : "3"
-    },
-    {
-        "id": "23",
-        "img" : "./src/Images/aux_book_3.png",
-        "name" : "album - orange",
-        "type" : "Album",
-        "price" : "15",
-        "amount" : "2"
-    },
-    {
-        "id": "1",
-        "img" : "./src/Images/aux_book_1.png",
-        "name" : "album - pink",
-        "type" : "Album",
-        "price" : "12",
-        "amount" : "1"
-    },
-    {
-        "id": "2",
-        "img" : "./src/Images/aux_book_2.png",
-        "name" : "album - blue",
-        "type" : "Album",
-        "price" : "34",
-        "amount" : "3"
-    },
-    {
-        "id": "23",
-        "img" : "./src/Images/aux_book_3.png",
-        "name" : "album - orange",
-        "type" : "Album",
-        "price" : "15",
-        "amount" : "2"
     }
 ]
