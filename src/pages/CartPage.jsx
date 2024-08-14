@@ -12,18 +12,14 @@ export function CartPage (){
     const [items, setItems] = useState(null);
 
     useEffect(()=>{
-        // loadCartItems();
+        loadCartItems();
     },[]);
 
     // Load Itens from firebase - debugging load from local
-    // const loadCartItems = () => {
-    //     fetch("../assets/DebugPurpose/Items.json")
-    //     .then(response => response.json())
-    //     .then(json => console.log(json));
-    // }
-
-    const changeItemAmount = () => {
-
+    const loadCartItems = () => {
+        fetch("/src/assets/DebugPurpose/Items.json")
+        .then(response => response.json())
+        .then(json => setItems(json));
     }
 
     return (
@@ -44,24 +40,23 @@ export function CartPage (){
                         <p>Total</p>
                     </div>
                     <div className={style.CartItens}>
-                        <CartItem
-                            image={"./src/Images/aux_book_1.png"}
-                            name={"Album 1"}
-                            price={12}
-                            amount={1}
-                        />
-                        <CartItem
-                            image={"./src/Images/aux_book_2.png"}
-                            name={"Album 2"}
-                            price={24}
-                            amount={1}
-                        />
-                        <CartItem
-                            image={"./src/Images/aux_book_3.png"}
-                            name={"Album 3"}
-                            price={15}
-                            amount={1}
-                        />
+                    {
+                        items != null ?
+                            items.map((item, index) => {
+                                return (
+                                    <CartItem
+                                        key={`CartItem_${index}`}
+                                        image={item.img}
+                                        name={item.name}
+                                        price={item.price}
+                                        amount={item.amount}
+                                        onClick={() => {}}
+                                    />
+                                );
+                            })
+                        :
+                            <p>Add items to your cart</p>
+                    }
                     </div>
                 </section>
 
