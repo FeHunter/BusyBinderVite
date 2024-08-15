@@ -15,3 +15,9 @@
 .label:hover, input:hover {
     cursor: pointer  !important;
 }
+
+@media screen and (min-width: 900px) {
+    .optionContent {
+        width: 20%;
+    }
+}

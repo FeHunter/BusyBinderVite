@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import style from "./Buttons.module.css";
 
 export function ButtonToBuy ({label, onclick}){
@@ -10,4 +11,8 @@ export function ButtonToDelete ({onClick}){
 
 export function ButtonToConfirm ({icon, onClick}){
     return <button className={style.buttonToConfirm} onclick={onClick}>{icon}</button>
+}
+
+export function ButtonToFooter ({label, navegateTo}){
+    return <Link className={style.buttonToFooter} to={navegateTo}><p>{label}</p></Link>
 }

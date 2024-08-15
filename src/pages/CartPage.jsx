@@ -7,6 +7,7 @@ import { PaymentForm } from "../components/Forms/PaymentForm/PaymentForm";
 import { AdressForm } from "../components/Forms/AdressForm/AdressForm";
 import { ButtonToConfirm, ButtonToDelete } from "../components/Buttons/Buttons";
 import { DeliveryOptionForm } from "../components/Forms/DeliveryOptionForm/DeliveryOptionForm";
+import { Footer } from "../components/Footer/Footer";
 
 export function CartPage (){
 
@@ -148,8 +149,8 @@ export function CartPage (){
                     </table>
                     <ButtonToConfirm icon={"Confirm Order"} onClick={()=>{}} />
                 </section>
-
             </section>
+            <Footer/>
         </>
     );
 }
