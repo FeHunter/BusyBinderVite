@@ -14,6 +14,7 @@ export function CartPage (){
     const [items, setItems] = useState(null);
     const [totalValue, setTotalValue] = useState(0);
     const [isDelivery, setIsDelivery] = useState(true);
+    const DELIVERYFEE = 25;
 
     useEffect(()=>{
         loadCartItems()
@@ -21,7 +22,7 @@ export function CartPage (){
 
     useEffect(()=>{
         getTotalValue()
-    }, [items])
+    }, [items, isDelivery])
 
     // Load Itens from firebase - debugging load from local
     const loadCartItems = () => {
@@ -37,7 +38,11 @@ export function CartPage (){
                 count += parseFloat(items[i].price);
             }
         }
-        setTotalValue(count);
+        if (isDelivery){
+            setTotalValue(count + DELIVERYFEE);
+        }else {
+            setTotalValue(count);
+        }
     }
 
     return (
@@ -99,7 +104,7 @@ export function CartPage (){
                                     <p style={{color: 'gray'}}>North end, Winnipeg - Birchwood, St. James, Winnipeg</p>
                                 </div>
                                 <br/>
-                                <p>Contact me for pick up details</p>
+                                <p>Contact me for pick up details, <a href="mailto:">e-mail</a>.</p>
                             </div>
                     }
                 </section>
@@ -125,6 +130,15 @@ export function CartPage (){
                                     })
                                 :
                                 <></>
+                            }
+                            {
+                                isDelivery ?
+                                    <tr>
+                                        <td>Delivery Fee</td>
+                                        <td style={{ textAlign: 'center' }}>${DELIVERYFEE}</td>
+                                    </tr>
+                                :
+                                    <></>
                             }
                             <tr>
                                 <td>Total</td>

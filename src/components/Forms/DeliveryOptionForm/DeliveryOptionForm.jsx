@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./DeliveryOptionForm.module.css"
 
 export function DeliveryOptionForm ({getOption}){
 
     const [delivery, setDelivery] = useState(true);
 
-    const ChangeState = () => {
-        setDelivery(!delivery);
-        getOption(!delivery);
-    }
+    useEffect(()=>{
+        getOption(delivery);
+    }, [delivery]);
 
     return (
         <div className={style.formContent}>
@@ -16,14 +15,14 @@ export function DeliveryOptionForm ({getOption}){
                 <label htmlFor="delivery">Delivery</label>
                 <input type="checkbox" name="delivery" id="delivery"
                     checked={delivery}
-                    onClick={ChangeState}
+                    onClick={()=>{setDelivery(true)}}
                 />
             </div>
             <div className={style.optionContent}>
                 <label htmlFor="pickUp">Pick Up</label>
                 <input type="checkbox" name="pickUp" id="pickUp"
                     checked={!delivery}
-                    onClick={ChangeState}
+                    onClick={()=>{setDelivery(false)}}
                 />
             </div>
         </div>
