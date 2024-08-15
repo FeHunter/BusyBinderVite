@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { PaymentForm } from "../components/Forms/PaymentForm/PaymentForm";
 import { AdressForm } from "../components/Forms/AdressForm/AdressForm";
 import { ButtonToConfirm, ButtonToDelete } from "../components/Buttons/Buttons";
+import { DeliveryOptionForm } from "../components/Forms/DeliveryOptionForm/DeliveryOptionForm";
 
 export function CartPage (){
 
@@ -85,7 +86,8 @@ export function CartPage (){
 
                 {/* Adress Form */}
                 <section className={style.sectionContentAdressForm}>
-                    <p className={style.contentTitle}> <i class="fa-solid fa-truck"></i> Delivre adress</p>
+                    <p className={style.contentTitle}> <i class="fa-solid fa-truck"></i> Delivery adress</p>
+                    <DeliveryOptionForm/>
                     <AdressForm />
                 </section>
 
