@@ -13,6 +13,7 @@ export function CartPage (){
     const navigate = useNavigate(); // site navigation
     const [items, setItems] = useState(null);
     const [totalValue, setTotalValue] = useState(0);
+    const [isDelivery, setIsDelivery] = useState(true);
 
     useEffect(()=>{
         loadCartItems()
@@ -87,8 +88,20 @@ export function CartPage (){
                 {/* Adress Form */}
                 <section className={style.sectionContentAdressForm}>
                     <p className={style.contentTitle}> <i class="fa-solid fa-truck"></i> Delivery adress</p>
-                    <DeliveryOptionForm/>
-                    <AdressForm />
+                    <DeliveryOptionForm getOption={(value) => {setIsDelivery(value)}} />
+                    {
+                        isDelivery ?
+                            <AdressForm />
+                        :
+                            <div className={style.pickUpContent}>
+                                <div>
+                                    <p style={{fontWeight: 'bold'}}>Adress:</p>
+                                    <p style={{color: 'gray'}}>North end, Winnipeg - Birchwood, St. James, Winnipeg</p>
+                                </div>
+                                <br/>
+                                <p>Contact me for pick up details</p>
+                            </div>
+                    }
                 </section>
 
                 {/* Order - Resume */}

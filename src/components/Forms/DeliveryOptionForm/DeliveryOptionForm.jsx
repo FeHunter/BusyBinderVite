@@ -3,10 +3,11 @@ import style from "./DeliveryOptionForm.module.css"
 
 export function DeliveryOptionForm ({getOption}){
 
-    const [delivery, setDelivery] = useState(false);
+    const [delivery, setDelivery] = useState(true);
 
     const ChangeState = () => {
         setDelivery(!delivery);
+        getOption(!delivery);
     }
 
     return (
