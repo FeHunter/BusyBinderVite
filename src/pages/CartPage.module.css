@@ -17,17 +17,6 @@
     width: 100%;
 }
 
-.CartItemsHeader {
-    display: flex;
-    justify-content: space-between;
-    width: 70%;
-    margin-left: 30%;
-}
-
-.CartItemsHeader p:first-child {
-    margin-right: 20%;
-}
-
 .CartItens {
     display: flex;
     flex-direction: column;
@@ -37,6 +26,29 @@
 .OrderResumeTable {
     width: 80%;
     margin: 4% 0;
+}
+
+.tableCart {
+    width: 100%;
+    height: auto;
+}
+.tableCart td {
+    text-align: center;
+    border-top: 1px solid gray;
+    padding: 1% 0;
+    margin: 0;
+}
+.tableCart td:nth-child(3) { /* Item Collumm */
+    width: 30% !important;
+    text-align: left;
+}
+
+.tableCart tr:hover {
+    background-color: rgba(0, 0, 0, .04);
+}
+
+.tableCart img {
+    width: 50%;
 }
 
 @media screen and (min-width: 900px) {
@@ -83,21 +95,17 @@
         padding: 1%;
         overflow-y: auto;
     }
-    .CartItemsHeader {
-        display: flex;
-        justify-content: space-between;
-        width: 50%;
-        margin-left: 20%;
-    }
-    
-    .CartItemsHeader p:first-child {
-        margin-right: 30%;
-    }
-
     .orderResume {
         display: flex;
         flex-direction: column;
         overflow-y: auto;
-        background-color: rebeccapurple;
+    }
+
+    .tableCart td {
+        width: 10%;
+        height: 20px;
+    }
+    .tableCart img {
+        width: 50%;
     }
 }

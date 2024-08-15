@@ -26,7 +26,7 @@ export function CartIcon (){
     return (
         <div className={style.cartContent} onClick={()=>{navigate(PagesRoutes.Cart)}}>
             <div className={style.qtdContent}>{cartItems}</div>
-            <div>{cartIconSVG}</div>
+            <div style={{fontSize: '1.3em'}}>{<i class="fa-solid fa-bag-shopping"></i>}</div>
         </div>
     );
 }

@@ -1,12 +1,11 @@
 import style from "./CartPage.module.css";
 import { Header } from "../components/Header/Header";
-import { CartItem } from "../components/Cart/CartItem/CartItem";
 import { useNavigate } from "react-router-dom";
 import PagesRoutes from "../assets/PagesRoutes";
 import { useEffect, useState } from "react";
 import { PaymentForm } from "../components/Forms/PaymentForm/PaymentForm";
 import { AdressForm } from "../components/Forms/AdressForm/AdressForm";
-import { ButtonToConfirm } from "../components/Buttons/Buttons";
+import { ButtonToConfirm, ButtonToDelete } from "../components/Buttons/Buttons";
 
 export function CartPage (){
 
@@ -47,31 +46,35 @@ export function CartPage (){
                 {/* My Order - Cart */}
                 <section className={style.sectionContentCart}>
                     <p className={style.contentTitle}> <i class="fa-solid fa-cart-shopping"></i> My Order</p>
-                    <div className={style.CartItemsHeader}>
-                        <p>Item</p>
-                        <p>Price</p>
-                        <p>Amount</p>
-                        <p>Total</p>
-                    </div>
-                    <div className={style.CartItens}>
-                    {
-                        items != null ?
-                            items.map((item, index) => {
-                                return (
-                                    <CartItem
-                                        key={`CartItem_${index}`}
-                                        image={item.img}
-                                        name={item.name}
-                                        price={item.price}
-                                        amount={item.amount}
-                                        onClick={() => {}}
-                                    />
-                                );
-                            })
-                        :
-                            <p>Add items to your cart</p>
-                    }
-                    </div>
+                    <table className={style.tableCart}>
+                        <thead>
+                            <th></th>
+                            <th></th>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th title="Amount">Amt</th>
+                            <th>Total</th>
+                        </thead>
+                        <tbody>
+                            {
+                                items != null ?
+                                    items.map((item, index)=>{
+                                        return (
+                                            <tr>
+                                                <td><ButtonToDelete/></td>
+                                                <td><img src={item.img}/></td>
+                                                <td>{item.name}</td>
+                                                <td>${item.price}</td>
+                                                <td>{item.amount}</td>
+                                                <td>${parseFloat(item.price) * parseFloat(item.amount)}</td>
+                                            </tr>
+                                        )
+                                    })
+                                    :
+                                    <></>
+                            }
+                        </tbody>
+                    </table>
                 </section>
 
                 {/* Payment Form */}
