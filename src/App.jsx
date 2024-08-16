@@ -6,6 +6,7 @@ import { HomePage } from './pages/HomePage';
 import PagesRoutes from './assets/PagesRoutes';
 import { RegisterProduct } from './pages/RegisterProduct';
 import { CartPage } from './pages/CartPage';
+import { ProductPage } from './pages/ProductPage';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path={PagesRoutes.HomePage} element={<HomePage />} />
         <Route path={PagesRoutes.RegisterProduct} element={<RegisterProduct/>} />
+        <Route path={PagesRoutes.ProductPage} element={<ProductPage/>} />
         <Route path={PagesRoutes.Cart} element={<CartPage/>} />
       </Routes>
     </HistoryRouter>
