@@ -1,19 +1,20 @@
 .footerContent {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-auto-rows: 30% 70%;
+    grid-template-areas: ; /* Fazendo layout mobile */
+    flex-direction: column;
     width: 100%;
     background-color: antiquewhite;
-    padding: 0 5%;
+    padding: 1% 5%;
 }
 
-.sectionContent {
-    padding: 0.1% 1%;
-    margin: .5%; 
+.sectionContent, .logoContent{
+    width: 100%;
 }
 
 .footerTitle {
     font-weight: bold;
-    margin-bottom: 5%;
 }
 
 .logoContent {
@@ -21,8 +22,32 @@
     margin-right: 5%;
 }
 
+.socialNetworkLinks {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    font-size: 1em;
+}
+.socialNetworkLinks a {
+    color: black;
+}
+
 @media screen and (min-width: 900px) {
     .footerContent {
+        display: flex;
+        flex-direction: row;
         justify-content: space-around;
+        background-color: rebeccapurple;
+        
+    }
+    .sectionContent, .logoContent{
+        padding: 0.1% 1%;
+        width: 50%;
+    }
+    .socialNetworkLinks {
+        display: flex;
+        justify-content: space-between;
+        width: 30%;
+        font-size: 1.3em;
     }
 }

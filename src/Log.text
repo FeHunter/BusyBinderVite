@@ -17,12 +17,15 @@ Development Progress (Front-End):
 * Product List []
 * Product Page []
 * Cart Page [ok]
+* ADM Page: 
 
 
 To do:
 * Fixe menu position when scroll page down
 * Add formik and yup to forms
 
+
+ADM Page: add products, add social networks links, 
 
 Site criando:
 https://cavazzanirafael.github.io/BusyBinder/

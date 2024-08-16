@@ -21,6 +21,11 @@ export function Footer (){
                 <ButtonToFooter label={"busybinder@gmail.com"} />
                 <ButtonToFooter label={"+ 00 (00) 100-10-10"} />
                 <ButtonToFooter label={"+ 00 (00) 100-10-10"} />
+                <div className={style.socialNetworkLinks}>
+                    <a href="" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
             </div>
         </footer>
     )
