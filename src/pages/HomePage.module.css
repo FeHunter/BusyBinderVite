@@ -1,3 +1,7 @@
+.homePage {
+    background-color: var(--background-color);
+}
+
 .aboutUsContent {
     display: flex;
     flex-direction: column;

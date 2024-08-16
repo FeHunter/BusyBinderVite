@@ -1,3 +1,23 @@
+/*
+Colors
+#eee5de
+#464440
+#a19393
+#ad9259
+#a4544e
+#cbbf91
+#67b0ab
+#a2b5bf
+#c9bcc1
+#dcd0b6
+
+*/
+
+:root {
+  --background-color: white;
+  --header-color: bisque;
+}
+
 * {
   padding: 0;
   margin: 0;

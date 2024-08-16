@@ -6,6 +6,7 @@ import { PageTitle } from "../components/PageTitle/PageTitle";
 import { ProdcutCard } from "../components/ProdcutCard/ProdcutCard";
 import style from "./HomePage.module.css";
 import { useEffect, useState } from "react";
+import { Footer } from "../components/Footer/Footer";
 
 export function HomePage (){
 
@@ -41,7 +42,7 @@ export function HomePage (){
     return (
         <>
         <Header/>
-        <section>
+        <section className={style.homePage}>
             <PageTitle title={titleText.pageTitle} />
             
             {/* Cover content - ABOUT */}
@@ -95,6 +96,7 @@ export function HomePage (){
             </section>
 
         </section>
+        <Footer/>
         </>
     );
 }
