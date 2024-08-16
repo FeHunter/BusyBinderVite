@@ -13,20 +13,17 @@ export function ProductPage (){
         loadCartItems()
     },[])
 
-    // Load Itens from firebase - debugging load from local
+    // Load only 4 Itens from firebase - debugging load from local
     const loadCartItems = () => {
         fetch("/src/assets/DebugPurpose/RegisterItems.json")
         .then(response => response.json())
-        .then(json => setAllItems(json))
-        .then(r => limitedProducts(4))
-    }
-
-    const limitedProducts = (maxItems) => {
-        let onlyFor = [];
-        for (let i=0; i < maxItems; i++){
-            onlyFor.push(allItems[i]);
-        }
-        setAllItems(onlyFor);
+        .then(json => {
+            let onlyFor = []
+            for (let i=0; i < 4; i++){
+                onlyFor.push(json[i])
+            }
+            setAllItems(onlyFor)
+        })
     }
 
     return (
@@ -41,13 +38,15 @@ export function ProductPage (){
                         alt={`nome_do_produto_imagem`} 
                     />
                     <div className={style.productInformation}>
-                        <p>Type</p>
-                        <p>$50</p>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, provident! Consectetur accusantium ratione quod ullam voluptate nobis fugiat temporibus quos. Ad expedita illo, nam dolorem dolore nihil omnis alias ipsam?
-                        </p>
                         <div>
-                            <input type="number" min={'1'} />
+                            <p>Type</p>
+                            <p>$50</p>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, provident! Consectetur accusantium ratione quod ullam voluptate nobis fugiat temporibus quos. Ad expedita illo, nam dolorem dolore nihil omnis alias ipsam?
+                            </p>
+                        </div>
+                        <div className={style.productActionsContent}>
+                            <input type="number" min="1" placeholder="amt" />
                             <ButtonToBuy label={"Buy"} />
                         </div>
                     </div>
