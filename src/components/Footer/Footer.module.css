@@ -1,6 +1,6 @@
 .footerContent {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
     background-color: antiquewhite;
     padding: 0 5%;
@@ -14,4 +14,15 @@
 .footerTitle {
     font-weight: bold;
     margin-bottom: 5%;
+}
+
+.logoContent {
+    display: flex;
+    margin-right: 5%;
+}
+
+@media screen and (min-width: 900px) {
+    .footerContent {
+        justify-content: space-around;
+    }
 }

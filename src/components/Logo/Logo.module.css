@@ -5,8 +5,17 @@
     cursor: pointer;
 }
 
+.logoFooter{
+    width: 100%;
+    margin: auto;
+}
+
 @media screen and (min-width: 900px) {
     .logo {
         width: 5%;
+    }
+    .logoFooter{
+        width: 30%;
+        margin: auto;
     }
 }
