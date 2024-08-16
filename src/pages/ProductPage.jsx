@@ -39,7 +39,7 @@ export function ProductPage (){
                     />
                     <div className={style.productInformation}>
                         <div>
-                            <p>Type</p>
+                            <p>Album</p>
                             <p>$50</p>
                             <p>
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, provident! Consectetur accusantium ratione quod ullam voluptate nobis fugiat temporibus quos. Ad expedita illo, nam dolorem dolore nihil omnis alias ipsam?

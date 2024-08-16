@@ -16,6 +16,7 @@
 .productImage {
     grid-area: pImage;
     width: 80%;
+    border-radius: 5px;
 }
 
 .productInformation {
@@ -56,6 +57,7 @@
 .allImagesContent img {
     margin: 1%;
     width: 20%;
+    border-radius: 10px;
 }
 
 /* Similar Products */
