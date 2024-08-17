@@ -3,8 +3,9 @@ const PagesRoutes =  {
     HomePage: '/',
     ProductPage: '/ProductPage',
     Cart: '/Cart',
+    ProductsList: '/ProductsList',
     // Adm Pages
     RegisterProduct: '/RegisterProduct',
-    AdmPage: "/AdmPage",
+    AdmPage: '/AdmPage',
 }
 export default PagesRoutes;

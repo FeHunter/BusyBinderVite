@@ -36,7 +36,7 @@ export function Header () {
             </div>
             <div className={style.buttonsDesktop}>
                 <LinkToPage to={PagesRoutes.HomePage}>Home</LinkToPage>
-                <LinkToPage to={PagesRoutes.HomePage}>Albums</LinkToPage>
+                <LinkToPage to={PagesRoutes.ProductsList}>Albums</LinkToPage>
                 <LinkToPage to={PagesRoutes.HomePage}>About me</LinkToPage>
                 <LinkToPage to={PagesRoutes.HomePage}>Contacts</LinkToPage>
                 <LinkToPage to={PagesRoutes.RegisterProduct}>Add new Product</LinkToPage>

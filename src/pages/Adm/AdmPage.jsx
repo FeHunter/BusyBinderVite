@@ -4,7 +4,10 @@ export function AdmPage (){
     return (
         <>
             <section>
-                <h2>Adm page</h2>
+                {/* All Products */}
+                <div>
+                    
+                </div>
             </section>
         </>
     )
@@ -14,6 +17,7 @@ export function AdmPage (){
 /*
 Features:
 * Have to be logged to have access to this page
+View list of all products registered
 Change site logo
 Change delivery fee
 Add new product

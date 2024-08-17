@@ -8,6 +8,7 @@ import { RegisterProduct } from './pages/Adm/RegisterProduct';
 import { CartPage } from './pages/CartPage';
 import { ProductPage } from './pages/ProductPage';
 import { AdmPage } from './pages/Adm/AdmPage';
+import { ProductsList } from './pages/ProductsList';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path={PagesRoutes.HomePage} element={<HomePage />} />
         <Route path={PagesRoutes.ProductPage} element={<ProductPage/>} />
         <Route path={PagesRoutes.Cart} element={<CartPage/>} />
+        <Route path={PagesRoutes.ProductsList} element={<ProductsList/>} />
         {/* ADM PAGES */}
         <Route path={PagesRoutes.RegisterProduct} element={<RegisterProduct/>} />
         <Route path={PagesRoutes.AdmPage} element={<AdmPage/>} />

@@ -16,11 +16,147 @@
         "amount" : "3"
     },
     {
-        "id": "23",
+        "id": "3",
         "img" : "./src/Images/aux_book_3.png",
         "name" : "album - orange",
         "type" : "Album",
         "price" : "15",
         "amount" : "2"
+    },
+    {
+        "id": "4",
+        "img" : "./src/Images/aux_book_1.png",
+        "name" : "album - pink",
+        "type" : "Album",
+        "price" : "12",
+        "amount" : "4"
+    },
+    {
+        "id": "5",
+        "img" : "./src/Images/aux_book_2.png",
+        "name" : "album - blue",
+        "type" : "Album",
+        "price" : "34",
+        "amount" : "1"
+    },
+    {
+        "id": "6",
+        "img" : "./src/Images/aux_book_3.png",
+        "name" : "album - orange",
+        "type" : "Album",
+        "price" : "15",
+        "amount" : "3"
+    },
+    {
+        "id": "7",
+        "img" : "./src/Images/aux_book_1.png",
+        "name" : "album - pink",
+        "type" : "Album",
+        "price" : "12",
+        "amount" : "2"
+    },
+    {
+        "id": "8",
+        "img" : "./src/Images/aux_book_2.png",
+        "name" : "album - blue",
+        "type" : "Album",
+        "price" : "34",
+        "amount" : "5"
+    },
+    {
+        "id": "9",
+        "img" : "./src/Images/aux_book_3.png",
+        "name" : "album - orange",
+        "type" : "Album",
+        "price" : "15",
+        "amount" : "1"
+    },
+    {
+        "id": "10",
+        "img" : "./src/Images/aux_book_1.png",
+        "name" : "album - pink",
+        "type" : "Album",
+        "price" : "12",
+        "amount" : "3"
+    },
+    {
+        "id": "11",
+        "img" : "./src/Images/aux_book_2.png",
+        "name" : "album - blue",
+        "type" : "Album",
+        "price" : "34",
+        "amount" : "2"
+    },
+    {
+        "id": "12",
+        "img" : "./src/Images/aux_book_3.png",
+        "name" : "album - orange",
+        "type" : "Album",
+        "price" : "15",
+        "amount" : "4"
+    },
+    {
+        "id": "13",
+        "img" : "./src/Images/aux_book_1.png",
+        "name" : "album - pink",
+        "type" : "Album",
+        "price" : "12",
+        "amount" : "5"
+    },
+    {
+        "id": "14",
+        "img" : "./src/Images/aux_book_2.png",
+        "name" : "album - blue",
+        "type" : "Album",
+        "price" : "34",
+        "amount" : "1"
+    },
+    {
+        "id": "15",
+        "img" : "./src/Images/aux_book_3.png",
+        "name" : "album - orange",
+        "type" : "Album",
+        "price" : "15",
+        "amount" : "2"
+    },
+    {
+        "id": "16",
+        "img" : "./src/Images/aux_book_1.png",
+        "name" : "album - pink",
+        "type" : "Album",
+        "price" : "12",
+        "amount" : "3"
+    },
+    {
+        "id": "17",
+        "img" : "./src/Images/aux_book_2.png",
+        "name" : "album - blue",
+        "type" : "Album",
+        "price" : "34",
+        "amount" : "4"
+    },
+    {
+        "id": "18",
+        "img" : "./src/Images/aux_book_3.png",
+        "name" : "album - orange",
+        "type" : "Album",
+        "price" : "15",
+        "amount" : "5"
+    },
+    {
+        "id": "19",
+        "img" : "./src/Images/aux_book_1.png",
+        "name" : "album - pink",
+        "type" : "Album",
+        "price" : "12",
+        "amount" : "2"
+    },
+    {
+        "id": "20",
+        "img" : "./src/Images/aux_book_2.png",
+        "name" : "album - blue",
+        "type" : "Album",
+        "price" : "34",
+        "amount" : "3"
     }
 ]
