@@ -14,7 +14,7 @@ export function CartIcon (){
 
     // Load Itens from firebase - debugging load from local
     const loadCartItems = () => {
-        fetch("/src/assets/DebugPurpose/Items.json")
+        fetch("/src/assets/DebugPurpose/RegisterItems.json")
         .then(response => response.json())
         .then(json => setCartItems(json.length));
     }

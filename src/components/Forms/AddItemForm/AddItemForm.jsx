@@ -5,6 +5,16 @@ import { ButtonToConfirm } from "../../Buttons/Buttons";
 
 export function AddItemForm (){
 
+    const product = {
+        id: "",
+        img : "",
+        name : "",
+        type : "",
+        price : "",
+        amount : "",
+        postDate: "",
+    }
+
     let schemaValidation = yup.object().shape({
         productName: yup.string().required().min(4, "Invalid"),
         StreetName: yup.string().required().min(5, "Invalid"),

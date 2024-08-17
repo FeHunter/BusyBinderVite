@@ -8,34 +8,57 @@ export function ProductsList (){
 
     const MAXTOSHOW = 8;
     const [listPosition, setListPosition] = useState(0);
-    const [loadedList, setLoadedList] = useState(null);
-    const [products, setProducts] = useState(null);
+    const [loadedList, setLoadedList] = useState([]);
+    const [products, setProducts] = useState([]);
 
-    useEffect(()=>{
-        loadCartItems()
-    },[])
+    const [filter, setFilter] = useState("default");
 
-    useEffect(()=>{
-        if (loadedList != null){
-            showProducts()
+    useEffect(() => {
+        loadCartItems();
+    }, []);
+
+    useEffect(() => {
+        if (loadedList.length > 0) {
+            showProducts();
         }
-    },[loadedList])
+    }, [loadedList]);
 
-    // Load Itens from firebase - debugging load from local
     const loadCartItems = () => {
         fetch("/src/assets/DebugPurpose/Items.json")
         .then(response => response.json())
         .then(json => setLoadedList(json))
-        .finally (()=> showProducts)
+        .finally(() => showProducts());
     }
 
-    const showProducts = () =>{
+    const showProducts = () => {
         let toShow = [];
-        for (let i=listPosition; i < (listPosition+MAXTOSHOW); i++){
+        for (let i = listPosition; i < listPosition + MAXTOSHOW && i < loadedList.length; i++) {
             toShow.push(loadedList[i]);
         }
         setProducts(toShow);
     }
+
+    useEffect(() => {
+        applyFilter(filter);
+    }, [filter]);
+
+    const applyFilter = (term) => {
+        let toFilter = [...loadedList]; // clone the list of products
+
+        if (term.toLowerCase() === "lastpost") {
+            toFilter = toFilter.sort((a, b) => new Date(b.postDate) - new Date(a.postDate));
+        } else if (term.toLowerCase() === "highprice") {
+            toFilter = toFilter.sort((a, b) => b.price - a.price);
+        } else if (term.toLowerCase() === "lowprice") {
+            toFilter = toFilter.sort((a, b) => a.price - b.price);
+        } 
+
+        if (term !== "default") {
+            setProducts(toFilter.slice(0, MAXTOSHOW));
+        } else {
+            showProducts();
+        }
+    };
 
     return (
         <>
@@ -44,16 +67,23 @@ export function ProductsList (){
                 {/* Header - Filter params */}
                 <div className={style.headerContent}>
                     <h2>Albums</h2>
+                    <select className={style.selectionButton} value={filter} onChange={(e) => setFilter(e.target.value)}>
+                        <option value="default">Default</option>
+                        <option value="popularity">Popularity</option>
+                        <option value="lastpost">Last post</option>
+                        <option value="lowprice">Low price</option>
+                        <option value="highprice">High price</option>
+                    </select>
                 </div>
                 {/* Product List */}
                 <div className={style.listContent}>
                 {
-                    products ?
+                    products.length > 0 ?
                         products.map((item, index) => {
                             return <ProdcutCard
                                 key={`Product_Card_${index}`}
                                 item={item}
-                                addToCartFunc={()=>{addItemToCart(item)}}
+                                addToCartFunc={() => addItemToCart(item)}
                             />
                         })
                     :

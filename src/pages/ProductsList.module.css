@@ -1,4 +1,12 @@
-
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 5% 0 5%;
+}
+.selectionButton {
+    padding: .3% 2%;
+    border: 1px solid gray;
+}
 
 .listContent {
     display: flex;

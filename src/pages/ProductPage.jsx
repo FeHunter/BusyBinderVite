@@ -11,14 +11,7 @@ export function ProductPage (){
     const { id } = useParams();
 
     const [allItems, setAllItems] = useState(null)
-    const [product, setProduct] = useState({
-        id: "",
-        img : "",
-        name : "",
-        type : "",
-        price : "",
-        amount : ""
-    })
+    const [product, setProduct] = useState({})
 
     useEffect(()=>{
         loadProduct()
