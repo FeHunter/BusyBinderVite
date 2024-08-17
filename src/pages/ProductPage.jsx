@@ -27,12 +27,9 @@ export function ProductPage (){
 
     // Load Requested product
     const loadProduct = () => {
-        fetch("/src/assets/DebugPurpose/RegisterItems.json")
+        fetch("/src/assets/DebugPurpose/Items.json")
         .then(response => response.json())
-        .then(pr => setProduct(pr[id]))
-        .finally(()=>{
-            alert(product.img)
-        })
+        .then(p => setProduct(p[id-1]))
     }
 
     // Load Similar products - only 4 Itens from firebase - debugging load from local
@@ -51,13 +48,12 @@ export function ProductPage (){
     return (
         <>
             <Header/>
-            <h1>ID: {id}</h1>
             <section className={style.productPage}>
                 {/* Product Informations */}
                 <div className={style.headerInformations}>
                     <img
                         className={style.productImage}
-                        src={product?.img}
+                        src={`.${product?.img}`}
                         alt={`${product?.name}_imagem`} 
                     />
                     <div className={style.productInformation}>
@@ -79,17 +75,17 @@ export function ProductPage (){
                 {/* Product Images */}
                 <div className={style.imagesContent}>
                     <div className={style.allImagesContent}>
-                        <img src="./src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
+                        <img src="../src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
                         width={'20%'} />
-                        <img src="./src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
+                        <img src="../src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
                         width={'20%'} />
-                        <img src="./src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
+                        <img src="../src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
                         width={'20%'} />
-                        <img src="./src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
+                        <img src="../src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
                         width={'20%'} />
-                        <img src="./src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
+                        <img src="../src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
                         width={'20%'} />
-                        <img src="./src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
+                        <img src="../src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
                         width={'20%'} />
                     </div>
                 </div>
@@ -103,6 +99,7 @@ export function ProductPage (){
                                     return <ProdcutCard
                                         key={`Product_Card_${index}`}
                                         item={item}
+                                        img={`.${item.img}`}
                                         addToCartFunc={()=>{addItemToCart(item)}}
                                     />
                                 })

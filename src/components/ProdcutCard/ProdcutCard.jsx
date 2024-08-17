@@ -3,7 +3,7 @@ import { ButtonToBuy } from "../Buttons/Buttons";
 import { ImagesContent } from "../ImagesContent/ImagesContent";
 import style from "./ProdcutCard.module.css";
 
-export function ProdcutCard ({item, addToCartFunc}){
+export function ProdcutCard ({item, img, addToCartFunc}){
 
     const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ export function ProdcutCard ({item, addToCartFunc}){
 
     return (
         <div className={style.prodcutCard}>
-            <ImagesContent src={item.img} alt={`${item.name}_image`} size={'100%'} onClick={goToDetails} />
+            <ImagesContent src={img == null ? item.img : img} alt={`${item.name}_image`} size={'100%'} onClick={goToDetails} />
             <div className={style.prodcutInfos}>
                 <p>{item.type}</p>
                 <p className={style.productName} onClick={goToDetails}>{item.name}</p>
