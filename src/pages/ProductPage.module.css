@@ -87,12 +87,11 @@
     }
     .headerInformations {
         display: grid;
-        grid-template-columns: 50% 40%;
-        grid-template-rows: 60% 20% 20%;
+        grid-template-columns: 60% 40%;
+        grid-template-rows: 60% 40%;
         grid-template-areas:
             'pImage pInfos'
             'images images';
-        background-color: white;
     }
     .productImage {
         width: 80%;

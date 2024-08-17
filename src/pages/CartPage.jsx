@@ -135,8 +135,8 @@ export function CartPage (){
                             {
                                 isDelivery ?
                                     <tr>
-                                        <td>Delivery Fee</td>
-                                        <td style={{ textAlign: 'center' }}>${DELIVERYFEE}</td>
+                                        <td style={{borderBottom: '1px dashed gray'}}>Delivery Fee</td>
+                                        <td style={{ textAlign: 'center', borderBottom: '1px dashed gray' }}>${DELIVERYFEE}</td>
                                     </tr>
                                 :
                                     <></>
