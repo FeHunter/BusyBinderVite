@@ -1,7 +1,6 @@
 import style from "./CartPage.module.css";
 import { Header } from "../components/Header/Header";
 import { useNavigate } from "react-router-dom";
-import PagesRoutes from "../assets/PagesRoutes";
 import { useEffect, useState } from "react";
 import { PaymentForm } from "../components/Forms/PaymentForm/PaymentForm";
 import { AdressForm } from "../components/Forms/AdressForm/AdressForm";

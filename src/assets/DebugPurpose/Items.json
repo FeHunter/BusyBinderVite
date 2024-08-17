@@ -2,7 +2,7 @@
     {
         "id": "1",
         "img" : "./src/Images/aux_book_1.png",
-        "name" : "album - pink",
+        "name" : "album - cosmic journey",
         "type" : "Album",
         "price" : "12",
         "amount" : "1"
@@ -10,15 +10,15 @@
     {
         "id": "2",
         "img" : "./src/Images/aux_book_2.png",
-        "name" : "album - blue",
-        "type" : "Album",
+        "name" : "sticker - neon vibes",
+        "type" : "Sticker",
         "price" : "34",
         "amount" : "3"
     },
     {
         "id": "3",
         "img" : "./src/Images/aux_book_3.png",
-        "name" : "album - orange",
+        "name" : "album - sunset dreams",
         "type" : "Album",
         "price" : "15",
         "amount" : "2"
@@ -26,15 +26,15 @@
     {
         "id": "4",
         "img" : "./src/Images/aux_book_1.png",
-        "name" : "album - pink",
-        "type" : "Album",
+        "name" : "sticker - floral fantasy",
+        "type" : "Sticker",
         "price" : "12",
         "amount" : "4"
     },
     {
         "id": "5",
         "img" : "./src/Images/aux_book_2.png",
-        "name" : "album - blue",
+        "name" : "album - ocean wave",
         "type" : "Album",
         "price" : "34",
         "amount" : "1"
@@ -42,15 +42,15 @@
     {
         "id": "6",
         "img" : "./src/Images/aux_book_3.png",
-        "name" : "album - orange",
-        "type" : "Album",
+        "name" : "sticker - galaxy spark",
+        "type" : "Sticker",
         "price" : "15",
         "amount" : "3"
     },
     {
         "id": "7",
         "img" : "./src/Images/aux_book_1.png",
-        "name" : "album - pink",
+        "name" : "album - forest melody",
         "type" : "Album",
         "price" : "12",
         "amount" : "2"
@@ -58,15 +58,15 @@
     {
         "id": "8",
         "img" : "./src/Images/aux_book_2.png",
-        "name" : "album - blue",
-        "type" : "Album",
+        "name" : "sticker - urban chaos",
+        "type" : "Sticker",
         "price" : "34",
         "amount" : "5"
     },
     {
         "id": "9",
         "img" : "./src/Images/aux_book_3.png",
-        "name" : "album - orange",
+        "name" : "album - desert bloom",
         "type" : "Album",
         "price" : "15",
         "amount" : "1"
@@ -74,15 +74,15 @@
     {
         "id": "10",
         "img" : "./src/Images/aux_book_1.png",
-        "name" : "album - pink",
-        "type" : "Album",
+        "name" : "sticker - cyber glitch",
+        "type" : "Sticker",
         "price" : "12",
         "amount" : "3"
     },
     {
         "id": "11",
         "img" : "./src/Images/aux_book_2.png",
-        "name" : "album - blue",
+        "name" : "album - winter frost",
         "type" : "Album",
         "price" : "34",
         "amount" : "2"
@@ -90,15 +90,15 @@
     {
         "id": "12",
         "img" : "./src/Images/aux_book_3.png",
-        "name" : "album - orange",
-        "type" : "Album",
+        "name" : "sticker - retro wave",
+        "type" : "Sticker",
         "price" : "15",
         "amount" : "4"
     },
     {
         "id": "13",
         "img" : "./src/Images/aux_book_1.png",
-        "name" : "album - pink",
+        "name" : "album - mountain echo",
         "type" : "Album",
         "price" : "12",
         "amount" : "5"
@@ -106,15 +106,15 @@
     {
         "id": "14",
         "img" : "./src/Images/aux_book_2.png",
-        "name" : "album - blue",
-        "type" : "Album",
+        "name" : "sticker - urban jungle",
+        "type" : "Sticker",
         "price" : "34",
         "amount" : "1"
     },
     {
         "id": "15",
         "img" : "./src/Images/aux_book_3.png",
-        "name" : "album - orange",
+        "name" : "album - night sky",
         "type" : "Album",
         "price" : "15",
         "amount" : "2"
@@ -122,15 +122,15 @@
     {
         "id": "16",
         "img" : "./src/Images/aux_book_1.png",
-        "name" : "album - pink",
-        "type" : "Album",
+        "name" : "sticker - pixel art",
+        "type" : "Sticker",
         "price" : "12",
         "amount" : "3"
     },
     {
         "id": "17",
         "img" : "./src/Images/aux_book_2.png",
-        "name" : "album - blue",
+        "name" : "album - golden sunset",
         "type" : "Album",
         "price" : "34",
         "amount" : "4"
@@ -138,15 +138,15 @@
     {
         "id": "18",
         "img" : "./src/Images/aux_book_3.png",
-        "name" : "album - orange",
-        "type" : "Album",
+        "name" : "sticker - cosmic swirl",
+        "type" : "Sticker",
         "price" : "15",
         "amount" : "5"
     },
     {
         "id": "19",
         "img" : "./src/Images/aux_book_1.png",
-        "name" : "album - pink",
+        "name" : "album - summer breeze",
         "type" : "Album",
         "price" : "12",
         "amount" : "2"
@@ -154,8 +154,8 @@
     {
         "id": "20",
         "img" : "./src/Images/aux_book_2.png",
-        "name" : "album - blue",
-        "type" : "Album",
+        "name" : "sticker - neon pulse",
+        "type" : "Sticker",
         "price" : "34",
         "amount" : "3"
     }

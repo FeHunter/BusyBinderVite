@@ -16,7 +16,7 @@ function App() {
     <HistoryRouter history={history}>
       <Routes>
         <Route path={PagesRoutes.HomePage} element={<HomePage />} />
-        <Route path={PagesRoutes.ProductPage} element={<ProductPage/>} />
+        <Route path={"/ProductPage/:id"} element={<ProductPage/>} />
         <Route path={PagesRoutes.Cart} element={<CartPage/>} />
         <Route path={PagesRoutes.ProductsList} element={<ProductsList/>} />
         {/* ADM PAGES */}

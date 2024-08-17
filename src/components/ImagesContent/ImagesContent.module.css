@@ -4,6 +4,10 @@
     width: 95%;
 }
 
+.imageContent:hover {
+    cursor: pointer;
+}
+
 @media screen and (min-width: 900px) {
     .imageContent {
         width: 30%;

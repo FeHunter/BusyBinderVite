@@ -4,17 +4,39 @@ import { Footer } from "../components/Footer/Footer";
 import { ButtonToBuy } from "../components/Buttons/Buttons";
 import { useEffect, useState } from "react";
 import { ProdcutCard } from "../components/ProdcutCard/ProdcutCard";
+import { useParams } from "react-router-dom";
 
 export function ProductPage (){
 
-    const [allItems, setAllItems] = useState(null);
+    const { id } = useParams();
+
+    const [allItems, setAllItems] = useState(null)
+    const [product, setProduct] = useState({
+        id: "",
+        img : "",
+        name : "",
+        type : "",
+        price : "",
+        amount : ""
+    })
 
     useEffect(()=>{
-        loadCartItems()
+        loadProduct()
+        loadSimilarProducts()
     },[])
 
-    // Load only 4 Itens from firebase - debugging load from local
-    const loadCartItems = () => {
+    // Load Requested product
+    const loadProduct = () => {
+        fetch("/src/assets/DebugPurpose/RegisterItems.json")
+        .then(response => response.json())
+        .then(pr => setProduct(pr[id]))
+        .finally(()=>{
+            alert(product.img)
+        })
+    }
+
+    // Load Similar products - only 4 Itens from firebase - debugging load from local
+    const loadSimilarProducts = () => {
         fetch("/src/assets/DebugPurpose/RegisterItems.json")
         .then(response => response.json())
         .then(json => {
@@ -29,18 +51,20 @@ export function ProductPage (){
     return (
         <>
             <Header/>
+            <h1>ID: {id}</h1>
             <section className={style.productPage}>
                 {/* Product Informations */}
                 <div className={style.headerInformations}>
                     <img
                         className={style.productImage}
-                        src="./src/Images/aux_book_1.png"
-                        alt={`nome_do_produto_imagem`} 
+                        src={product?.img}
+                        alt={`${product?.name}_imagem`} 
                     />
                     <div className={style.productInformation}>
                         <div>
-                            <p>Album</p>
-                            <p>$50</p>
+                            <p>{product?.type}</p>
+                            <p>{product?.name}</p>
+                            <p>${product?.price}</p>
                             <p>
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, provident! Consectetur accusantium ratione quod ullam voluptate nobis fugiat temporibus quos. Ad expedita illo, nam dolorem dolore nihil omnis alias ipsam?
                             </p>

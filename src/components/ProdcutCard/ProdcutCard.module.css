@@ -11,6 +11,11 @@
     margin: 3% 0;
 }
 
+.productName:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 @media screen and (min-width: 900px) {
     .prodcutCard {
         width: 18%;

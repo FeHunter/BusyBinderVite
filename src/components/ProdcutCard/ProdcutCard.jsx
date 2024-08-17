@@ -1,22 +1,29 @@
+import { useNavigate } from "react-router-dom";
 import { ButtonToBuy } from "../Buttons/Buttons";
 import { ImagesContent } from "../ImagesContent/ImagesContent";
 import style from "./ProdcutCard.module.css";
 
 export function ProdcutCard ({item, addToCartFunc}){
 
+    const navigate = useNavigate();
+
     const AddToCart = () => {
         addToCartFunc(item);
     }
 
+    const goToDetails = () => {
+        navigate(`/ProductPage/${item.id}`)
+    }
+
     return (
         <div className={style.prodcutCard}>
-            <ImagesContent src={item.img} alt={`${item.name}_image`} size={'100%'} />
+            <ImagesContent src={item.img} alt={`${item.name}_image`} size={'100%'} onClick={goToDetails} />
             <div className={style.prodcutInfos}>
                 <p>{item.type}</p>
-                <p>{item.name}</p>
+                <p className={style.productName} onClick={goToDetails}>{item.name}</p>
                 <p>${item.price}</p>
             </div>
-            <ButtonToBuy label={"Buy"} onclick={()=>{AddToCart()}} />
+            <ButtonToBuy label={"Buy"} onClick={()=>{AddToCart()}} />
         </div>
     );
 }
