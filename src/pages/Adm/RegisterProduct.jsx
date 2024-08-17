@@ -1,5 +1,5 @@
-import { AddItemForm } from "../components/Forms/AddItemForm/AddItemForm";
-import { Header } from "../components/Header/Header";
+import { AddItemForm } from "../../components/Forms/AddItemForm/AddItemForm";
+import { Header } from "../../components/Header/Header";
 import style from "./RegisterProduct.module.css";
 
 export function RegisterProduct (){
