@@ -20,9 +20,11 @@ Development Progress (Front-End):
 * ADM Page: 
 
 
-To do:
+To do: (some notes)
 * Fixe menu position when scroll page down
-* Add formik and yup to forms
+* Show warning when add new item to the cart and ask to keep buying
+Done:
+* Add formik and yup to forms [ok]
 
 
 ADM Page: add products, add social networks links, 

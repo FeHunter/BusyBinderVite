@@ -2,20 +2,23 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 2% 10%;
+    padding: 2%;
 }
 
 /* Header Informations */
 .headerInformations {
     display: grid;
-    grid-auto-columns: 50% 40%;
-    grid-auto-rows: 60% 20% 20%;
-    grid-template-areas: 'pImage pInfos' 'images images';
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+        'pImage' 
+        'imagesSelection' 
+        'pInfos';
 }
 
 .productImage {
     grid-area: pImage;
-    width: 80%;
+    width: 100%;
     border-radius: 5px;
 }
 
@@ -23,40 +26,45 @@
     grid-area: pInfos;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
     padding: 1%;
 }
 .productInformation p {
-    margin: 2%;
+    margin: 3% 2%;
 }
 
 .productActionsContent {
     display: flex;
-    justify-content: space-between;
-    width: 50%;
+    justify-content: space-around;
+    width: 100%;
+    margin: 2% 0;
 }
 .productActionsContent input {
     width: 30%;
     padding: 1%;
+    margin-right: 10%;
     text-align: center;
+    border: 1px solid gray;
 }
 
 
 /* ALL IMAGES */
 .imagesContent {
-    grid-area: images;
+    grid-area: imagesSelection;
     display: flex;
     width: 100%;
+    margin-bottom: 5%;
 }
 .allImagesContent {
     display: flex;
+    justify-content: space-evenly;
     flex-wrap: wrap;
-    width: 40%;
+    width: 100%;
 }
 .allImagesContent img {
     margin: 1%;
-    width: 20%;
+    width: 10%;
     border-radius: 10px;
 }
 
@@ -70,4 +78,42 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+}
+
+
+@media screen and (min-width: 900px) {
+    .productPage {
+        padding: 2% 10%;
+    }
+    .headerInformations {
+        display: grid;
+        grid-template-columns: 50% 40%;
+        grid-template-rows: 60% 20% 20%;
+        grid-template-areas:
+            'pImage pInfos'
+            'images images';
+        background-color: white;
+    }
+    .productImage {
+        width: 80%;
+        margin: 0;
+    }
+    .imagesContent {
+        width: 40%;
+        margin: 0;
+    }
+    .allImagesContent {
+        justify-content: flex-start;
+    }
+    .allImagesContent img {
+        width: 20%;
+    }
+    .productInformation {
+        grid-area: pInfos;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 100%;
+        padding: 1%;
+    }
 }
