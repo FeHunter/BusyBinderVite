@@ -16,8 +16,15 @@
     flex-wrap: wrap;
 }
 
+.listNavegation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1% 5%;
+}
 .listNavegationButtons {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    padding: 1% 5%;
+    margin: 1%;
 }

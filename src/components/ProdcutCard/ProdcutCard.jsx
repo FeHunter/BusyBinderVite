@@ -19,7 +19,7 @@ export function ProdcutCard ({item, img, addToCartFunc}){
         <div className={style.prodcutCard}>
             <ImagesContent src={img == null ? item.img : img} alt={`${item.name}_image`} size={'100%'} onClick={goToDetails} />
             <div className={style.prodcutInfos}>
-                <p>{item.type}</p>
+                <p>{item.type} - {item.id}</p>
                 <p className={style.productName} onClick={goToDetails}>{item.name}</p>
                 <p>${item.price}</p>
             </div>

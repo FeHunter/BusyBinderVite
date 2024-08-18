@@ -5,10 +5,15 @@ import style from "./ProductsList.module.css";
 import { ProdcutCard } from "../components/ProdcutCard/ProdcutCard";
 import { ButtonListChange } from "../components/Buttons/Buttons";
 
-export function ProductsList (){
+export function ProductsList() {
 
+    // Local list navigation
     const MAXTOSHOW = 8;
+    const [page, setPage] = useState(0);
+    const [pageBtn, setPageBtn] = useState([]);
     const [listPosition, setListPosition] = useState(0);
+
+    // Products
     const [loadedList, setLoadedList] = useState([]);
     const [products, setProducts] = useState([]);
 
@@ -21,22 +26,36 @@ export function ProductsList (){
     useEffect(() => {
         if (loadedList.length > 0) {
             showProducts();
+            calculatePagesToShow();
         }
-    }, [loadedList]);
+    }, [loadedList, listPosition]);
 
     const loadCartItems = () => {
         fetch("/src/assets/DebugPurpose/Items.json")
-        .then(response => response.json())
-        .then(json => setLoadedList(json))
-        .finally(() => showProducts());
+            .then(response => response.json())
+            .then(json => setLoadedList(json));
     }
 
     const showProducts = () => {
-        let toShow = [];
-        for (let i = listPosition; i < listPosition + MAXTOSHOW && i < loadedList.length; i++) {
-            toShow.push(loadedList[i]);
-        }
+        const toShow = loadedList.slice(listPosition, listPosition + MAXTOSHOW);
         setProducts(toShow);
+    }
+
+    // Show navigation buttons
+    const calculatePagesToShow = () => {
+        const totalPages = Math.ceil(loadedList.length / MAXTOSHOW);
+        setPage(totalPages);
+        const btn = Array.from({ length: totalPages }, (_, i) => i + 1);
+        setPageBtn(btn);
+    }
+
+    const changePageList = (pageNumber) => {
+        const newPosition = (pageNumber - 1) * MAXTOSHOW;
+        setListPosition(newPosition);
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     }
 
     useEffect(() => {
@@ -44,7 +63,7 @@ export function ProductsList (){
     }, [filter]);
 
     const applyFilter = (term) => {
-        let toFilter = [...loadedList]; // clone the list of products
+        let toFilter = [...loadedList]; // Clone the list of products
 
         if (term.toLowerCase() === "lastpost") {
             toFilter = toFilter.sort((a, b) => new Date(b.postDate) - new Date(a.postDate));
@@ -52,7 +71,7 @@ export function ProductsList (){
             toFilter = toFilter.sort((a, b) => b.price - a.price);
         } else if (term.toLowerCase() === "lowprice") {
             toFilter = toFilter.sort((a, b) => a.price - b.price);
-        } 
+        }
 
         if (term !== "default") {
             setProducts(toFilter.slice(0, MAXTOSHOW));
@@ -63,7 +82,7 @@ export function ProductsList (){
 
     return (
         <>
-            <Header/>
+            <Header />
             <section className={style.productsList}>
                 {/* Header - Filter params */}
                 <div className={style.headerContent}>
@@ -78,27 +97,39 @@ export function ProductsList (){
                 </div>
                 {/* Product List */}
                 <div className={style.listContent}>
-                {
-                    products.length > 0 ?
-                        products.map((item, index) => {
-                            return <ProdcutCard
-                                key={`Product_Card_${index}`}
-                                item={item}
-                                addToCartFunc={() => addItemToCart(item)}
-                            />
-                        })
-                    :
-                    <></>
-                }
+                    {
+                        products.length > 0 ?
+                            products.map((item, index) => {
+                                return <ProdcutCard
+                                    key={`Product_Card_${index}`}
+                                    item={item}
+                                    addToCartFunc={() => addItemToCart(item)}
+                                />
+                            })
+                            :
+                            <></>
+                    }
                 </div>
                 {/* List Control */}
-                <div className={style.listNavegationButtons}>
-                    <ButtonListChange label={"1"} />
-                    <ButtonListChange label={"2"} />
-                    <ButtonListChange label={"3"} />
+                <div className={style.listNavegation}>
+                    <p>Page {(listPosition / MAXTOSHOW) + 1} of {page}</p>
+                    <div className={style.listNavegationButtons}>
+                        {
+                            pageBtn.length > 0 ?
+                                pageBtn.map((btn, index) => {
+                                    return <ButtonListChange
+                                        key={`ButtonPageN_${index}`}
+                                        label={btn}
+                                        onClick={() => { changePageList(btn) }}
+                                    />
+                                })
+                                :
+                                <></>
+                        }
+                    </div>
                 </div>
             </section>
-            <Footer/>
+            <Footer />
         </>
     )
 }
