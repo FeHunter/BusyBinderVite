@@ -6,7 +6,6 @@ import { ProdcutCard } from "../components/ProdcutCard/ProdcutCard";
 import { ButtonListChange } from "../components/Buttons/Buttons";
 
 export function ProductsList() {
-
     // Local list navigation
     const MAXTOSHOW = 8;
     const [page, setPage] = useState(0);
@@ -15,6 +14,7 @@ export function ProductsList() {
 
     // Products
     const [loadedList, setLoadedList] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
     const [products, setProducts] = useState([]);
 
     const [filter, setFilter] = useState("default");
@@ -25,42 +25,15 @@ export function ProductsList() {
 
     useEffect(() => {
         if (loadedList.length > 0) {
-            showProducts();
-            calculatePagesToShow();
+            applyFilter(filter);
         }
-    }, [loadedList, listPosition]);
+    }, [loadedList, filter]);
 
     const loadCartItems = () => {
         fetch("/src/assets/DebugPurpose/Items.json")
             .then(response => response.json())
             .then(json => setLoadedList(json));
-    }
-
-    const showProducts = () => {
-        const toShow = loadedList.slice(listPosition, listPosition + MAXTOSHOW);
-        setProducts(toShow);
-    }
-
-    // Show navigation buttons
-    const calculatePagesToShow = () => {
-        const totalPages = Math.ceil(loadedList.length / MAXTOSHOW);
-        setPage(totalPages);
-        const btn = Array.from({ length: totalPages }, (_, i) => i + 1);
-        setPageBtn(btn);
-    }
-
-    const changePageList = (pageNumber) => {
-        const newPosition = (pageNumber - 1) * MAXTOSHOW;
-        setListPosition(newPosition);
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-
-    useEffect(() => {
-        applyFilter(filter);
-    }, [filter]);
+    };
 
     const applyFilter = (term) => {
         let toFilter = [...loadedList]; // Clone the list of products
@@ -73,11 +46,32 @@ export function ProductsList() {
             toFilter = toFilter.sort((a, b) => a.price - b.price);
         }
 
-        if (term !== "default") {
-            setProducts(toFilter.slice(0, MAXTOSHOW));
-        } else {
-            showProducts();
-        }
+        setFilteredProducts(toFilter);
+        updatePagination(toFilter);
+    };
+
+    const updatePagination = (productsList) => {
+        const totalPages = Math.ceil(productsList.length / MAXTOSHOW);
+        setPage(totalPages);
+        const btn = Array.from({ length: totalPages }, (_, i) => i + 1);
+        setPageBtn(btn);
+        setListPosition(0); // Reset to first page
+        showProducts(productsList, 0);
+    };
+
+    const showProducts = (productsList, position) => {
+        const toShow = productsList.slice(position, position + MAXTOSHOW);
+        setProducts(toShow);
+    };
+
+    const changePageList = (pageNumber) => {
+        const newPosition = (pageNumber - 1) * MAXTOSHOW;
+        setListPosition(newPosition);
+        showProducts(filteredProducts, newPosition);
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     };
 
     return (
@@ -99,13 +93,13 @@ export function ProductsList() {
                 <div className={style.listContent}>
                     {
                         products.length > 0 ?
-                            products.map((item, index) => {
-                                return <ProdcutCard
+                            products.map((item, index) => (
+                                <ProdcutCard
                                     key={`Product_Card_${index}`}
                                     item={item}
                                     addToCartFunc={() => addItemToCart(item)}
                                 />
-                            })
+                            ))
                             :
                             <></>
                     }
@@ -116,13 +110,13 @@ export function ProductsList() {
                     <div className={style.listNavegationButtons}>
                         {
                             pageBtn.length > 0 ?
-                                pageBtn.map((btn, index) => {
-                                    return <ButtonListChange
+                                pageBtn.map((btn, index) => (
+                                    <ButtonListChange
                                         key={`ButtonPageN_${index}`}
                                         label={btn}
                                         onClick={() => { changePageList(btn) }}
                                     />
-                                })
+                                ))
                                 :
                                 <></>
                         }
@@ -131,5 +125,5 @@ export function ProductsList() {
             </section>
             <Footer />
         </>
-    )
+    );
 }
