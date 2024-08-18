@@ -27,11 +27,12 @@ export function ProductPage (){
 
     // Load Similar products - only 4 Itens from firebase - debugging load from local
     const loadSimilarProducts = () => {
-        fetch("/src/assets/DebugPurpose/RegisterItems.json")
+        fetch("/src/assets/DebugPurpose/Items.json")
         .then(response => response.json())
         .then(json => {
+            const randomStart = Math.floor(Math.random() * (json.length - 4)); 
             let onlyFor = []
-            for (let i=0; i < 4; i++){
+            for (let i= randomStart; i < randomStart + 4; i++){
                 onlyFor.push(json[i])
             }
             setAllItems(onlyFor)
@@ -46,17 +47,15 @@ export function ProductPage (){
                 <div className={style.headerInformations}>
                     <img
                         className={style.productImage}
-                        src={product?.img}
-                        alt={`${product?.name}_imagem`} 
+                        src={product.img}
+                        alt={`${product.name}_imagem`} 
                     />
                     <div className={style.productInformation}>
                         <div>
-                            <p>{product?.type}</p>
-                            <p>{product?.name}</p>
-                            <p>${product?.price}</p>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, provident! Consectetur accusantium ratione quod ullam voluptate nobis fugiat temporibus quos. Ad expedita illo, nam dolorem dolore nihil omnis alias ipsam?
-                            </p>
+                            <p>{product.type}</p>
+                            <p>{product.name}</p>
+                            <p>${product.price}</p>
+                            <p>{product.description}</p>
                         </div>
                         <div className={style.productActionsContent}>
                             <input type="number" min="1" placeholder="amt" />
@@ -92,7 +91,6 @@ export function ProductPage (){
                                     return <ProdcutCard
                                         key={`Product_Card_${index}`}
                                         item={item}
-                                        img={`.${item.img}`}
                                         addToCartFunc={()=>{addItemToCart(item)}}
                                     />
                                 })

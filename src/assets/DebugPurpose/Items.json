@@ -2,181 +2,201 @@
     {
         "id": "1",
         "img": "/src/Images/aux_book_1.png",
-        "name": "album - cosmic journey",
+        "name": "cosmic journey",
         "type": "Album",
         "price": "73",
         "amount": "1",
-        "postDate": "2023-07-01"
+        "postDate": "2023-07-01",
+        "description": "A musical journey that transports you to the cosmos with immersive electronic sounds."
     },
     {
         "id": "2",
         "img": "/src/Images/aux_book_2.png",
-        "name": "sticker - neon vibes",
+        "name": "neon vibes",
         "type": "Sticker",
         "price": "89",
         "amount": "3",
-        "postDate": "2023-06-15"
+        "postDate": "2023-06-15",
+        "description": "Vibrant neon-themed stickers to add a pop of color to any surface."
     },
     {
         "id": "3",
-        "img": "/src/Images/aux_book_3.png",
-        "name": "album - sunset dreams",
-        "type": "Album",
-        "price": "12",
+        "img": "/src/Images/aux_book_1.png",
+        "name": "starry night",
+        "type": "Poster",
+        "price": "45",
         "amount": "2",
-        "postDate": "2023-05-28"
+        "postDate": "2023-05-22",
+        "description": "A poster capturing the beauty of a star-filled night sky, perfect for any room."
     },
     {
         "id": "4",
-        "img": "/src/Images/aux_book_1.png",
-        "name": "sticker - floral fantasy",
-        "type": "Sticker",
-        "price": "54",
-        "amount": "4",
-        "postDate": "2023-04-30"
+        "img": "/src/Images/aux_book_2.png",
+        "name": "urban echo",
+        "type": "Album",
+        "price": "67",
+        "amount": "1",
+        "postDate": "2023-07-12",
+        "description": "An album that blends city sounds with chill beats for a unique urban experience."
     },
     {
         "id": "5",
-        "img": "/src/Images/aux_book_2.png",
-        "name": "album - ocean wave",
-        "type": "Album",
-        "price": "92",
-        "amount": "1",
-        "postDate": "2023-07-12"
+        "img": "/src/Images/aux_book_1.png",
+        "name": "retro wave",
+        "type": "Sticker",
+        "price": "58",
+        "amount": "4",
+        "postDate": "2023-08-01",
+        "description": "A set of retro-style stickers with a wave of nostalgia."
     },
     {
         "id": "6",
-        "img": "/src/Images/aux_book_3.png",
-        "name": "sticker - galaxy spark",
-        "type": "Sticker",
-        "price": "17",
-        "amount": "3",
-        "postDate": "2023-08-02"
+        "img": "/src/Images/aux_book_2.png",
+        "name": "midnight drive",
+        "type": "Album",
+        "price": "80",
+        "amount": "1",
+        "postDate": "2023-06-30",
+        "description": "An album that captures the essence of late-night drives with soothing melodies."
     },
     {
         "id": "7",
         "img": "/src/Images/aux_book_1.png",
-        "name": "album - forest melody",
-        "type": "Album",
-        "price": "39",
+        "name": "geometric bliss",
+        "type": "Poster",
+        "price": "52",
         "amount": "2",
-        "postDate": "2023-06-20"
+        "postDate": "2023-05-15",
+        "description": "A minimalist poster featuring geometric shapes in calming colors."
     },
     {
         "id": "8",
         "img": "/src/Images/aux_book_2.png",
-        "name": "sticker - urban chaos",
+        "name": "sunset hues",
         "type": "Sticker",
-        "price": "58",
-        "amount": "5",
-        "postDate": "2023-05-10"
+        "price": "65",
+        "amount": "3",
+        "postDate": "2023-07-25",
+        "description": "Stickers that capture the beautiful colors of a sunset."
     },
     {
         "id": "9",
-        "img": "/src/Images/aux_book_3.png",
-        "name": "album - desert bloom",
+        "img": "/src/Images/aux_book_1.png",
+        "name": "digital escape",
         "type": "Album",
-        "price": "23",
+        "price": "78",
         "amount": "1",
-        "postDate": "2023-07-25"
+        "postDate": "2023-06-05",
+        "description": "An album that offers an escape into digital landscapes and soundscapes."
     },
     {
         "id": "10",
-        "img": "/src/Images/aux_book_1.png",
-        "name": "sticker - cyber glitch",
-        "type": "Sticker",
-        "price": "67",
-        "amount": "3",
-        "postDate": "2023-08-12"
+        "img": "/src/Images/aux_book_2.png",
+        "name": "vintage vibes",
+        "type": "Poster",
+        "price": "49",
+        "amount": "2",
+        "postDate": "2023-07-03",
+        "description": "A poster with a vintage aesthetic, perfect for adding a classic touch to any space."
     },
     {
         "id": "11",
-        "img": "/src/Images/aux_book_2.png",
-        "name": "album - winter frost",
-        "type": "Album",
-        "price": "41",
-        "amount": "2",
-        "postDate": "2023-06-05"
+        "img": "/src/Images/aux_book_1.png",
+        "name": "color burst",
+        "type": "Sticker",
+        "price": "62",
+        "amount": "5",
+        "postDate": "2023-06-28",
+        "description": "A collection of vibrant stickers that add a burst of color to your day."
     },
     {
         "id": "12",
-        "img": "/src/Images/aux_book_3.png",
-        "name": "sticker - retro wave",
-        "type": "Sticker",
-        "price": "88",
-        "amount": "4",
-        "postDate": "2023-08-08"
+        "img": "/src/Images/aux_book_2.png",
+        "name": "calm waters",
+        "type": "Album",
+        "price": "71",
+        "amount": "1",
+        "postDate": "2023-08-04",
+        "description": "An album inspired by the tranquility of calm waters, perfect for relaxation."
     },
     {
         "id": "13",
         "img": "/src/Images/aux_book_1.png",
-        "name": "album - mountain echo",
-        "type": "Album",
-        "price": "29",
-        "amount": "5",
-        "postDate": "2023-05-16"
+        "name": "urban jungle",
+        "type": "Poster",
+        "price": "55",
+        "amount": "2",
+        "postDate": "2023-05-18",
+        "description": "A dynamic poster that brings the energy of the urban jungle into your home."
     },
     {
         "id": "14",
         "img": "/src/Images/aux_book_2.png",
-        "name": "sticker - urban jungle",
+        "name": "lunar dreams",
         "type": "Sticker",
-        "price": "64",
-        "amount": "1",
-        "postDate": "2023-06-23"
+        "price": "66",
+        "amount": "3",
+        "postDate": "2023-07-14",
+        "description": "Dreamy lunar-themed stickers that are out of this world."
     },
     {
         "id": "15",
-        "img": "/src/Images/aux_book_3.png",
-        "name": "album - night sky",
+        "img": "/src/Images/aux_book_1.png",
+        "name": "night pulse",
         "type": "Album",
-        "price": "15",
-        "amount": "2",
-        "postDate": "2023-07-30"
+        "price": "76",
+        "amount": "1",
+        "postDate": "2023-06-22",
+        "description": "An album with pulsing beats perfect for late-night sessions."
     },
     {
         "id": "16",
-        "img": "/src/Images/aux_book_1.png",
-        "name": "sticker - pixel art",
-        "type": "Sticker",
-        "price": "51",
-        "amount": "3",
-        "postDate": "2023-05-02"
+        "img": "/src/Images/aux_book_2.png",
+        "name": "vivid horizon",
+        "type": "Poster",
+        "price": "59",
+        "amount": "2",
+        "postDate": "2023-07-09",
+        "description": "A vibrant poster capturing the beauty of the horizon at dusk."
     },
     {
         "id": "17",
-        "img": "/src/Images/aux_book_2.png",
-        "name": "album - golden sunset",
-        "type": "Album",
-        "price": "80",
+        "img": "/src/Images/aux_book_1.png",
+        "name": "neon nights",
+        "type": "Sticker",
+        "price": "74",
         "amount": "4",
-        "postDate": "2023-06-12"
+        "postDate": "2023-08-03",
+        "description": "Neon-themed stickers that light up your night."
     },
     {
         "id": "18",
-        "img": "/src/Images/aux_book_3.png",
-        "name": "sticker - cosmic swirl",
-        "type": "Sticker",
-        "price": "22",
-        "amount": "5",
-        "postDate": "2023-07-08"
+        "img": "/src/Images/aux_book_2.png",
+        "name": "serene paths",
+        "type": "Album",
+        "price": "79",
+        "amount": "1",
+        "postDate": "2023-06-14",
+        "description": "An album that guides you through serene soundscapes and peaceful paths."
     },
     {
         "id": "19",
         "img": "/src/Images/aux_book_1.png",
-        "name": "album - summer breeze",
-        "type": "Album",
-        "price": "47",
+        "name": "abstract flow",
+        "type": "Poster",
+        "price": "53",
         "amount": "2",
-        "postDate": "2023-05-22"
+        "postDate": "2023-05-30",
+        "description": "A poster featuring abstract designs with a fluid, flowing aesthetic."
     },
     {
         "id": "20",
         "img": "/src/Images/aux_book_2.png",
-        "name": "sticker - neon pulse",
+        "name": "solar flare",
         "type": "Sticker",
-        "price": "94",
-        "amount": "3",
-        "postDate": "2023-06-28"
+        "price": "63",
+        "amount": "5",
+        "postDate": "2023-06-11",
+        "description": "A set of stickers inspired by the powerful energy of solar flares."
     }
 ]

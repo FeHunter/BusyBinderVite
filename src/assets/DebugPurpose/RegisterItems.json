@@ -1,50 +1,29 @@
 [
     {
         "id": "1",
-        "img" : "./src/Images/aux_book_1.png",
-        "name" : "album - pink",
-        "type" : "Album",
-        "price" : "12",
-        "amount" : "1"
+        "img": "/src/Images/aux_book_1.png",
+        "name": "album - cosmic journey",
+        "type": "Album",
+        "price": "73",
+        "amount": "1",
+        "postDate": "2023-07-01"
     },
     {
         "id": "2",
-        "img" : "./src/Images/aux_book_2.png",
-        "name" : "album - blue",
-        "type" : "Album",
-        "price" : "34",
-        "amount" : "3"
+        "img": "/src/Images/aux_book_2.png",
+        "name": "sticker - neon vibes",
+        "type": "Sticker",
+        "price": "89",
+        "amount": "3",
+        "postDate": "2023-06-15"
     },
     {
-        "id": "23",
-        "img" : "./src/Images/aux_book_3.png",
-        "name" : "album - orange",
-        "type" : "Album",
-        "price" : "15",
-        "amount" : "2"
-    },
-    {
-        "id": "4",
-        "img" : "./src/Images/aux_book_1.png",
-        "name" : "album - Marron",
-        "type" : "Album",
-        "price" : "32",
-        "amount" : "1"
-    },
-    {
-        "id": "5",
-        "img" : "./src/Images/aux_book_2.png",
-        "name" : "album - Preto",
-        "type" : "Album",
-        "price" : "24",
-        "amount" : "3"
-    },
-    {
-        "id": "6",
-        "img" : "./src/Images/aux_book_3.png",
-        "name" : "album - Azul",
-        "type" : "Album",
-        "price" : "4",
-        "amount" : "2"
+        "id": "3",
+        "img": "/src/Images/aux_book_3.png",
+        "name": "album - sunset dreams",
+        "type": "Album",
+        "price": "12",
+        "amount": "2",
+        "postDate": "2023-05-28"
     }
 ]

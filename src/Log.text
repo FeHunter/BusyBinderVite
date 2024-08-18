@@ -23,6 +23,7 @@ Development Progress (Front-End):
 To do: (some notes)
 * Fixe menu position when scroll page down
 * Show warning when add new item to the cart and ask to keep buying
+* Save local session on localStorage, save cart itens
 Done:
 * Add formik and yup to forms [ok]
 
