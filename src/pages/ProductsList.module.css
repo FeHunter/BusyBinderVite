@@ -1,6 +1,7 @@
 .headerContent {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 2% 5% 0 5%;
 }
 .selectionButton {
@@ -11,5 +12,12 @@
 .listContent {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
+}
+
+.listNavegationButtons {
+    display: flex;
+    align-items: center;
+    padding: 1% 5%;
 }

@@ -3,6 +3,7 @@ import { Footer } from "../components/Footer/Footer";
 import { Header } from "../components/Header/Header";
 import style from "./ProductsList.module.css";
 import { ProdcutCard } from "../components/ProdcutCard/ProdcutCard";
+import { ButtonListChange } from "../components/Buttons/Buttons";
 
 export function ProductsList (){
 
@@ -91,8 +92,10 @@ export function ProductsList (){
                 }
                 </div>
                 {/* List Control */}
-                <div>
-
+                <div className={style.listNavegationButtons}>
+                    <ButtonListChange label={"1"} />
+                    <ButtonListChange label={"2"} />
+                    <ButtonListChange label={"3"} />
                 </div>
             </section>
             <Footer/>

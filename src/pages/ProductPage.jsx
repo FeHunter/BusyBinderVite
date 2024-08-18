@@ -46,7 +46,7 @@ export function ProductPage (){
                 <div className={style.headerInformations}>
                     <img
                         className={style.productImage}
-                        src={`.${product?.img}`}
+                        src={product?.img}
                         alt={`${product?.name}_imagem`} 
                     />
                     <div className={style.productInformation}>

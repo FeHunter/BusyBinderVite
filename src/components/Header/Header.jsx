@@ -73,7 +73,7 @@ export function Header () {
                 </div>
                 <div className={style.buttonsMobileMenu}>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.HomePage}>Home</LinkToPage></span>
-                    <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.HomePage}>Albums</LinkToPage></span>
+                    <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.ProductsList}>Albums</LinkToPage></span>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.HomePage}>About Us</LinkToPage></span>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.HomePage}>Contacts</LinkToPage></span>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.RegisterProduct}>Add new Product</LinkToPage></span>
