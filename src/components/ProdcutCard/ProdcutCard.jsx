@@ -2,13 +2,23 @@ import { useNavigate } from "react-router-dom";
 import { ButtonToBuy } from "../Buttons/Buttons";
 import { ImagesContent } from "../ImagesContent/ImagesContent";
 import style from "./ProdcutCard.module.css";
+import { localStorageRoutes } from "../../assets/localStorageRoutes";
+import PagesRoutes from "../../assets/PagesRoutes";
 
-export function ProdcutCard ({item, addToCartFunc}){
+export function ProdcutCard ({item}){
 
     const navigate = useNavigate();
 
-    const AddToCart = () => {
-        addToCartFunc(item);
+    // local cart
+    const AddToCart = async () => {
+        // localStorage.removeItem(localStorageRoutes.myCart)
+        // load 
+        const loadCart = localStorage.getItem(localStorageRoutes.myCart) ? JSON.parse(localStorage.getItem(localStorageRoutes.myCart)) : []
+        // add item to cart
+        const product = {...item}
+        let addProduct = [... loadCart, product]
+        localStorage.setItem(localStorageRoutes.myCart, JSON.stringify(addProduct))
+        navigate(PagesRoutes.Cart)
     }
 
     const goToDetails = () => {

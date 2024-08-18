@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import style from "./CartIcon.module.css";
 import PagesRoutes from "../../../assets/PagesRoutes";
 import { useEffect, useState } from "react";
+import { localStorageRoutes } from "../../../assets/localStorageRoutes";
 
 export function CartIcon (){
 
@@ -14,9 +15,10 @@ export function CartIcon (){
 
     // Load Itens from firebase - debugging load from local
     const loadCartItems = () => {
-        fetch("/src/assets/DebugPurpose/RegisterItems.json")
-        .then(response => response.json())
-        .then(json => setCartItems(json.length));
+        // localStorage.removeItem(localStorageRoutes.myCart)
+        const loadCart = localStorage.getItem(localStorageRoutes.myCart)
+        setCartItems(loadCart != null ? JSON.parse(loadCart) : [])
+        console.log(JSON.parse(loadCart))
     }
 
     const cartIconSVG = <svg width={30} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -25,7 +27,7 @@ export function CartIcon (){
 
     return (
         <div className={style.cartContent} onClick={()=>{navigate(PagesRoutes.Cart)}}>
-            <div className={style.qtdContent}>{cartItems}</div>
+            <div className={style.qtdContent}>{cartItems.length}</div>
             <div style={{fontSize: '1.3em'}}>{<i class="fa-solid fa-bag-shopping"></i>}</div>
         </div>
     );

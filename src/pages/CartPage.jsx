@@ -7,6 +7,7 @@ import { AdressForm } from "../components/Forms/AdressForm/AdressForm";
 import { ButtonToConfirm, ButtonToDelete } from "../components/Buttons/Buttons";
 import { DeliveryOptionForm } from "../components/Forms/DeliveryOptionForm/DeliveryOptionForm";
 import { Footer } from "../components/Footer/Footer";
+import { localStorageRoutes } from "../assets/localStorageRoutes";
 
 export function CartPage (){
 
@@ -26,9 +27,7 @@ export function CartPage (){
 
     // Load Itens from firebase - debugging load from local
     const loadCartItems = () => {
-        fetch("/src/assets/DebugPurpose/RegisterItems.json")
-        .then(response => response.json())
-        .then(json => setItems(json));
+        setItems(JSON.parse(localStorage.getItem(localStorageRoutes.myCart)))
     }
 
     const getTotalValue = () => {
