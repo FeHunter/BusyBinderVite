@@ -12,14 +12,33 @@ export function ProdcutCard ({item}){
     // local cart
     const AddToCart = async () => {
         // localStorage.removeItem(localStorageRoutes.myCart)
-        // load 
-        const loadCart = localStorage.getItem(localStorageRoutes.myCart) ? JSON.parse(localStorage.getItem(localStorageRoutes.myCart)) : []
-        // add item to cart
-        const product = {...item}
-        let addProduct = [... loadCart, product]
-        localStorage.setItem(localStorageRoutes.myCart, JSON.stringify(addProduct))
-        navigate(PagesRoutes.Cart)
-    }
+        // Load the cart from localStorage
+        const loadCart = localStorage.getItem(localStorageRoutes.myCart) 
+            ? JSON.parse(localStorage.getItem(localStorageRoutes.myCart)) 
+            : [];
+    
+        // Check if the product is already in the cart
+        const productIndex = loadCart.findIndex(cartItem => (cartItem.id+cartItem.name) === (item.id+item.name));
+    
+        let updatedCart;
+    
+        if (productIndex !== -1) {
+            // Product is already in the cart, increment the amount by the selected amount
+            updatedCart = loadCart.map((item, index) => 
+                index === productIndex 
+                    ? { ...item, amount: parseInt(item.amount) + 1 } 
+                    : item
+            );
+        } else {
+            // Product is not in the cart, add it with the selected amount
+            const newProduct = { ...item, amount: 1 };
+            updatedCart = [...loadCart, newProduct];
+        }
+    
+        // Update the state and save to localStorage
+        localStorage.setItem(localStorageRoutes.myCart, JSON.stringify(updatedCart));
+        navigate(PagesRoutes.Cart);
+    };
 
     const goToDetails = () => {
         navigate(`/ProductPage/${item.id}`)
@@ -38,7 +57,7 @@ export function ProdcutCard ({item}){
                 <p className={style.productName} onClick={goToDetails}>{item.name}</p>
                 <p>${item.price}</p>
             </div>
-            <ButtonToBuy label={"Buy"} onClick={()=>{AddToCart()}} />
+            <ButtonToBuy label={"Buy"} onClick={AddToCart} />
         </div>
     );
 }

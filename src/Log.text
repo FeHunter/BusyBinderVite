@@ -26,6 +26,7 @@ To do: (some notes)
 * Save local session on localStorage, save cart itens
 Done:
 * Add formik and yup to forms [ok]
+* Fix when add one product that already is on the cart increase the amount [ok]
 
 
 ADM Page: add products, add social networks links, 

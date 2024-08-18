@@ -4,81 +4,114 @@ import { Footer } from "../components/Footer/Footer";
 import { ButtonToBuy } from "../components/Buttons/Buttons";
 import { useEffect, useState } from "react";
 import { ProdcutCard } from "../components/ProdcutCard/ProdcutCard";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import PagesRoutes from "../assets/PagesRoutes";
+import { localStorageRoutes } from "../assets/localStorageRoutes";
 
 export function ProductPage (){
 
     const { id } = useParams();
+    const navigate = useNavigate();
 
-    const [allItems, setAllItems] = useState(null)
-    const [product, setProduct] = useState({})
+    const [allItems, setAllItems] = useState(null);
+    const [product, setProduct] = useState({});
+    const [amount, setAmount] = useState(1);
 
     useEffect(()=>{
-        loadProduct()
-        loadSimilarProducts()
-    },[])
+        loadProduct();
+        loadSimilarProducts();
+    },[]);
 
     // Load Requested product
     const loadProduct = () => {
         fetch("/src/assets/DebugPurpose/Items.json")
         .then(response => response.json())
-        .then(p => setProduct(p[id-1]))
+        .then(p => setProduct(p[id-1]));
     }
 
-    // Load Similar products - only 4 Itens from firebase - debugging load from local
+    // Load Similar products - only 4 Items from local JSON
     const loadSimilarProducts = () => {
         fetch("/src/assets/DebugPurpose/Items.json")
         .then(response => response.json())
         .then(json => {
             const randomStart = Math.floor(Math.random() * (json.length - 4)); 
-            let onlyFor = []
+            let onlyFour = [];
             for (let i= randomStart; i < randomStart + 4; i++){
-                onlyFor.push(json[i])
+                onlyFour.push(json[i]);
             }
-            setAllItems(onlyFor)
-        })
+            setAllItems(onlyFour);
+        });
     }
+
+    // Local cart handling
+    const AddToCart = async () => {
+        // Load the cart from localStorage
+        const loadCart = localStorage.getItem(localStorageRoutes.myCart) 
+            ? JSON.parse(localStorage.getItem(localStorageRoutes.myCart)) 
+            : [];
+    
+        // Check if the product is already in the cart
+        const productIndex = loadCart.findIndex(item => item.id === product.id);
+    
+        let updatedCart;
+    
+        if (productIndex !== -1) {
+            // Product is already in the cart, increment the amount by the selected amount
+            updatedCart = loadCart.map((item, index) => 
+                index === productIndex 
+                    ? { ...item, amount: parseInt(item.amount) + parseInt(amount) } 
+                    : item
+            );
+        } else {
+            // Product is not in the cart, add it with the selected amount
+            const newProduct = { ...product, amount: parseInt(amount) };
+            updatedCart = [...loadCart, newProduct];
+        }
+    
+        // Update the state and save to localStorage
+        localStorage.setItem(localStorageRoutes.myCart, JSON.stringify(updatedCart));
+        navigate(PagesRoutes.Cart);
+    };
 
     return (
         <>
             <Header/>
             <section className={style.productPage}>
-                {/* Product Informations */}
+                {/* Product Information */}
                 <div className={style.headerInformations}>
                     <img
                         className={style.productImage}
                         src={product.img}
-                        alt={`${product.name}_imagem`} 
+                        alt={`${product.name}_image`} 
                     />
                     <div className={style.productInformation}>
-                        <div>
-                            <p>{product.type}</p>
-                            <p>{product.name}</p>
-                            <p>${product.price}</p>
-                            <p>{product.description}</p>
-                        </div>
+                        <>
+                            <p className={style.productType}>{product.type}</p>
+                            <p className={style.productName}>{product.name}</p>
+                            <p className={style.productPrice}>${product.price}</p>
+                            <p className={style.productDescription}>{product.description}</p>
+                        </>
                         <div className={style.productActionsContent}>
-                            <input type="number" min="1" placeholder="amt" />
-                            <ButtonToBuy label={"Buy"} />
+                            <input 
+                                type="number" 
+                                min="1" 
+                                placeholder="amt" 
+                                value={amount} 
+                                onChange={(e)=>{setAmount(e.target.value)}} 
+                            />
+                            <ButtonToBuy label={"Buy"} onClick={AddToCart} />
                         </div>
                     </div>
-                    
                 </div>
                 {/* Product Images */}
                 <div className={style.imagesContent}>
                     <div className={style.allImagesContent}>
-                        <img src="../src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
-                        width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
-                        width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
-                        width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
-                        width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
-                        width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`nome_do_produto_imagem`} 
-                        width={'20%'} />
+                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
                     </div>
                 </div>
                 {/* Similar Products */}
@@ -91,7 +124,6 @@ export function ProductPage (){
                                     return <ProdcutCard
                                         key={`Product_Card_${index}`}
                                         item={item}
-                                        addToCartFunc={()=>{addItemToCart(item)}}
                                     />
                                 })
                             :
