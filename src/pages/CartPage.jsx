@@ -12,7 +12,7 @@ import { localStorageRoutes } from "../assets/localStorageRoutes";
 export function CartPage (){
 
     const navigate = useNavigate(); // site navigation
-    const [items, setItems] = useState(null);
+    const [items, setItems] = useState([]);
     const [totalValue, setTotalValue] = useState(0);
     const [isDelivery, setIsDelivery] = useState(true);
     const DELIVERYFEE = 25;
@@ -44,6 +44,14 @@ export function CartPage (){
         }
     }
 
+    const removeFromCart = (itemToRemove) => {
+        const removeIndex = items.findIndex((item) => item.id+item.name == itemToRemove.id+itemToRemove.name)
+        let updateItems = [...items]
+        updateItems.splice(removeIndex, 1)
+        setItems(updateItems)
+        localStorage.setItem(localStorageRoutes.myCart, JSON.stringify(updateItems))
+    }
+
     return (
         <>
             <Header/>
@@ -63,11 +71,11 @@ export function CartPage (){
                         </thead>
                         <tbody>
                             {
-                                items != null ?
+                                items != null || items.length <= 0 ?
                                     items.map((item, index)=>{
                                         return (
-                                            <tr>
-                                                <td><ButtonToDelete/></td>
+                                            <tr key={`tr_item_${index}`}>
+                                                <td><ButtonToDelete onClick={()=>{removeFromCart(item)}}/></td>
                                                 <td><img src={item.img}/></td>
                                                 <td>{item.name}</td>
                                                 <td>${item.price}</td>
@@ -77,7 +85,7 @@ export function CartPage (){
                                         )
                                     })
                                     :
-                                    <></>
+                                    <p>Empty cart</p>
                             }
                         </tbody>
                     </table>

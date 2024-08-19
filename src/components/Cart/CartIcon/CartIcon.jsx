@@ -18,7 +18,6 @@ export function CartIcon (){
         // localStorage.removeItem(localStorageRoutes.myCart)
         const loadCart = localStorage.getItem(localStorageRoutes.myCart)
         setCartItems(loadCart != null ? JSON.parse(loadCart) : [])
-        console.log(JSON.parse(loadCart))
     }
 
     const cartIconSVG = <svg width={30} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
