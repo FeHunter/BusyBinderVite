@@ -5,6 +5,12 @@
     width: 70%;
 }
 
+.towItemForm {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
 .itemForm {
     display: flex;
     flex-direction: column;
