@@ -83,7 +83,7 @@ export function CartPage (){
                         </thead>
                         <tbody>
                             {
-                                items != null || items.length <= 0 ?
+                                items != null ?
                                     items.map((item, index)=>{
                                         return (
                                             <tr key={`tr_item_${index}`}>
