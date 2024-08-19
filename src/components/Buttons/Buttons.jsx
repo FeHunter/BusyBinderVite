@@ -9,8 +9,8 @@ export function ButtonToDelete ({onClick}){
     return <button className={style.buttonToDelete} onClick={onClick}><i class="fa-solid fa-trash"></i></button>
 }
 
-export function ButtonToConfirm ({icon, onClick}){
-    return <button className={style.buttonToConfirm} onClick={onClick}>{icon}</button>
+export function ButtonToConfirm ({icon, type, onClick}){
+    return <button className={style.buttonToConfirm} type={type} onClick={onClick}>{icon}</button>
 }
 
 export function ButtonToFooter ({label, navegateTo}){
@@ -19,4 +19,8 @@ export function ButtonToFooter ({label, navegateTo}){
 
 export function ButtonListChange ({label, onClick}){
     return <button className={style.buttonListChange} onClick={onClick}>{label}</button>
+}
+
+export function ButtonAdmHeader ({label, onClick}){
+    return <button className={style.buttonAdmHeader} onClick={onClick} >{label}</button>
 }

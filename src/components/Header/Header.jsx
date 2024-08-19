@@ -39,7 +39,7 @@ export function Header () {
                 <LinkToPage to={PagesRoutes.ProductsList}>Albums</LinkToPage>
                 <LinkToPage to={PagesRoutes.HomePage}>About me</LinkToPage>
                 <LinkToPage to={PagesRoutes.HomePage}>Contacts</LinkToPage>
-                <LinkToPage to={PagesRoutes.RegisterProduct}>Add new Product</LinkToPage>
+                <LinkToPage to={PagesRoutes.AdmPage}>Adm Page</LinkToPage>
             </div>
             {/* cart */}
             <div className={style.cart}>
@@ -76,7 +76,7 @@ export function Header () {
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.ProductsList}>Albums</LinkToPage></span>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.HomePage}>About Us</LinkToPage></span>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.HomePage}>Contacts</LinkToPage></span>
-                    <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.RegisterProduct}>Add new Product</LinkToPage></span>
+                    <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.AdmPage}>Adm Page</LinkToPage></span>
                 </div>
             </motion.div>
         </header>

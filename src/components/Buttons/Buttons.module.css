@@ -78,3 +78,19 @@
     color: white;
     background-color: gray;
 }
+
+
+/* BUTTON TO ADM PAGE HEADER NAVIGATION */
+.buttonAdmHeader {
+    width: 100%;
+    padding: 2%;
+    text-align: center;
+    color: black;
+    border: 1px solid gray;
+    background-color: white;
+}
+.buttonAdmHeader:hover {
+    cursor: pointer;
+    color: white;
+    background-color: gray;
+}

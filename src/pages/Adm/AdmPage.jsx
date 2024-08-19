@@ -1,31 +1,37 @@
-import style from "./AdmPage.module.css"
+import { localStorageRoutes } from "../../assets/localStorageRoutes";
+import { Footer } from "../../components/Footer/Footer";
+import { AddItemForm } from "../../components/Forms/AddItemForm/AddItemForm";
+import { Header } from "../../components/Header/Header";
+import style from "./AdmPage.module.css";
 
 export function AdmPage (){
+
+    const addNewProduct = (product) => {
+        // load current itens
+        const products = localStorage.getItem(localStorageRoutes.localProducts)
+        ? JSON.parse(localStorage.getItem(localStorageRoutes.localProducts))
+        : [{}]
+
+        console.log(products)
+
+        // add new product to the list
+        products.push(product)
+        localStorage.setItem(localStorageRoutes.localProducts, JSON.stringify(products))
+    }
+
     return (
         <>
-            <section>
-                {/* All Products */}
-                <div>
-                    
+            <Header />
+            <section className={style.admPage}>
+                <div className={style.content}>
+                    <p className={style.contentTitle}>Register a new product</p>
+                    <AddItemForm addNewProduct={addNewProduct} />
+                </div>
+                <div className={style.content}>
+                    <p className={style.contentTitle}>Social Networks</p>
                 </div>
             </section>
+            <Footer/>
         </>
-    )
+    );
 }
-
-
-/*
-Features:
-* Have to be logged to have access to this page
-View list of all products registered
-Change site logo
-Change delivery fee
-Add new product
-Remove product form the list
-Changes contacts informations and social networks
-
-
-Login = firebase Authenticator
-Database = firebase
-
-*/

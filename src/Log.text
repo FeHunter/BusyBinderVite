@@ -6,6 +6,10 @@ npm install vite@latest
 run project:
 npm run dev
 
+Notes!!
+
+>> ID: The product id is the creation time and it's name. 
+
 Development Progress (Front-End):
 * Home Page [ok]
 * Product Card [ok]
