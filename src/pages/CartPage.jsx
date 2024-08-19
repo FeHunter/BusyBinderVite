@@ -17,6 +17,10 @@ export function CartPage (){
     const [isDelivery, setIsDelivery] = useState(true);
     const DELIVERYFEE = 25;
 
+    // Forms verify
+    const [paymentForm, setPaymentForm] = useState(false)
+    const [adressForm, setAdressForm] = useState(false)
+
     useEffect(()=>{
         loadCartItems()
     },[])
@@ -173,7 +177,7 @@ export function CartPage (){
                             </tr>
                         </tbody>
                     </table>
-                    <ButtonToConfirm icon={"Confirm Order"} onClick={()=>{}} />
+                    <ButtonToConfirm icon={"Confirm Order"} type={"submit"} onClick={()=>{}} />
                 </section>
             </section>
             <Footer/>

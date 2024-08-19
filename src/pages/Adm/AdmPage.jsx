@@ -1,4 +1,5 @@
 import { localStorageRoutes } from "../../assets/localStorageRoutes";
+import { ButtonAdmHeader } from "../../components/Buttons/Buttons";
 import { Footer } from "../../components/Footer/Footer";
 import { AddItemForm } from "../../components/Forms/AddItemForm/AddItemForm";
 import { Header } from "../../components/Header/Header";
@@ -22,6 +23,10 @@ export function AdmPage (){
     return (
         <>
             <Header />
+            <div className={style.buttonsNavigation}>
+                <ButtonAdmHeader label={"Add Product"} />
+                <ButtonAdmHeader label={"Social Networks"} />
+            </div>
             <section className={style.admPage}>
                 <div className={style.content}>
                     <p className={style.contentTitle}>Register a new product</p>

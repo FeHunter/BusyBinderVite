@@ -24,3 +24,11 @@ export function ButtonListChange ({label, onClick}){
 export function ButtonAdmHeader ({label, onClick}){
     return <button className={style.buttonAdmHeader} onClick={onClick} >{label}</button>
 }
+
+export function ButtonFormValidation ({isValid, onClick}){
+    return <button className={style.ButtonFormValidation} type="submit">{
+        !isValid
+        ? <><i class="fa-regular fa-circle-xmark"></i> <p>Validate information</p></>
+        : <i class="fa-regular fa-circle-check"></i>
+    }</button>
+}

@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+.buttonsNavigation {
+    display: flex;
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -33,6 +37,9 @@
         flex-wrap: wrap;
         align-items: baseline;
         width: 100%;
+    }
+    .buttonsNavigation {
+        display: none;
     }
     .content {
         width: 45%;
