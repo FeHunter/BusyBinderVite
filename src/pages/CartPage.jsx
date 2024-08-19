@@ -34,7 +34,7 @@ export function CartPage (){
         let count = 0;
         if (items != null){
             for (let i=0; i < items.length; i++){
-                count += parseFloat(items[i].price);
+                count += parseFloat(items[i].price * items[i].amount);
             }
         }
         if (isDelivery){
@@ -44,10 +44,22 @@ export function CartPage (){
         }
     }
 
+    const changeAmount = (itemToChange, newAmount) => {
+        if (newAmount >= 1){
+            const index = items.findIndex((item) => item.id+item.name == itemToChange.id+itemToChange.name)
+            let update = [...items]
+            update[index].amount = parseInt(newAmount)
+            localStorage.setItem(localStorageRoutes.myCart, JSON.stringify(update))
+            setItems(update)
+        }else {
+            alert("Invalid input, amount cannot be less then 1.") // Change to toastContainer notify
+        }
+    }
+
     const removeFromCart = (itemToRemove) => {
-        const removeIndex = items.findIndex((item) => item.id+item.name == itemToRemove.id+itemToRemove.name)
+        const index = items.findIndex((item) => item.id+item.name == itemToRemove.id+itemToRemove.name)
         let updateItems = [...items]
-        updateItems.splice(removeIndex, 1)
+        updateItems.splice(index, 1)
         setItems(updateItems)
         localStorage.setItem(localStorageRoutes.myCart, JSON.stringify(updateItems))
     }
@@ -79,7 +91,15 @@ export function CartPage (){
                                                 <td><img src={item.img}/></td>
                                                 <td>{item.name}</td>
                                                 <td>${item.price}</td>
-                                                <td>{item.amount}</td>
+                                                <td>
+                                                    <input
+                                                        style={{width: '50%', textAlign: 'center'}}
+                                                        type="number"
+                                                        min="1"
+                                                        value={item.amount}
+                                                        onChange={(e)=>{changeAmount(item, e.target.value)}}
+                                                    />
+                                                </td>
                                                 <td>${parseFloat(item.price) * parseFloat(item.amount)}</td>
                                             </tr>
                                         )
@@ -131,7 +151,7 @@ export function CartPage (){
                                         return (
                                             <tr key={`table_row_${index}`}>
                                                 <td style={{ borderBottom: '1px dashed gray' }}>{item.name} x {item.amount}</td>
-                                                <td style={{ textAlign: 'center', borderBottom: '1px dashed gray' }}>${item.price}</td>
+                                                <td style={{ textAlign: 'center', borderBottom: '1px dashed gray' }}>${item.price * item.amount}</td>
                                             </tr>
                                         )
                                     })
