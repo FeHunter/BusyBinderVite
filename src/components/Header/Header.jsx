@@ -37,7 +37,7 @@ export function Header () {
             <div className={style.buttonsDesktop}>
                 <LinkToPage to={PagesRoutes.HomePage}>Home</LinkToPage>
                 <LinkToPage to={PagesRoutes.ProductsList}>Albums</LinkToPage>
-                <LinkToPage to={PagesRoutes.HomePage}>About me</LinkToPage>
+                <LinkToPage to={PagesRoutes.AboutMe}>About Me</LinkToPage>
                 <LinkToPage to={PagesRoutes.HomePage}>Contacts</LinkToPage>
                 <LinkToPage to={PagesRoutes.AdmPage}>Adm Page</LinkToPage>
             </div>
@@ -74,7 +74,7 @@ export function Header () {
                 <div className={style.buttonsMobileMenu}>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.HomePage}>Home</LinkToPage></span>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.ProductsList}>Albums</LinkToPage></span>
-                    <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.HomePage}>About Us</LinkToPage></span>
+                    <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.AboutMe}>About Me</LinkToPage></span>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.HomePage}>Contacts</LinkToPage></span>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.AdmPage}>Adm Page</LinkToPage></span>
                 </div>

@@ -27,8 +27,9 @@ Development Progress (Front-End):
 To do: (some notes)
 * Fixe menu position when scroll page down
 * Show warning when add new item to the cart and ask to keep buying
-* Save local session on localStorage, save cart itens
+* Change images when click on it, product page []
 Done:
+* Save local session on localStorage, save cart itens [ok]
 * Add formik and yup to forms [ok]
 * Fix when add one product that already is on the cart increase the amount [ok]
 

@@ -8,8 +8,9 @@ export function AddItemForm ({addNewProduct}){
 
     const product = {
         id: "",
-        imgFile : "",
-        imgLink : "",
+        imgCoverFile : "",
+        imgCoverLink : "",
+        images: "",
         name : "",
         type : "",
         price : "",

@@ -8,6 +8,7 @@ import { AdmPage } from './pages/Adm/AdmPage';
 import { CartPage } from './pages/CartPage';
 import { ProductPage } from './pages/ProductPage';
 import { ProductsList } from './pages/ProductsList';
+import { AboutMe } from './pages/AboutMe';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path={"/ProductPage/:id"} element={<ProductPage/>} />
         <Route path={PagesRoutes.Cart} element={<CartPage/>} />
         <Route path={PagesRoutes.ProductsList} element={<ProductsList/>} />
+        <Route path={PagesRoutes.AboutMe} element={<AboutMe/>} />
         {/* ADM PAGES */}
         <Route path={PagesRoutes.AdmPage} element={<AdmPage/>} />
       </Routes>

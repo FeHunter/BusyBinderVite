@@ -1,6 +1,7 @@
 const PagesRoutes =  {
     // Client Pages
     HomePage: '/',
+    AboutMe: '/AboutMe',
     ProductPage: '/ProductPage',
     Cart: '/Cart',
     ProductsList: '/ProductsList',
