@@ -12,9 +12,9 @@ export function Footer (){
             </div>
             <div className={style.sectionContent}>
                 <p className={style.footerTitle}>Informations</p>
-                <ButtonToFooter label={"About me"} to={PagesRoutes.HomePage} />
-                <ButtonToFooter label={"Contacts"} to={PagesRoutes.HomePage} />
-                <ButtonToFooter label={"Delivery and Payment"} to={PagesRoutes.HomePage} />
+                <LinkToPage children={<p>About me</p>} to={PagesRoutes.AboutMe} />
+                <LinkToPage children={<p>Contacts</p>} to={PagesRoutes.Contacts} />
+                <LinkToPage children={<p>Delivery and Payment</p>} to={PagesRoutes.AboutMe} />
             </div>
             <div className={style.sectionContent}>
                 <p className={style.footerTitle}>Contacts</p>
