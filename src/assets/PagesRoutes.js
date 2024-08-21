@@ -8,5 +8,6 @@ const PagesRoutes =  {
     Contacts: '/Contacts',
     // Adm Pages
     AdmPage: '/AdmPage',
+    RegisterProduct: '/RegisterProduct' 
 }
 export default PagesRoutes;

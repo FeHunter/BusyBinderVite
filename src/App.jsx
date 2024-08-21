@@ -10,6 +10,7 @@ import { ProductPage } from './pages/ProductPage';
 import { ProductsList } from './pages/ProductsList';
 import { AboutMe } from './pages/AboutMe';
 import { ContactsPage } from './pages/ContactsPage';
+import { RegisterProductPage } from './pages/Adm/RegisterProductPage';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path={PagesRoutes.Contacts} element={<ContactsPage/>} />
         {/* ADM PAGES */}
         <Route path={PagesRoutes.AdmPage} element={<AdmPage/>} />
+        <Route path={PagesRoutes.RegisterProduct} element={<RegisterProductPage/>} />
       </Routes>
     </HistoryRouter>
   )

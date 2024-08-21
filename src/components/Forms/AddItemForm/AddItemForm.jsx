@@ -77,6 +77,7 @@ export function AddItemForm ({addNewProduct}){
                     </div>
                 </div>
                 <div className={style.towItemForm}>
+                    <p>Product Cover Image</p>
                     {/* Select upload type */}
                     <div style={{ display: 'flex', width: '50%', justifyContent: 'space-between' }}>
                         <div style={{display: 'flex', width: '30%', justifyContent: 'space-between'}}>
