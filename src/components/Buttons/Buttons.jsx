@@ -32,3 +32,7 @@ export function ButtonFormValidation ({isValid, onClick}){
         : <i class="fa-regular fa-circle-check"></i>
     }</button>
 }
+
+export function ButtonWebLink ({label, icon, link}){
+    return <a className={style.buttonWebLink} href={link} target="_blank">{icon}{label}</a>
+}

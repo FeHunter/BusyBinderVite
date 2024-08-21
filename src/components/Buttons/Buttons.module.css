@@ -114,6 +114,18 @@
 }
 
 
+/* WEB LINK HREF */
+.buttonWebLink {
+    margin: 1%;
+}
+.buttonWebLink i {
+    margin-right: 5%;
+}
+.buttonWebLink:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 @media screen and (min-width: 900px) {
     .ButtonFormValidation {
         width: 80%;

@@ -9,6 +9,7 @@ import { CartPage } from './pages/CartPage';
 import { ProductPage } from './pages/ProductPage';
 import { ProductsList } from './pages/ProductsList';
 import { AboutMe } from './pages/AboutMe';
+import { ContactsPage } from './pages/ContactsPage';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path={PagesRoutes.Cart} element={<CartPage/>} />
         <Route path={PagesRoutes.ProductsList} element={<ProductsList/>} />
         <Route path={PagesRoutes.AboutMe} element={<AboutMe/>} />
+        <Route path={PagesRoutes.Contacts} element={<ContactsPage/>} />
         {/* ADM PAGES */}
         <Route path={PagesRoutes.AdmPage} element={<AdmPage/>} />
       </Routes>
