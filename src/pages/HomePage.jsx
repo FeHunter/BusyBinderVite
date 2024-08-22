@@ -11,8 +11,8 @@ import { SliderShow } from "../components/SliderShow/SliderShow";
 
 export function HomePage (){
 
-    const [allItems, setAllItems] = useState(null);
-    const [cartItems, setCartItems] = useState(null);
+    const [allItems, setAllItems] = useState([])
+    const [cartItems, setCartItems] = useState([])
 
     useEffect(()=>{
         loadCartItems()
@@ -72,7 +72,12 @@ export function HomePage (){
 
             {/* Slider Show */}
             <section className={style.sliderShowContent}>
-                <SliderShow contentToShow={allItems}/>
+                {
+                    allItems ? 
+                        <SliderShow contentToShow={allItems}/>
+                    :
+                        <></>
+                }
             </section>
 
         </section>

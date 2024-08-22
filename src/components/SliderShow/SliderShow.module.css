@@ -10,18 +10,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: whitesmoke;
     padding: 1%;
-    min-height: 50px;
 }
 
 .left:hover, .right:hover {
     cursor: pointer;
-    background-color: gray;
 }
 .left:active, .right:active {
     cursor: progress;
-    background-color: white;
 }
 
 .left {
@@ -29,7 +25,32 @@
 }
 .center {
     grid-area: center;
+    flex-direction: column;
 }
 .right {
     grid-area: right;
 }
+
+/* ANIMATIONS */
+.sliderContent, .animaitonComingLeft, .animaitonComingRight {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.sliderContent {
+    transition: .3s;
+}
+
+.animaitonComingLeft {
+    justify-content: flex-end;
+    margin-left: 100%;
+    transition: .3s;
+}
+
+.animaitonComingRight {
+    justify-content: flex-start;
+    margin-right: 100%;
+    transition: .3s;
+}
+
