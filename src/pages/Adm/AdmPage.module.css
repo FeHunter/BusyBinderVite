@@ -5,3 +5,21 @@
     justify-content: center;
     width: 100%;
 }
+
+.buttonArea, .formsArea {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1%;
+    background-color: whitesmoke;
+    border-bottom: 1px solid gray;
+}
+
+.formsArea {
+    align-items: center;
+}
+.formTitle {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
