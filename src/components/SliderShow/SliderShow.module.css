@@ -1,0 +1,35 @@
+.sliderShow {
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: 100%;
+    grid-template-areas: 'left center right';
+    width: 100%;
+}
+
+.left, .center, .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    padding: 1%;
+    min-height: 50px;
+}
+
+.left:hover, .right:hover {
+    cursor: pointer;
+    background-color: gray;
+}
+.left:active, .right:active {
+    cursor: progress;
+    background-color: white;
+}
+
+.left {
+    grid-area: left;
+}
+.center {
+    grid-area: center;
+}
+.right {
+    grid-area: right;
+}

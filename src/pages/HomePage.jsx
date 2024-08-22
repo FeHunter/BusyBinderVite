@@ -7,6 +7,7 @@ import { ProdcutCard } from "../components/ProdcutCard/ProdcutCard";
 import style from "./HomePage.module.css";
 import { useEffect, useState } from "react";
 import { Footer } from "../components/Footer/Footer";
+import { SliderShow } from "../components/SliderShow/SliderShow";
 
 export function HomePage (){
 
@@ -71,28 +72,7 @@ export function HomePage (){
 
             {/* Slider Show */}
             <section className={style.sliderShowContent}>
-                <Slider style={{ display: 'flex', width: '80%', height: '100%' }}
-                    settings={{
-                        dots: true,
-                        infinite: true,
-                        speed: 100,
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                    }}
-                >
-                    {
-                        
-                    }
-                    <div className={style.sliderShowItem}>
-                        {/* <ProdcutCard name={"Book 1"} price={12} imageSrc={"./src/Images/aux_book_1.png"} /> */}
-                    </div>
-                    <div className={style.sliderShowItem}>
-                        {/* <ProdcutCard name={"Book 2"} price={54} imageSrc={"./src/Images/aux_book_2.png"} /> */}
-                    </div>
-                    <div className={style.sliderShowItem}>
-                        {/* <ProdcutCard name={"Book 3"} price={34} imageSrc={"./src/Images/aux_book_3.png"} /> */}
-                    </div>
-                </Slider>
+                <SliderShow contentToShow={allItems}/>
             </section>
 
         </section>
