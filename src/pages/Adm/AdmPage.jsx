@@ -6,8 +6,13 @@ import { LinkToPage } from "../../components/Link/LinkToPage";
 import style from "./AdmPage.module.css";
 import { localStorageRoutes } from "../../assets/localStorageRoutes";
 import { AddItemForm } from "../../components/Forms/AddItemForm/AddItemForm";
+import { SocialMediaForm } from "../../components/Forms/SocialMediaForm/SocialMediaForm";
+import { AboutMeForm } from "../../components/Forms/AboutMeForm/AboutMeForm";
 
 export function AdmPage (){
+
+    // Navigation controller? 0 - Register Item | 1 - Social Media | 2 - About Me
+    const [visible, setVisible] = useState(0)
 
     // const [products, setProducts] = useState({})
 
@@ -53,6 +58,14 @@ export function AdmPage (){
                     <>
                         <p className={style.formTitle}># Register new product</p>
                         <AddItemForm addNewProduct={addNewProduct} />
+                    </>
+                    <>
+                        <p className={style.formTitle}># Social Links</p>
+                        <SocialMediaForm/>
+                    </>
+                    <>
+                        <p className={style.formTitle}># About Me</p>
+                        <AboutMeForm/>
                     </>
                 </div>
             </section>

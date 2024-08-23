@@ -1,0 +1,24 @@
+.formContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+.itemForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 3% 0;
+}
+
+.fieldInput {
+    padding: 2% 1%;
+    margin: 1% 0;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.errorMessage {
+    color: red;
+}
