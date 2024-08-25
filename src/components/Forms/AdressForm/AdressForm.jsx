@@ -11,9 +11,10 @@ export function AdressForm (){
     let schemaValidation = yup.object().shape({
         countryRegion: yup.string().required().min(4, "Invalid"),
         StreetName: yup.string().required().min(5, "Invalid"),
-        cityVillage: yup.string().required().min(8, "Invalid"),
-        postalCode: yup.string().required().min(8, "Invalid"),
-    })
+        cityVillage: yup.string().required().min(3, "Invalid"), 
+        postalCode: yup.string().required().matches(/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/, "Invalid postal code"),
+    });
+    
 
     return (
         <Formik

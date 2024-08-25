@@ -9,11 +9,12 @@ export function PaymentForm (){
     const [isValid, setIsValid] = useState(false)
 
     let schemaValidation = yup.object().shape({
-        name: yup.string().required().min(4, "Name to small"),
-        surname: yup.string().required().min(5, "Surname to small"),
-        phone: yup.string().required().min(8, "invalid phone number"),
-        email: yup.string().required().min(8, "invalid phone email"),
-    })
+        name: yup.string().required().min(4, "Name too small"),
+        surname: yup.string().required().min(5, "Surname too small"),
+        phone: yup.string().required().matches(/^\d{10}$/, "Invalid phone number"),
+        email: yup.string().required().min(8, "Invalid email"),
+    });
+    
 
     return (
         <Formik
