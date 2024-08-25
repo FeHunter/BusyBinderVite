@@ -1,57 +1,44 @@
 import { useEffect, useState } from "react";
-import PagesRoutes from "../../assets/PagesRoutes";
 import { Footer } from "../../components/Footer/Footer";
 import { Header } from "../../components/Header/Header";
-import { LinkToPage } from "../../components/Link/LinkToPage";
 import style from "./AdmPage.module.css";
 import { localStorageRoutes } from "../../assets/localStorageRoutes";
 import { AddItemForm } from "../../components/Forms/AddItemForm/AddItemForm";
 import { SocialMediaForm } from "../../components/Forms/SocialMediaForm/SocialMediaForm";
 import { AboutMeForm } from "../../components/Forms/AboutMeForm/AboutMeForm";
 import { firebaseRoutes } from "../../assets/Firebase";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
-export function AdmPage (){
+export function AdmPage() {
+    const [visible, setVisible] = useState(0);
 
-    // Navigation controller? 0 - Register Item | 1 - Social Media | 2 - About Me
-    const [visible, setVisible] = useState(0)
-
-    // const [products, setProducts] = useState({})
-
-    // useEffect(()=>{
-    //     loadLocalProducts()
-    // }, [])
-
-    // useEffect(()=>{
-    //     console.log(products)
-    // }, [products])
-
-    // const loadLocalProducts = () => {
-    //     const loadedProducts = localStorage.getItem(localStorageRoutes.localProducts)
-    //     ? localStorage.getItem(localStorageRoutes.localProducts)
-    //     : []
-    //     setProducts(JSON.parse(loadedProducts))
-    // }
-
-    // Register Form
     const addNewProduct = (product) => {
-        // load current itens
         const products = localStorage.getItem(localStorageRoutes.localProducts)
-        ? JSON.parse(localStorage.getItem(localStorageRoutes.localProducts))
-        : [{}]
-
-        console.log(products)
-
-        // add new product to the list
-        products.push(product)
-        localStorage.setItem(localStorageRoutes.localProducts, JSON.stringify(products))
-    }
+            ? JSON.parse(localStorage.getItem(localStorageRoutes.localProducts))
+            : [];
+        products.push(product);
+        localStorage.setItem(localStorageRoutes.localProducts, JSON.stringify(products));
+    };
 
     const updateSocialLinks = async (values) => {
         try {
+            // Obtendo o usuário autenticado
+            const user = firebase.auth().currentUser;
+    
+            if (!user) {
+                throw new Error('User is not authenticated');
+            }
+    
+            // Obtendo o token de ID do usuário
+            const idToken = await user.getIdToken();
+    
+            // Enviando a requisição com o token de ID
             const response = await fetch(firebaseRoutes.facebookLink, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}` // Inclua o token no cabeçalho
                 },
                 body: JSON.stringify({ facebook: values.facebook })
             });
@@ -61,35 +48,40 @@ export function AdmPage (){
             }
     
             const data = await response.json();
-            console.log('Serve answer:', data);
+            console.log('Server answer:', data);
         } catch (error) {
-            console.log('Erro:', error.message);
+            console.log('Error:', error.message);
         }
     };
-    
 
     return (
         <>
             <Header />
             <section className={style.admPage}>
                 <div className={style.buttonArea}>
-                    <LinkToPage to={PagesRoutes.RegisterProduct}><p>Add new Product</p></LinkToPage>
-                    <LinkToPage to={PagesRoutes.RegisterProduct}><p>Social Links</p></LinkToPage>
-                    <LinkToPage to={PagesRoutes.RegisterProduct}><p>About me</p></LinkToPage>
+                    <button onClick={() => setVisible(0)}>Add new Product</button>
+                    <button onClick={() => setVisible(1)}>Social Links</button>
+                    <button onClick={() => setVisible(2)}>About me</button>
                 </div>
                 <div className={style.formsArea}>
-                    <>
-                        <p className={style.formTitle}># Register new product</p>
-                        <AddItemForm addNewProduct={addNewProduct} />
-                    </>
-                    <>
-                        <p className={style.formTitle}># Social Links</p>
-                        <SocialMediaForm readValues={updateSocialLinks} />
-                    </>
-                    <>
-                        <p className={style.formTitle}># About Me</p>
-                        <AboutMeForm/>
-                    </>
+                    {visible === 0 && (
+                        <>
+                            <p className={style.formTitle}># Register new product</p>
+                            <AddItemForm addNewProduct={addNewProduct} />
+                        </>
+                    )}
+                    {visible === 1 && (
+                        <>
+                            <p className={style.formTitle}># Social Links</p>
+                            <SocialMediaForm readValues={updateSocialLinks} />
+                        </>
+                    )}
+                    {visible === 2 && (
+                        <>
+                            <p className={style.formTitle}># About Me</p>
+                            <AboutMeForm/>
+                        </>
+                    )}
                 </div>
             </section>
             <Footer/> 
