@@ -8,6 +8,7 @@ import { localStorageRoutes } from "../../assets/localStorageRoutes";
 import { AddItemForm } from "../../components/Forms/AddItemForm/AddItemForm";
 import { SocialMediaForm } from "../../components/Forms/SocialMediaForm/SocialMediaForm";
 import { AboutMeForm } from "../../components/Forms/AboutMeForm/AboutMeForm";
+import { firebaseRoutes } from "../../assets/Firebase";
 
 export function AdmPage (){
 
@@ -45,6 +46,28 @@ export function AdmPage (){
         localStorage.setItem(localStorageRoutes.localProducts, JSON.stringify(products))
     }
 
+    const updateSocialLinks = async (values) => {
+        try {
+            const response = await fetch(firebaseRoutes.facebookLink, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ facebook: values.facebook })
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Error to update: ${response.statusText}`);
+            }
+    
+            const data = await response.json();
+            console.log('Serve answer:', data);
+        } catch (error) {
+            console.log('Erro:', error.message);
+        }
+    };
+    
+
     return (
         <>
             <Header />
@@ -61,7 +84,7 @@ export function AdmPage (){
                     </>
                     <>
                         <p className={style.formTitle}># Social Links</p>
-                        <SocialMediaForm/>
+                        <SocialMediaForm readValues={updateSocialLinks} />
                     </>
                     <>
                         <p className={style.formTitle}># About Me</p>
