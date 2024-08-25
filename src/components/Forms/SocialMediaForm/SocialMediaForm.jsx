@@ -1,14 +1,39 @@
-/*
-Use Yup to validate typed link
-*/
-
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import style from './SocialMediaForm.module.css'
 import { ButtonToConfirm } from '../../Buttons/Buttons'
+import * as yup from 'yup'
 
-export function SocialMediaForm (){
+export function SocialMediaForm ({readValues}){
+
+    const validateForm = yup.object({
+        instagram: yup.string()
+            .url('Por favor, insira um link válido para o Instagram')
+            .matches(
+                /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9(_)?]+\/?$/,
+                'Por favor, insira um link válido para o Instagram'
+            ),
+        facebook: yup.string()
+            .url('Por favor, insira um link válido para o Facebook')
+            .matches(
+                /^(https?:\/\/)?(www\.)?facebook\.com\/[a-zA-Z0-9(\.\_)?]+\/?$/,
+                'Por favor, insira um link válido para o Facebook'
+            ),
+        tiktok: yup.string()
+            .url('Por favor, insira um link válido para o TikTok')
+            .matches(
+                /^(https?:\/\/)?(www\.)?tiktok\.com\/@[a-zA-Z0-9(\.\_)?]+\/?$/,
+                'Por favor, insira um link válido para o TikTok'
+            ),
+    });
+
     return (
-        <Formik>
+        <Formik
+            initialValues={{ instagram: '', facebook: '', tiktok: '' }}
+            validateOnChange={validateForm}
+            onSubmit={(values)=>{
+                readValues(values)
+            }}
+        >
             <Form className={style.formContent}>
                 <div className={style.itemForm}>
                     <label htmlFor="instagram">Instagram</label>
