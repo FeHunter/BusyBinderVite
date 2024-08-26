@@ -51,7 +51,7 @@ export function SocialMediaForm ({readValues}){
                     <ErrorMessage name="tiktok" component="p" className={style.errorMessage} />
                 </div>
                 <div className={style.itemForm}>
-                    <ButtonToConfirm type="submit" icon="Uptade" className={style.errorMessage} />
+                    <ButtonToConfirm type="submit" icon="Uptade" />
                 </div>
             </Form>
         </Formik>
