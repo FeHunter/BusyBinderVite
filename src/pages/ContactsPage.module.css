@@ -39,9 +39,14 @@
 }
 .input {
     padding: 1.5%;
-    border: 1px solid gray;
     border-radius: 10px;
+    border: 1px solid var(--button-border);
+    background-color: var(--background-color);
 }
+.input:focus {
+    background-color: antiquewhite;
+}
+
 .erroForm {
     padding: .2%;
     color: red;

@@ -29,7 +29,7 @@ export function SocialMediaForm ({readValues}){
     return (
         <Formik
             initialValues={{ instagram: '', facebook: '', tiktok: '' }}
-            validateOnChange={validateForm}
+            validationSchema={validateForm}
             onSubmit={(values)=>{
                 readValues(values)
             }}
@@ -38,20 +38,20 @@ export function SocialMediaForm ({readValues}){
                 <div className={style.itemForm}>
                     <label htmlFor="instagram">Instagram</label>
                     <Field className={style.fieldInput} id="instagram" name="instagram" placeholder="https://" />
-                    <ErrorMessage name="instagram" component="p" />
+                    <ErrorMessage name="instagram" component="p" className={style.errorMessage} />
                 </div>
                 <div className={style.itemForm}>
                     <label htmlFor="facebook">Facebook</label>
                     <Field className={style.fieldInput} id="facebook" name="facebook" placeholder="https://" />
-                    <ErrorMessage name="facebook" component="p" />
+                    <ErrorMessage name="facebook" component="p" className={style.errorMessage} />
                 </div>
                 <div className={style.itemForm}>
                     <label htmlFor="tiktok">TikTok</label>
                     <Field className={style.fieldInput} id="tiktok" name="tiktok" placeholder="https://" />
-                    <ErrorMessage name="tiktok" component="p" />
+                    <ErrorMessage name="tiktok" component="p" className={style.errorMessage} />
                 </div>
                 <div className={style.itemForm}>
-                    <ButtonToConfirm type="submit" icon="Uptade" />
+                    <ButtonToConfirm type="submit" icon="Uptade" className={style.errorMessage} />
                 </div>
             </Form>
         </Formik>
