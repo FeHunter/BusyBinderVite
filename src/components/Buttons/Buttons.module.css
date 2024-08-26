@@ -1,13 +1,13 @@
 /* DEFAULT COLORS AND BORDER */
-.buttonToBuy, .buttonToDelete, .buttonToConfirm, .buttonToFooter, .buttonToFooter, .buttonAdmHeader, .ButtonFormValidation, .FieldNumber {
+.buttonToBuy, .buttonToConfirm, .buttonToFooter, .buttonToFooter, .buttonAdmHeader, .ButtonFormValidation, .FieldNumber {
     background-color: var(--background-color);
     border: 1px solid var(--button-border);
-    transition: .5s;
+    transition: .2s;
 }
 
-.buttonToBuy:hover, .buttonToDelete:hover, .buttonToConfirm:hover, .buttonToFooter:hover, .buttonToFooter:hover, .buttonAdmHeader:hover, .ButtonFormValidation:hover {
+.buttonToBuy:hover, .buttonToConfirm:hover, .buttonToFooter:hover, .buttonToFooter:hover, .buttonAdmHeader:hover, .ButtonFormValidation:hover {
     background-color: var(--button-border);
-    transition: 1s;
+    transition: .5s;
 }
 
 
@@ -31,10 +31,14 @@
     border: none;
     font-size: 1.2em;
     color: gray;
+    background-color: transparent;
 }
-.buttonToDelete:hover {
-    color: black;
+.buttonToDelete:hover{
     cursor: pointer;
+}
+.buttonToDelete:hover > i {
+    cursor: pointer;
+    color: black !important;
 }
 .buttonToDelete:active {
     color: white;
@@ -100,7 +104,6 @@
 .buttonAdmHeader:hover {
     cursor: pointer;
     color: white;
-    background-color: gray;
 }
 
 /* BUTTON FORM VALIDATION */

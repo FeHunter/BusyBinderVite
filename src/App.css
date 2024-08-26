@@ -22,7 +22,3 @@ html, body, section {
 i {
   color: var(--i-color);
 }
-
-.FormikField {
-  border: 1px solid red;
-}

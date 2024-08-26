@@ -1,12 +1,9 @@
-/*
-
-*/
-
 import { Form, Formik,Field, ErrorMessage} from "formik"
 import style from "./AboutMeForm.module.css"
 import { ButtonToConfirm } from "../../Buttons/Buttons"
 
 export function AboutMeForm (){
+
     return (
         <Formik>
             <Form className={style.formContent}>
