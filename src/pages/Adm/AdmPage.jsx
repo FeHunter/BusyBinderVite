@@ -24,26 +24,26 @@ export function AdmPage() {
             <Header />
             <section className={style.admPage}>
                 <div className={style.buttonArea}>
-                    <ButtonAdmHeader onClick={() => setVisible(0)} label="Add new Product" />
-                    <ButtonAdmHeader onClick={() => setVisible(1)} label="Social Links" />
-                    <ButtonAdmHeader onClick={() => setVisible(2)} label="About me" />
+                    <ButtonAdmHeader onClick={() => setVisible(0)} label={<><i class="fa-solid fa-bag-shopping"></i>Add new Product</>} />
+                    <ButtonAdmHeader onClick={() => setVisible(1)} label={<><i class="fa-solid fa-share-nodes"></i>Social Links</>} />
+                    <ButtonAdmHeader onClick={() => setVisible(2)} label={<><i class="fa-regular fa-address-card"></i>About me</>} />
                 </div>
                 <div className={style.formsArea}>
                     {visible === 0 && (
                         <>
-                            <p className={style.formTitle}># Register new product</p>
+                            <p className={style.formTitle}><i class="fa-solid fa-bag-shopping"></i> Register new product</p>
                             <AddItemForm addNewProduct={addNewProduct} />
                         </>
                     )}
                     {visible === 1 && (
                         <>
-                            <p className={style.formTitle}># Social Links</p>
+                            <p className={style.formTitle}><i class="fa-solid fa-share-nodes"></i> Social Links</p>
                             <SocialMediaForm />
                         </>
                     )}
                     {visible === 2 && (
                         <>
-                            <p className={style.formTitle}># About Me</p>
+                            <p className={style.formTitle}><i class="fa-regular fa-address-card"></i> About Me</p>
                             <AboutMeForm/>
                         </>
                     )}

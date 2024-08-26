@@ -1,11 +1,11 @@
 /* DEFAULT COLORS AND BORDER */
-.buttonToBuy, .buttonToConfirm, .buttonToFooter, .buttonToFooter, .buttonAdmHeader, .ButtonFormValidation, .FieldNumber {
+.buttonToBuy, .buttonToConfirm, .buttonAdmHeader, .ButtonFormValidation, .FieldNumber {
     background-color: var(--background-color);
     border: 1px solid var(--button-border);
     transition: .2s;
 }
 
-.buttonToBuy:hover, .buttonToConfirm:hover, .buttonToFooter:hover, .buttonToFooter:hover, .buttonAdmHeader:hover, .ButtonFormValidation:hover {
+.buttonToBuy:hover, .buttonToConfirm:hover, .buttonAdmHeader:hover, .ButtonFormValidation:hover {
     background-color: var(--button-border);
     transition: .5s;
 }
@@ -96,10 +96,14 @@
 /* BUTTON TO ADM PAGE HEADER NAVIGATION */
 .buttonAdmHeader {
     width: 100%;
-    padding: 2%;
+    padding: 2% 0 2% 5%;
     margin: 1% 0;
-    text-align: center;
+    text-align: left;
     color: black;
+    border-radius: 5px;
+}
+.buttonAdmHeader i {
+    margin-right: 2%;
 }
 .buttonAdmHeader:hover {
     cursor: pointer;

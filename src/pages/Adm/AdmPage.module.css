@@ -17,9 +17,14 @@
     align-items: center;
 }
 .formTitle {
-    width: 100%;
+    width: 60%;
     text-align: center;
     font-weight: bold;
+    padding: 1%;
+    border-bottom: 1px dashed var(--button-border);
+}
+.formTitle i {
+    margin-right: 3%;
 }
 
 @media screen and (min-width: 900px){

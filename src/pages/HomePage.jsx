@@ -70,6 +70,22 @@ export function HomePage (){
                 }
             </section>
 
+            {/* My works */}
+            <section className={style.highlightsProducts}>
+                <div className={style.myWorkContent}>
+                    <div className={style.myWorkPhoto}>
+                        <img src="./src/Images/About_Pic.jpg" />
+                    </div>
+                    <div className={style.myWorkText}>
+                        <h2>My art work</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio esse odit non ad blanditiis illo quidem tenetur culpa deleniti, voluptates corporis ullam ea minus eos odio, nesciunt nisi unde quisquam.</p>
+                    </div>
+                    <div className={style.myWorkGallery}>
+                        <p>fotos</p>
+                    </div>
+                </div>
+            </section>
+
             {/* Slider Show */}
             <section className={style.sliderShowContent}>
                 {

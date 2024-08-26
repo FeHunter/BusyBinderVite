@@ -30,3 +30,34 @@
     align-items: center;
     margin: 1%;
 }
+
+.myWorkContent {
+    display: grid;
+    width: 90%;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas: 'photo text' 'gallery gallery';
+    min-height: 800px;
+    border: 1px solid gray;
+}
+.myWorkPhoto {
+    grid-area: photo;
+    justify-content: center;
+    align-items: center;
+}
+.myWorkPhoto img {
+    width: 100%;
+}
+.myWorkText {
+    grid-area: text;
+}
+.myWorkGallery {
+    grid-area: gallery;
+    flex-direction: row;
+}
+
+.myWorkPhoto , .myWorkText, .myWorkGallery {
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+}

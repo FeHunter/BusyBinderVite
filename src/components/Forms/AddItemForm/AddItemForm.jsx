@@ -109,9 +109,9 @@ export function AddItemForm ({addNewProduct}){
                     }
                     
                 </div>
-                <div className={style.itemForm}>
+                <div className={style.itemForm} >
                         <label htmlFor="images">Products Images</label>
-                        <Field id="images" type="file" multiple="multiple" name="images" placeholder="category of the product..." className={style.fieldInput} />
+                        <Field id="images" type="file" multiple="multiple" name="images" placeholder="category of the product..." className={style.fieldInput} style={{border: 'none'}} />
                     </div>
                 <br/>
                 <ButtonToConfirm type="submit" icon={"Register Item"} onClick={()=>{}} />
