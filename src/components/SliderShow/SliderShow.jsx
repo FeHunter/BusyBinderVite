@@ -2,7 +2,12 @@ import { useEffect, useState } from "react"
 import style from "./SliderShow.module.css"
 import { ProdcutCard } from "../ProdcutCard/ProdcutCard"
 
-export function SliderShow ({contentToShow}) {
+/*
+product = bool
+gallery = bool
+*/
+
+export function SliderShow ({contentToShow, product, gallery}) {
 
     const [index, setIndex] = useState(0)
     const [currentItem, setCurrentItem] = useState({})
@@ -14,19 +19,23 @@ export function SliderShow ({contentToShow}) {
     }, [contentToShow, index])
 
     const previousSlide = () => {
-        if (index > 0){
-            setIndex((index) => index -= 1)
-        }else {
-            setIndex(contentToShow.length-1)
-        }
+        setTimeout(() => {
+            if (index > 0){
+                setIndex((index) => index -= 1)
+            }else {
+                setIndex(contentToShow.length-1)
+            }
+        }, 300);
         animationSliderLeft()
     }
     const nextSlider = () => {
-        if (index < contentToShow.length-1){
-            setIndex((index) => index += 1)
-        } else {
-            setIndex(0)
-        }
+        setTimeout(() => {
+            if (index < contentToShow.length-1){
+                setIndex((index) => index += 1)
+            } else {
+                setIndex(0)
+            }
+        }, 300);
         animationSliderRight()
     }
 
@@ -51,6 +60,11 @@ export function SliderShow ({contentToShow}) {
         }, 200);
     }
 
+    // Slider Gallery
+    const photos = contentToShow.map((img, index)=>{
+        return <img className={style.sliderImages} src={img} alt={`${img}_Image`} key={`${index}_imaSlider`} />
+    })
+
     return (
         <section className={style.sliderShow}>
             <div className={style.left} onClick={previousSlide}><i class="fa-solid fa-chevron-left"></i></div>
@@ -58,7 +72,8 @@ export function SliderShow ({contentToShow}) {
               <div className={animation}>
                 {
                     currentItem ?
-                        <ProdcutCard item={currentItem} />
+                        product == true ? <ProdcutCard item={currentItem} />
+                        : gallery == true ? {photos} : <></>
                     :
                         <></>
                 }

@@ -21,7 +21,6 @@
     justify-content: center;
     width: 100%;
     margin: 2% 0;
-    background-color: antiquewhite;
 }
 
 .sliderShowItem {
@@ -35,9 +34,8 @@
     display: grid;
     width: 90%;
     grid-template-columns: 30% 70%;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: auto auto;
     grid-template-areas: 'photo text' 'gallery gallery';
-    min-height: 800px;
     border: 1px solid gray;
 }
 .myWorkPhoto {

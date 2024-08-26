@@ -2,6 +2,7 @@ import Slider from "react-slick"
 import { Footer } from "../components/Footer/Footer"
 import { Header } from "../components/Header/Header"
 import style from "./AboutMe.module.css"
+import { SliderShow } from "../components/SliderShow/SliderShow"
 
 export function AboutMe (){
     return (
@@ -18,23 +19,7 @@ export function AboutMe (){
                 </div>
                 <div className={style.sliderContent}>
                     <h2>Photo Gallery</h2>
-                    <Slider
-                        className={style.sliderComponent}
-                        settings={{
-                            dots: true,
-                            infinite: true,
-                            speed: 50,
-                            slidesToShow: 2,
-                            slidesToScroll: 1,
-                        }}
-                    >
-                        {
-                            
-                        }
-                        <img className={style.sliderImage} src="src/Images/aux_book_1.png" />
-                        <img className={style.sliderImage} src="src/Images/aux_book_2.png" />
-                        <img className={style.sliderImage} src="src/Images/About_Pic.jpg" />
-                    </Slider>
+                    {/* <SliderShow contentToShow={"ff"} /> */}
                 </div>
             </section>
             <Footer/>

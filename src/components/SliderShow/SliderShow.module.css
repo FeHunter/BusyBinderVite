@@ -3,7 +3,7 @@
     grid-template-columns: 10% 80% 10%;
     grid-template-rows: 100%;
     grid-template-areas: 'left center right';
-    width: 100%;
+    width: auto;
 }
 
 .left, .center, .right {
@@ -46,11 +46,21 @@
     justify-content: flex-end;
     margin-left: 100%;
     transition: .3s;
+    opacity: 0;
 }
 
 .animaitonComingRight {
     justify-content: flex-start;
     margin-right: 100%;
     transition: .3s;
+    opacity: 0;
+}
+
+/* IMAGE */
+.sliderImages {
+    width: 30%;
+    box-sizing: border-box;
+    background-size: cover;
+    margin: 0 1%;
 }
 

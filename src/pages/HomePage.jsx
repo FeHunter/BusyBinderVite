@@ -82,6 +82,10 @@ export function HomePage (){
                     </div>
                     <div className={style.myWorkGallery}>
                         <p>fotos</p>
+                        <SliderShow
+                            contentToShow={["/src/Images/aux_book_1.png", "/src/Images/aux_book_2.png", "/src/Images/aux_book_3.png", "/src/Images/aux_book_1.png", "/src/Images/aux_book_2.png", "/src/Images/aux_book_3.png"]}
+                            gallery={true}
+                        />
                     </div>
                 </div>
             </section>
@@ -90,7 +94,7 @@ export function HomePage (){
             <section className={style.sliderShowContent}>
                 {
                     allItems ? 
-                        <SliderShow contentToShow={allItems}/>
+                        <SliderShow contentToShow={allItems} product={true} />
                     :
                         <></>
                 }
