@@ -6,9 +6,7 @@
 }
 
 .itemForm, .towItemForm {
-    border: 1px dashed rgba(128, 128, 128, 0.3);
-    margin: 5% 0;
-    padding: 2%;
+    margin: 3% 0;
 }
 
 .towItemForm {
@@ -37,5 +35,8 @@
 @media screen and (min-width: 900px) {
     .formContent {
         width: 60%;
+    }
+    .itemForm, .towItemForm {
+        margin: 1% 0;
     }
 }

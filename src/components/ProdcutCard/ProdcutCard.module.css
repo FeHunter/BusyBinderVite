@@ -7,13 +7,22 @@
 }
 
 .prodcutInfos {
-    text-align: center;
-    margin: 3% 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 2% 0;
 }
 
+.productName, .productType, .productPrice{
+    text-align: center;
+}
 .productName:hover {
     cursor: pointer;
     text-decoration: underline;
+}
+
+.productType {
+    color: gray;
 }
 
 @media screen and (min-width: 900px) {

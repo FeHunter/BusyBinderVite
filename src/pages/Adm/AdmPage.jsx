@@ -6,9 +6,7 @@ import { localStorageRoutes } from "../../assets/localStorageRoutes";
 import { AddItemForm } from "../../components/Forms/AddItemForm/AddItemForm";
 import { SocialMediaForm } from "../../components/Forms/SocialMediaForm/SocialMediaForm";
 import { AboutMeForm } from "../../components/Forms/AboutMeForm/AboutMeForm";
-import { firebaseRoutes } from "../../assets/Firebase";
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
+import { ButtonAdmHeader } from "../../components/Buttons/Buttons";
 
 export function AdmPage() {
     const [visible, setVisible] = useState(0);
@@ -21,47 +19,14 @@ export function AdmPage() {
         localStorage.setItem(localStorageRoutes.localProducts, JSON.stringify(products));
     };
 
-    const updateSocialLinks = async (values) => {
-        try {
-            // Obtendo o usuário autenticado
-            const user = firebase.auth().currentUser;
-    
-            if (!user) {
-                throw new Error('User is not authenticated');
-            }
-    
-            // Obtendo o token de ID do usuário
-            const idToken = await user.getIdToken();
-    
-            // Enviando a requisição com o token de ID
-            const response = await fetch(firebaseRoutes.facebookLink, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${idToken}` // Inclua o token no cabeçalho
-                },
-                body: JSON.stringify({ facebook: values.facebook })
-            });
-    
-            if (!response.ok) {
-                throw new Error(`Error to update: ${response.statusText}`);
-            }
-    
-            const data = await response.json();
-            console.log('Server answer:', data);
-        } catch (error) {
-            console.log('Error:', error.message);
-        }
-    };
-
     return (
         <>
             <Header />
             <section className={style.admPage}>
                 <div className={style.buttonArea}>
-                    <button onClick={() => setVisible(0)}>Add new Product</button>
-                    <button onClick={() => setVisible(1)}>Social Links</button>
-                    <button onClick={() => setVisible(2)}>About me</button>
+                    <ButtonAdmHeader onClick={() => setVisible(0)} label="Add new Product" />
+                    <ButtonAdmHeader onClick={() => setVisible(1)} label="Social Links" />
+                    <ButtonAdmHeader onClick={() => setVisible(2)} label="About me" />
                 </div>
                 <div className={style.formsArea}>
                     {visible === 0 && (
@@ -73,7 +38,7 @@ export function AdmPage() {
                     {visible === 1 && (
                         <>
                             <p className={style.formTitle}># Social Links</p>
-                            <SocialMediaForm readValues={updateSocialLinks} />
+                            <SocialMediaForm />
                         </>
                     )}
                     {visible === 2 && (

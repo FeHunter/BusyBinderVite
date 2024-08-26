@@ -1,7 +1,7 @@
 import style from "./ProductPage.module.css";
 import { Header } from "../components/Header/Header";
 import { Footer } from "../components/Footer/Footer";
-import { ButtonToBuy } from "../components/Buttons/Buttons";
+import { ButtonToBuy, FieldNumber } from "../components/Buttons/Buttons";
 import { useEffect, useState } from "react";
 import { ProdcutCard } from "../components/ProdcutCard/ProdcutCard";
 import { useNavigate, useParams } from "react-router-dom";
@@ -92,12 +92,12 @@ export function ProductPage (){
                             <p className={style.productDescription}>{product.description}</p>
                         </>
                         <div className={style.productActionsContent}>
-                            <input 
+                            <FieldNumber
                                 type="number" 
                                 min="1" 
                                 placeholder="amt" 
                                 value={amount} 
-                                onChange={(e)=>{setAmount(e.target.value)}} 
+                                onChange={(e)=>{setAmount(e.target.value)}}
                             />
                             <ButtonToBuy label={"Buy"} onClick={AddToCart} />
                         </div>

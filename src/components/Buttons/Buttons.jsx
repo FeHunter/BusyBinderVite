@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import style from "./Buttons.module.css";
+import { Field } from "formik";
 
 export function ButtonToBuy ({label, onClick}){
     return <button className={style.buttonToBuy} onClick={onClick}>{label}</button>
@@ -35,4 +36,9 @@ export function ButtonFormValidation ({isValid, onClick}){
 
 export function ButtonWebLink ({label, icon, link}){
     return <a className={style.buttonWebLink} href={link} target="_blank">{icon}{label}</a>
+}
+
+export function FieldNumber ({onClick, onChange, value, min, placeholder}){
+    return <input className={style.FieldNumber}
+        type="number" value={value} min={min} placeholder={placeholder} onClick={onClick} onChange={onChange}  />
 }

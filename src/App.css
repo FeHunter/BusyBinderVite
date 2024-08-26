@@ -1,21 +1,10 @@
-/*
-Colors
-#eee5de
-#464440
-#a19393
-#ad9259
-#a4544e
-#cbbf91
-#67b0ab
-#a2b5bf
-#c9bcc1
-#dcd0b6
-
-*/
-
 :root {
-  --background-color: white;
-  --header-color: bisque;
+  --background-color: #F3ECE2;
+  --header-color: #F3DECA;
+
+  --button-border: #B48257;
+
+  --i-color: #62412E;
 }
 
 * {
@@ -24,4 +13,16 @@ Colors
   box-sizing: border-box;
   font-size: 1.02em;
   font-family: sans-serif;
+}
+
+html, body, section {
+  background-color: var(--background-color);
+}
+
+i {
+  color: var(--i-color);
+}
+
+.FormikField {
+  border: 1px solid red;
 }
