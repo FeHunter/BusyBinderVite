@@ -20,10 +20,11 @@ export function ProductsList() {
 
     const [filter, setFilter] = useState("default");
 
-    useEffect(async () => {
+    useEffect(() => {
         getProducts()
     }, []);
 
+    // Load Products
     const getProducts = async () => {
         try {
             const products = await loadProducts()
