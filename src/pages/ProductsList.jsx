@@ -4,6 +4,7 @@ import { Header } from "../components/Header/Header";
 import style from "./ProductsList.module.css";
 import { ProdcutCard } from "../components/ProdcutCard/ProdcutCard";
 import { ButtonListChange } from "../components/Buttons/Buttons";
+import { loadProducts } from "../assets/Firebase";
 
 export function ProductsList() {
     // Local list navigation
@@ -19,21 +20,24 @@ export function ProductsList() {
 
     const [filter, setFilter] = useState("default");
 
-    useEffect(() => {
-        loadCartItems();
+    useEffect(async () => {
+        getProducts()
     }, []);
 
+    const getProducts = async () => {
+        try {
+            const products = await loadProducts()
+            setLoadedList(products)
+        }catch (error){
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
-        if (loadedList.length > 0) {
+        if (loadedList && loadedList.length > 0) {
             applyFilter(filter);
         }
     }, [loadedList, filter]);
-
-    const loadCartItems = () => {
-        fetch("/src/assets/DebugPurpose/Items.json")
-            .then(response => response.json())
-            .then(json => setLoadedList(json));
-    };
 
     const applyFilter = (term) => {
         let toFilter = [...loadedList]; // Clone the list of products

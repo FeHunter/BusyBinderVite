@@ -27,7 +27,7 @@ export function AddItemForm ({addNewProduct}){
                 description: yup.string().required().min(5, "Invalid"),
                 price: yup.number().required(),
                 type: yup.string().required().min(2, "Invalid"),
-                imgFile: yup.string().required(),
+                imgCoverFile: yup.string().required(),
             })
         :
         yup.object().shape({
@@ -35,7 +35,7 @@ export function AddItemForm ({addNewProduct}){
             description: yup.string().required().min(5, "Invalid"),
             price: yup.number().required(),
             type: yup.string().required().min(2, "Invalid"),
-            imgLink: yup.string().required(),
+            imgCoverLink: yup.string().required(),
         })
 
     const addProduct = (values) => {
@@ -93,17 +93,17 @@ export function AddItemForm ({addNewProduct}){
                         uploadType ?
                         <>
                             <div className={style.itemForm}>
-                                <label htmlFor="imgLink">Image Link *</label>
-                                <Field id="imgLink" type="text" name="imgLink" placeholder="https://......" className={style.fieldInput} />
-                                <ErrorMessage name="imgLink" component="p" className={style.errorMessage}/>
+                                <label htmlFor="imgCoverLink">Image Link *</label>
+                                <Field id="imgCoverLink" type="text" name="imgCoverLink" placeholder="https://......" className={style.fieldInput} />
+                                <ErrorMessage name="imgCoverLink" component="p" className={style.errorMessage}/>
                             </div>
                         </>
                         :
                         <>
                             <div className={style.itemForm}>
-                                <label htmlFor="imgFile">Image File *</label>
-                                <Field id="imgFile" type="file" name="imgFile" className={style.fieldInput} />
-                                <ErrorMessage name="imgFile" component="p" className={style.errorMessage}/>
+                                <label htmlFor="imgCoverFile">Image File *</label>
+                                <Field id="imgCoverFile" type="file" name="imgCoverFile" className={style.fieldInput} />
+                                <ErrorMessage name="imgCoverFile" component="p" className={style.errorMessage}/>
                             </div>
                         </>
                     }

@@ -51,7 +51,10 @@ export function ProdcutCard ({item}){
 
     return (
         <div className={style.prodcutCard}>
-            <ImagesContent src={item.img} alt={`${item.name}_image`} size={'100%'} onClick={goToDetails} />
+            <ImagesContent
+                src={item.imgCoverFile ? item.imgCoverFile : item.imgCoverLink ? item.imgCoverLink : ""}
+                alt={`${item.name}_image`} size={'100%'} onClick={goToDetails}
+            />
             <div className={style.prodcutInfos}>
                 <p className={style.productType}>{item.type}</p>
                 <p className={style.productName} onClick={goToDetails}>{item.name}</p>
