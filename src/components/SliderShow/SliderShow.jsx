@@ -60,11 +60,6 @@ export function SliderShow ({contentToShow, product, gallery}) {
         }, 200);
     }
 
-    // Slider Gallery
-    const photos = contentToShow.map((img, index)=>{
-        return <img className={style.sliderImages} src={img} alt={`${img}_Image`} key={`${index}_imaSlider`} />
-    })
-
     return (
         <section className={style.sliderShow}>
             <div className={style.left} onClick={previousSlide}><i class="fa-solid fa-chevron-left"></i></div>
@@ -73,7 +68,11 @@ export function SliderShow ({contentToShow, product, gallery}) {
                 {
                     currentItem ?
                         product == true ? <ProdcutCard item={currentItem} />
-                        : gallery == true ? {photos} : <></>
+                        : gallery == true ? (<>
+                            <img src={contentToShow[index]} className={style.sliderImages}  />
+                            <img src={contentToShow[index+1]} className={style.sliderImages}  />
+                            <img src={contentToShow[index+2]} className={style.sliderImages}  />
+                        </>) : <></>
                     :
                         <></>
                 }

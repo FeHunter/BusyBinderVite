@@ -83,7 +83,12 @@ export function HomePage (){
                     <div className={style.myWorkGallery}>
                         <p>fotos</p>
                         <SliderShow
-                            contentToShow={["/src/Images/aux_book_1.png", "/src/Images/aux_book_2.png", "/src/Images/aux_book_3.png", "/src/Images/aux_book_1.png", "/src/Images/aux_book_2.png", "/src/Images/aux_book_3.png"]}
+                            contentToShow={["https://i.pinimg.com/originals/6b/e7/d5/6be7d50e8f41712cb4ba00b6146f83e3.jpg",
+                            "https://www.shutterstock.com/shutterstock/photos/44528956/display_1500/stock-vector-collection-of-mexican-stickers-isolated-on-white-44528956.jpg",
+                            "/src/Images/aux_book_3.png",
+                            "https://tse1.mm.bing.net/th/id/OIP.qrhPfwVDWRGPW0l6zIrH7AHaHa?rs=1&pid=ImgDetMain",
+                            "/src/Images/aux_book_2.png",
+                            "https://tse2.mm.bing.net/th/id/OIP.j5bVjUSlcHcCYkLjZFzvGwAAAA?rs=1&pid=ImgDetMain"]}
                             gallery={true}
                         />
                     </div>
