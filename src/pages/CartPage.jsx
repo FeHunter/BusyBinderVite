@@ -92,7 +92,7 @@ export function CartPage (){
                                         return (
                                             <tr key={`tr_item_${index}`}>
                                                 <td><ButtonToDelete onClick={()=>{removeFromCart(item)}}/></td>
-                                                <td><img src={item.img}/></td>
+                                                <td><img src={item.imgCoverFile ? item.imgCoverFile : item.imgCoverLink ? item.imgCoverLink : ""}/></td>
                                                 <td>{item.name}</td>
                                                 <td>${item.price}</td>
                                                 <td>

@@ -7,41 +7,47 @@ import { ProdcutCard } from "../components/ProdcutCard/ProdcutCard";
 import { useNavigate, useParams } from "react-router-dom";
 import PagesRoutes from "../assets/PagesRoutes";
 import { localStorageRoutes } from "../assets/localStorageRoutes";
+import { loadProducts } from "../assets/Firebase";
 
 export function ProductPage (){
 
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const [allItems, setAllItems] = useState(null);
+    const [allItems, setAllItems] = useState([]);
+    const [allProducts, setAllProducts] = useState({});
     const [product, setProduct] = useState({});
     const [amount, setAmount] = useState(1);
 
     useEffect(()=>{
-        loadProduct();
-        loadSimilarProducts();
+        getProducts();
     },[]);
 
     // Load Requested product
-    const loadProduct = () => {
-        fetch("/src/assets/DebugPurpose/Items.json")
-        .then(response => response.json())
-        .then(p => setProduct(p[id-1]));
+    const getProducts = async () => {
+        try {
+            const products = await loadProducts()
+            setAllProducts(products)
+            const index = products.findIndex((product) => product.id == id) // GET PRODUCT INDEX
+            setProduct(products[index])
+        }catch (error){
+            console.log(error)
+        }
     }
 
     // Load Similar products - only 4 Items from local JSON
-    const loadSimilarProducts = () => {
-        fetch("/src/assets/DebugPurpose/Items.json")
-        .then(response => response.json())
-        .then(json => {
-            const randomStart = Math.floor(Math.random() * (json.length - 4)); 
+    useEffect(()=>{
+        try {
+            const randomStart = Math.floor(Math.random() * (allProducts.length - 4)); 
             let onlyFour = [];
             for (let i= randomStart; i < randomStart + 4; i++){
-                onlyFour.push(json[i]);
+                onlyFour.push(allProducts[i]);
             }
             setAllItems(onlyFour);
-        });
-    }
+        }catch (error){
+            console.log(error)
+        }
+    }, [allProducts])
 
     // Local cart handling
     const AddToCart = async () => {
@@ -121,10 +127,12 @@ export function ProductPage (){
                         {
                             allItems ?
                                 allItems.map((item, index) => {
-                                    return <ProdcutCard
-                                        key={`Product_Card_${index}`}
-                                        item={item}
-                                    />
+                                    if (item){
+                                        return <ProdcutCard
+                                            key={`Product_Card_${index}`}
+                                            item={item}
+                                        />
+                                    }
                                 })
                             :
                             <></>

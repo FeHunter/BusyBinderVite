@@ -22,9 +22,7 @@ const root = "https://testes-2998d-default-rtdb.firebaseio.com/"
 export const firebaseRoutes = {
     products: `${root}ProductsList.json`,
     aboutMeTxt: `${root}AboutMeText.json`,
-    instagramLink: `${root}InstagramLink.json`,
-    facebookLink: `${root}FacebookLink.json`,
-    tiktokLink: `${root}TiktokLink.json`,
+    socialNetworks: `${root}SocialNetworks.json`,
     phones: `${root}Phones.json`,
     email: `${root}Email.json`,
 };
@@ -34,10 +32,30 @@ export async function loadProducts () {
   const responde = await fetch(firebaseRoutes.products, {method: 'GET'});
   const data = await responde.json()
   return convertData(data)
+}
 
-  // const responde = await fetch(firebaseRoutes.products, {method: 'GET'})
-  // .then(res => res.json())
-  // .then(products =>  setReturnProducts(convertData(products)))
+// GET - LOAD SOCIAL NETWORKS
+export async function getSocialNetWorks () {
+  const responde = await fetch(firebaseRoutes.socialNetworks, {method: 'GET'});
+  const data = await responde.json()
+  return data
+  // return convertData(data)
+}
+// POST - LOAD SOCIAL NETWORKS
+export async function postSocialNetwork (values){
+  await fetch(firebaseRoutes.socialNetworks, {
+    method: 'PUT',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    },
+    body: JSON.stringify(values) 
+  }).then ((data)=> {
+      if (!data.ok){
+          throw new Error(data.status)
+      }
+  })
 }
 
 /* CONVERT DATA FROM FIREBASE TO ARRAY OF OBJECTS */

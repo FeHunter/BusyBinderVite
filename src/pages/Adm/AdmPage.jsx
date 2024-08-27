@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import { Footer } from "../../components/Footer/Footer";
 import { Header } from "../../components/Header/Header";
 import style from "./AdmPage.module.css";
@@ -9,16 +9,10 @@ import { ButtonAdmHeader } from "../../components/Buttons/Buttons";
 import { firebaseRoutes } from "../../assets/Firebase";
 
 export function AdmPage() {
+
     const [visible, setVisible] = useState(0);
 
-    // const addNewProduct = (product) => {
-    //     const products = localStorage.getItem(localStorageRoutes.localProducts)
-    //         ? JSON.parse(localStorage.getItem(localStorageRoutes.localProducts))
-    //         : [];
-    //     products.push(product);
-    //     localStorage.setItem(localStorageRoutes.localProducts, JSON.stringify(products));
-    // };
-
+    // SAVE ON FIREBASE NEW ITEM
     async function addNewProduct (product) {
         try {
             await fetch(firebaseRoutes.products, {
@@ -42,6 +36,7 @@ export function AdmPage() {
             console.log(erro)
         }
     }
+
 
     return (
         <>
