@@ -2,12 +2,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import style from './SocialMediaForm.module.css'
 import { ButtonToConfirm } from '../../Buttons/Buttons'
 import * as yup from 'yup'
-import { useEffect, useState } from 'react'
-import { getSocialNetWorks, postSocialNetwork } from '../../../assets/Firebase'
 
-export function SocialMediaForm ({getValues}){
-
-    const [loadedLinks, setLoadedLinks] = useState({})
+export function SocialMediaForm ({initialValues, getValues}){
 
     const validateForm = yup.object({
         instagram: yup.string()
@@ -30,27 +26,12 @@ export function SocialMediaForm ({getValues}){
             ),
     });
 
-    // Load social networks from firebase
-    useEffect(()=>{
-        loadLinks()
-    }, [])
-    async function loadLinks (){
-        const response = await getSocialNetWorks()
-        setLoadedLinks(response)
-        console.log(response)
-    }
-
-    useEffect(()=>{
-        console.log(loadedLinks)
-    }, [loadedLinks])
-
     return (
         <Formik
-            initialValues={{instagram: loadedLinks.instagram, facebook: loadedLinks.facebook, tiktok: loadedLinks.tiktok }}
+            initialValues={initialValues ? initialValues : {instagram: '', facebook: '', tiktok: '' }}
             validationSchema={validateForm}
             onSubmit={(values)=>{
                 getValues(values)
-                postSocialNetwork(values)
             }}
         >
             <Form className={style.formContent}>

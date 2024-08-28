@@ -1,10 +1,24 @@
+import { useState } from "react"
 import PagesRoutes from "../../assets/PagesRoutes"
 import { ButtonToFooter } from "../Buttons/Buttons"
 import { LinkToPage } from "../Link/LinkToPage"
 import { LogoFooter } from "../Logo/Logo"
 import style from "./Footer.module.css"
+import { firebaseRoutes, loadFromtFirebase } from "../../assets/Firebase"
 
 export function Footer (){
+
+    const [socialLinks, setSocialLinks] = useState({})
+
+    useState(()=>{
+        loadLinks()
+    }, [])
+
+    async function loadLinks (){
+        const data = await loadFromtFirebase(firebaseRoutes.socialNetworks, false)
+        setSocialLinks(data)
+    }
+
     return (
         <footer className={style.footerContent}>
             <div className={style.logoContent}>
@@ -22,9 +36,9 @@ export function Footer (){
                 <ButtonToFooter label={"+ 00 (00) 100-10-10"} />
                 <ButtonToFooter label={"+ 00 (00) 100-10-10"} />
                 <div className={style.socialNetworkLinks}>
-                    <a href="" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href={socialLinks.instagram} target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href={socialLinks.facebook} target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    <a href={socialLinks.tiktok} target="_blank"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
         </footer>

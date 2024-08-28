@@ -9,8 +9,8 @@
 .buttonArea, .formsArea {
     display: flex;
     flex-direction: column;
-    width: 100%;
     padding: 1%;
+    width: 100%;
 }
 
 .formsArea {
@@ -31,8 +31,13 @@
     .admPage {
         flex-direction: row;
         align-items: baseline;
+        justify-content: space-evenly;
     }
     .buttonArea{
-        width: 40%;
+        width: 30%;
+    }
+    .formsArea {
+        justify-content: center;
+        width: 50%;
     }
 }

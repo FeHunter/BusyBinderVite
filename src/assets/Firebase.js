@@ -41,7 +41,7 @@ export async function getSocialNetWorks () {
   return data
   // return convertData(data)
 }
-// POST - LOAD SOCIAL NETWORKS
+// POST - UPDATE SOCIAL NETWORKS
 export async function postSocialNetwork (values){
   await fetch(firebaseRoutes.socialNetworks, {
     method: 'PUT',
@@ -56,6 +56,35 @@ export async function postSocialNetwork (values){
           throw new Error(data.status)
       }
   })
+}
+
+
+
+// GET - LOAD ABOUT ME TEXT
+export async function loadFromtFirebase (routeUrl, callConvertData){
+  const response = await fetch(routeUrl)
+  const data = await response.json()
+  if (callConvertData){
+    return convertData(data)
+  }
+  return data
+
+}
+// POST - UPDATE ABOUT ME TEXT
+export async function uploadToFirebase (routeUrl, method, values){
+  await fetch(routeUrl, {
+    method: method,
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    },
+    body: JSON.stringify(values)
+  }).then ((data)=> {
+    if (!data.ok){
+        throw new Error(data.status)
+    }
+})
 }
 
 /* CONVERT DATA FROM FIREBASE TO ARRAY OF OBJECTS */

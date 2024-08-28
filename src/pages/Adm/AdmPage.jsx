@@ -6,11 +6,16 @@ import { AddItemForm } from "../../components/Forms/AddItemForm/AddItemForm";
 import { SocialMediaForm } from "../../components/Forms/SocialMediaForm/SocialMediaForm";
 import { AboutMeForm } from "../../components/Forms/AboutMeForm/AboutMeForm";
 import { ButtonAdmHeader } from "../../components/Buttons/Buttons";
-import { firebaseRoutes } from "../../assets/Firebase";
+import { firebaseRoutes, loadFromtFirebase, uploadToFirebase } from "../../assets/Firebase";
 
 export function AdmPage() {
 
     const [visible, setVisible] = useState(0);
+
+    useEffect(()=>{
+        loadAboutMeText()
+        socialNetworksLinks()
+    }, [visible])
 
     // SAVE ON FIREBASE NEW ITEM
     async function addNewProduct (product) {
@@ -37,6 +42,26 @@ export function AdmPage() {
         }
     }
 
+    // LOAD SOCIAL MEDIA LINKS
+    const [socialNetworks, setSocialNetworks] = useState()
+    async function socialNetworksLinks (){
+        const data = await loadFromtFirebase(firebaseRoutes.socialNetworks, false)
+        setSocialNetworks(data)
+    }
+    function uploadSocialNetworks (values){
+        uploadToFirebase(firebaseRoutes.socialNetworks, 'PUT', values)
+    }
+
+    // ABOUT ME TEXT
+    const [aboutMeText, setAboutMeText] = useState()
+    async function loadAboutMeText (){
+        const data = await loadFromtFirebase(firebaseRoutes.aboutMeTxt, false)
+        setAboutMeText(data)
+    }
+    function uploadAboutMeText (values){
+        uploadToFirebase(firebaseRoutes.aboutMeTxt, 'PUT', values)
+    }
+    
 
     return (
         <>
@@ -46,6 +71,7 @@ export function AdmPage() {
                     <ButtonAdmHeader onClick={() => setVisible(0)} label={<><i class="fa-solid fa-bag-shopping"></i>Add new Product</>} />
                     <ButtonAdmHeader onClick={() => setVisible(1)} label={<><i class="fa-solid fa-share-nodes"></i>Social Links</>} />
                     <ButtonAdmHeader onClick={() => setVisible(2)} label={<><i class="fa-regular fa-address-card"></i>About me</>} />
+                    <ButtonAdmHeader onClick={() => setVisible(3)} label={<><i class="fa-regular fa-envelope"></i>Contacts</>} />
                 </div>
                 <div className={style.formsArea}>
                     {visible === 0 && (
@@ -57,13 +83,13 @@ export function AdmPage() {
                     {visible === 1 && (
                         <>
                             <p className={style.formTitle}><i class="fa-solid fa-share-nodes"></i> Social Links</p>
-                            <SocialMediaForm />
+                            <SocialMediaForm  initialValues={{instagram: socialNetworks.instagram, facebook: socialNetworks.facebook, tiktok: socialNetworks.tiktok}} getValues={uploadSocialNetworks} />
                         </>
                     )}
                     {visible === 2 && (
                         <>
                             <p className={style.formTitle}><i class="fa-regular fa-address-card"></i> About Me</p>
-                            <AboutMeForm/>
+                            <AboutMeForm initialValues={{ description: aboutMeText.description, photosGallery: aboutMeText.photosGallery }} readValues={uploadAboutMeText} />
                         </>
                     )}
                 </div>

@@ -3,7 +3,7 @@ import style from "./AboutMeForm.module.css"
 import { ButtonToConfirm } from "../../Buttons/Buttons"
 import * as yup from "yup"
 
-export function AboutMeForm ({readValues}){
+export function AboutMeForm ({initialValues, readValues}){
 
     const validationForm = yup.object({
         description: yup.string().required().min(10),
@@ -11,7 +11,7 @@ export function AboutMeForm ({readValues}){
 
     return (
         <Formik
-        initialValues={{ description: '', photosGallery: [] }}
+        initialValues={initialValues ? initialValues : { description: '',  photosGallery: [] }}
             validationSchema={validationForm}
             onSubmit={(values)=>{
                 readValues(values)
