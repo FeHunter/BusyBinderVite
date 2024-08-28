@@ -7,6 +7,7 @@ import { SocialMediaForm } from "../../components/Forms/SocialMediaForm/SocialMe
 import { AboutMeForm } from "../../components/Forms/AboutMeForm/AboutMeForm";
 import { ButtonAdmHeader } from "../../components/Buttons/Buttons";
 import { firebaseRoutes, loadFromtFirebase, uploadToFirebase } from "../../assets/Firebase";
+import { ContactsForm } from "../../components/Forms/ContactsForm/ContactsForm";
 
 export function AdmPage() {
 
@@ -15,6 +16,7 @@ export function AdmPage() {
     useEffect(()=>{
         loadAboutMeText()
         socialNetworksLinks()
+        loadContacts()
     }, [visible])
 
     // SAVE ON FIREBASE NEW ITEM
@@ -42,7 +44,7 @@ export function AdmPage() {
         }
     }
 
-    // LOAD SOCIAL MEDIA LINKS
+    // SOCIAL MEDIA LINKS
     const [socialNetworks, setSocialNetworks] = useState()
     async function socialNetworksLinks (){
         const data = await loadFromtFirebase(firebaseRoutes.socialNetworks, false)
@@ -61,8 +63,17 @@ export function AdmPage() {
     function uploadAboutMeText (values){
         uploadToFirebase(firebaseRoutes.aboutMeTxt, 'PUT', values)
     }
-    
 
+    // CONTACTS
+    const [contacts, setContacts] = useState()
+    async function loadContacts () {
+        const data = await loadFromtFirebase(firebaseRoutes.contacts, false)
+        setContacts(data)
+    }
+    async function uploadContacts (values){
+        uploadToFirebase(firebaseRoutes.contacts, 'PUT', values)
+    }
+    
     return (
         <>
             <Header />
@@ -83,13 +94,28 @@ export function AdmPage() {
                     {visible === 1 && (
                         <>
                             <p className={style.formTitle}><i class="fa-solid fa-share-nodes"></i> Social Links</p>
-                            <SocialMediaForm  initialValues={{instagram: socialNetworks.instagram, facebook: socialNetworks.facebook, tiktok: socialNetworks.tiktok}} getValues={uploadSocialNetworks} />
+                            <SocialMediaForm
+                                initialValues={socialNetworks ? {instagram: socialNetworks.instagram, facebook: socialNetworks.facebook, tiktok: socialNetworks.tiktok} : {instagram: '', facebook: '', tiktok: ''}}
+                                getValues={uploadSocialNetworks}
+                            />
                         </>
                     )}
                     {visible === 2 && (
                         <>
                             <p className={style.formTitle}><i class="fa-regular fa-address-card"></i> About Me</p>
-                            <AboutMeForm initialValues={{ description: aboutMeText.description, photosGallery: aboutMeText.photosGallery }} readValues={uploadAboutMeText} />
+                            <AboutMeForm
+                                initialValues={aboutMeText ? { description: aboutMeText.description, photosGallery: aboutMeText.photosGallery } : { description: '', photosGallery: [] }}
+                                readValues={uploadAboutMeText}
+                            />
+                        </>
+                    )}
+                    {visible === 3 && (
+                        <>
+                            <p className={style.formTitle}><i class="fa-regular fa-envelope"></i> Contacts</p>
+                            <ContactsForm
+                                initialValues={contacts ? { email: contacts.email, phone1: contacts.phone1, phone2: contacts.phone2 } : { email: '', phone1: '', phone2: '' }}
+                                readValues={uploadContacts}
+                            />
                         </>
                     )}
                 </div>

@@ -23,8 +23,7 @@ export const firebaseRoutes = {
     products: `${root}ProductsList.json`,
     aboutMeTxt: `${root}AboutMeText.json`,
     socialNetworks: `${root}SocialNetworks.json`,
-    phones: `${root}Phones.json`,
-    email: `${root}Email.json`,
+    contacts: `${root}Contacts.json`,
 };
 
 // DEFAULT LOAD PRODUCTS
