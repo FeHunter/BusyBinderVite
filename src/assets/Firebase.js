@@ -55,6 +55,10 @@ export async function postSocialNetwork (values){
           throw new Error(data.status)
       }
   })
+  // Reload Page
+  setTimeout(() => {
+    location.reload()
+  }, 1000);
 }
 
 
@@ -84,6 +88,10 @@ export async function uploadToFirebase (routeUrl, method, values){
         throw new Error(data.status)
     }
 })
+// Reload Page
+setTimeout(() => {
+  location.reload()
+}, 100);
 }
 
 /* CONVERT DATA FROM FIREBASE TO ARRAY OF OBJECTS */

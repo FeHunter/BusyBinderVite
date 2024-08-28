@@ -7,8 +7,8 @@ export function ContactsForm ({initialValues, readValues}){
 
     const validation = yup.object({
         email: yup.string().required(),
-        phone1: yup.number().required(),
-        phone2: yup.number().required(),
+        phone1: yup.number(),
+        phone2: yup.number(),
     })
 
     return (

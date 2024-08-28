@@ -9,14 +9,21 @@ import { firebaseRoutes, loadFromtFirebase } from "../../assets/Firebase"
 export function Footer (){
 
     const [socialLinks, setSocialLinks] = useState({})
+    const [contacts, setContacts] = useState({})
 
     useState(()=>{
         loadLinks()
+        loadContacts()
     }, [])
 
     async function loadLinks (){
         const data = await loadFromtFirebase(firebaseRoutes.socialNetworks, false)
         setSocialLinks(data)
+    }
+
+    async function loadContacts (){
+        const data = await loadFromtFirebase(firebaseRoutes.contacts, false)
+        setContacts(data)
     }
 
     return (
@@ -32,9 +39,9 @@ export function Footer (){
             </div>
             <div className={style.sectionContent}>
                 <p className={style.footerTitle}>Contacts</p>
-                <ButtonToFooter label={"busybinder@gmail.com"} />
-                <ButtonToFooter label={"+ 00 (00) 100-10-10"} />
-                <ButtonToFooter label={"+ 00 (00) 100-10-10"} />
+                <ButtonToFooter label={contacts.email} />
+                <ButtonToFooter label={contacts.phone1} />
+                <ButtonToFooter label={contacts.phone2} />
                 <div className={style.socialNetworkLinks}>
                     <a href={socialLinks.instagram} target="_blank"><i class="fa-brands fa-instagram"></i></a>
                     <a href={socialLinks.facebook} target="_blank"><i class="fa-brands fa-facebook"></i></a>
