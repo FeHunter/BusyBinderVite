@@ -21,6 +21,10 @@ export function ProductPage (){
 
     useEffect(()=>{
         getProducts();
+        window.scroll({
+            behavior: 'smooth',
+             top: 0
+        })
     },[]);
 
     // Load Requested product

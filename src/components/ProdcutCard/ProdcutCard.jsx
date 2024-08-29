@@ -42,7 +42,6 @@ export function ProdcutCard ({item}){
 
     const goToDetails = () => {
         navigate(`/ProductPage/${item.id}`)
-        window.scroll(0, 0)
         // reload only on the product page
         if (window.location.pathname.includes("/ProductPage/")) {
             location.reload();

@@ -1,10 +1,24 @@
-import Slider from "react-slick"
+import { useState } from "react"
 import { Footer } from "../components/Footer/Footer"
 import { Header } from "../components/Header/Header"
 import style from "./AboutMe.module.css"
-import { SliderShow } from "../components/SliderShow/SliderShow"
+import { firebaseRoutes, loadFromtFirebase } from "../assets/Firebase"
+import { useEffect } from "react"
 
 export function AboutMe (){
+
+    useEffect(()=>{
+        loadAboutMeText()
+    },[])
+
+    // ABOUT ME TEXT
+    const [aboutMeText, setAboutMeText] = useState(null)
+    async function loadAboutMeText (){
+        const data = await loadFromtFirebase(firebaseRoutes.aboutMeTxt, false)
+        setAboutMeText(data)
+        console.log(data)
+    }
+
     return (
         <>
             <Header/>
@@ -13,8 +27,12 @@ export function AboutMe (){
                     <img className={style.presentationImage} src="src/Images/About_Pic.jpg" alt="busy binder image" />
                     <div className={style.presentationTextContent}>
                         <h2>A few words about me</h2>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint earum, architecto ex, voluptate perspiciatis accusantium nemo, ea sed molestias dolorum ad reiciendis. Repellat nemo quibusdam fugiat aliquid veritatis deserunt. Laborum!</p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint earum, architecto ex, voluptate perspiciatis accusantium nemo, ea sed molestias dolorum ad reiciendis. Repellat nemo quibusdam fugiat aliquid veritatis deserunt. Laborum!</p>
+                        {
+                            aboutMeText ?
+                                aboutMeText.description
+                            :
+                                <p><i class="fa-solid fa-gear"></i> working on that...</p>
+                        }
                     </div>
                 </div>
                 <div className={style.sliderContent}>
