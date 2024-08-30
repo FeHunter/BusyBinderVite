@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import PagesRoutes from "../../assets/PagesRoutes"
 import { ButtonToFooter } from "../Buttons/Buttons"
 import { LinkToPage } from "../Link/LinkToPage"
@@ -11,7 +11,7 @@ export function Footer (){
     const [socialLinks, setSocialLinks] = useState({})
     const [contacts, setContacts] = useState({})
 
-    useState(()=>{
+    useEffect(()=>{
         loadLinks()
         loadContacts()
     }, [])

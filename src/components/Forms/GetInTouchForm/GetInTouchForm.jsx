@@ -33,7 +33,7 @@ export function GetInTouchForm ({getValues}){
                 </div>
                 <div className={style.itemForm}>
                     <label htmlFor="msg">Mensage*</label>
-                    <Field id="msg" name="msg" as="textArea" className={style.fieldInput} />
+                    <Field id="msg" name="msg" className={style.fieldInput} />
                     <ErrorMessage name="msg" component="p" className={style.errorMessage} />
                 </div>
                 <div className={style.itemForm}>
