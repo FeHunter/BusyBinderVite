@@ -5,6 +5,7 @@
     width: 100%;
     background-color: var(--header-color);
     padding: 1% 5%;
+    clear: both;
 }
 
 .sectionContent, .logoContent{

@@ -9,6 +9,15 @@ import { useEffect, useState } from "react";
 import { Footer } from "../components/Footer/Footer";
 import { SliderShow } from "../components/SliderShow/SliderShow";
 
+/*
+LAYOUT:
+- Imagens e frase de apresentação
+- Produção do autor
+- Slider de images
+- Avaliações
+- Entrar em contato (Perguntas)
+*/
+
 export function HomePage (){
 
     const [allItems, setAllItems] = useState([])

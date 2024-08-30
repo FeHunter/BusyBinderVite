@@ -79,19 +79,30 @@ export function AdmPage() {
             <Header />
             <section className={style.admPage}>
                 <div className={style.buttonArea}>
-                    <ButtonAdmHeader onClick={() => setVisible(0)} label={<><i class="fa-solid fa-bag-shopping"></i>Add new Product</>} />
-                    <ButtonAdmHeader onClick={() => setVisible(1)} label={<><i class="fa-solid fa-share-nodes"></i>Social Links</>} />
-                    <ButtonAdmHeader onClick={() => setVisible(2)} label={<><i class="fa-regular fa-address-card"></i>About me</>} />
-                    <ButtonAdmHeader onClick={() => setVisible(3)} label={<><i class="fa-regular fa-envelope"></i>Contacts</>} />
+                    <ButtonAdmHeader onClick={() => setVisible(0)} label={<><i class="fa-solid fa-house"></i>Home Page</>} />
+                    <ButtonAdmHeader onClick={() => setVisible(1)} label={<><i class="fa-solid fa-bag-shopping"></i>Add new Product</>} />
+                    <ButtonAdmHeader onClick={() => setVisible(2)} label={<><i class="fa-solid fa-share-nodes"></i>Social Links</>} />
+                    <ButtonAdmHeader onClick={() => setVisible(3)} label={<><i class="fa-regular fa-address-card"></i>About me</>} />
+                    <ButtonAdmHeader onClick={() => setVisible(4)} label={<><i class="fa-regular fa-envelope"></i>Contacts</>} />
                 </div>
                 <div className={style.formsArea}>
                     {visible === 0 && (
+                        <>
+                            <p className={style.formTitle}><i class="fa-solid fa-house"></i> Register new product</p>
+                            <h2>Home page settings</h2>
+                            <p>Fotos Inicias</p>
+                            <p>Texto apresentação</p>
+                            <p>Images sobre o autor</p>
+                            <p>Texto sobre o autor</p>
+                        </>
+                    )}
+                    {visible === 1 && (
                         <>
                             <p className={style.formTitle}><i class="fa-solid fa-bag-shopping"></i> Register new product</p>
                             <AddItemForm addNewProduct={addNewProduct} />
                         </>
                     )}
-                    {visible === 1 && (
+                    {visible === 2 && (
                         <>
                             <p className={style.formTitle}><i class="fa-solid fa-share-nodes"></i> Social Links</p>
                             <SocialMediaForm
@@ -100,7 +111,7 @@ export function AdmPage() {
                             />
                         </>
                     )}
-                    {visible === 2 && (
+                    {visible === 3 && (
                         <>
                             <p className={style.formTitle}><i class="fa-regular fa-address-card"></i> About Me</p>
                             <AboutMeForm
@@ -109,7 +120,7 @@ export function AdmPage() {
                             />
                         </>
                     )}
-                    {visible === 3 && (
+                    {visible === 4 && (
                         <>
                             <p className={style.formTitle}><i class="fa-regular fa-envelope"></i> Contacts</p>
                             <ContactsForm

@@ -35,7 +35,6 @@ export function SocialMediaForm ({initialValues, getValues}){
             }}
         >
             <Form className={style.formContent}>
-                <p>Corrigir onChange pra salvar alterações</p>
                 <div className={style.itemForm}>
                     <label htmlFor="instagram">Instagram</label>
                     <Field className={style.fieldInput} id="instagram" name="instagram" placeholder="https://www.instagram.com/" />

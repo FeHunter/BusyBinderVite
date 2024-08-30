@@ -9,6 +9,11 @@ import PagesRoutes from "../assets/PagesRoutes";
 import { localStorageRoutes } from "../assets/localStorageRoutes";
 import { loadProducts } from "../assets/Firebase";
 
+/*
+To fix:
+- Se não tiver images adicionar esconder botões para trocar de imagens
+*/
+
 export function ProductPage (){
 
     const { id } = useParams();
