@@ -17,7 +17,7 @@ import { HomePageForm } from "../../components/Forms/HomePageForm/HomePageForm";
 export function AdmPage() {
 
     const navigate = useNavigate()
-    const [visible, setVisible] = useState(0);
+    const [visible, setVisible] = useState(1);
 
     useEffect(()=>{
         loadHomePage()

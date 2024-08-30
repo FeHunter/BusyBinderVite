@@ -26,12 +26,19 @@ export function HomePage (){
 
     useEffect(()=>{
         loadCartItems()
+        loadHomePage()
     },[])
 
     // Load Itens from firebase - debugging load from local
     async function loadCartItems () {
         const data = await loadFromtFirebase(firebaseRoutes.products, true)
         setAllItems(data)
+    }
+
+    const [homePage, setHomePage] = useState()
+    async function loadHomePage (){
+        const data = await loadFromtFirebase(firebaseRoutes.homePage, false)
+        setHomePage(data)
     }
 
     return (
@@ -49,7 +56,7 @@ export function HomePage (){
                         <ImagesContent src={"./src/Images/About_Pic.jpg"} alt={"About us image"} />
                     </div>
                     <div className={style.aboutUsContentText}>
-                        <p>{contentText.aboutUS}</p>
+                        <p>{homePage ? homePage.briefPresentation : <></>}</p>
                     </div>
                 </div>
             </section>
@@ -72,10 +79,9 @@ export function HomePage (){
                     </div>
                     <div className={style.myWorkText}>
                         <h2>My art work</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio esse odit non ad blanditiis illo quidem tenetur culpa deleniti, voluptates corporis ullam ea minus eos odio, nesciunt nisi unde quisquam.</p>
+                        <p>{homePage ? homePage.briefAboutMe  : '...'}</p>
                     </div>
                     <div className={style.myWorkGallery}>
-                        <p>fotos</p>
                         <SliderShow
                             contentToShow={["https://i.pinimg.com/originals/6b/e7/d5/6be7d50e8f41712cb4ba00b6146f83e3.jpg",
                             "https://www.shutterstock.com/shutterstock/photos/44528956/display_1500/stock-vector-collection-of-mexican-stickers-isolated-on-white-44528956.jpg",

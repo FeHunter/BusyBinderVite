@@ -1,13 +1,13 @@
 .homePage {
     background-color: var(--background-color);
+    margin: auto;
 }
 
 .aboutUsContent {
     display: flex;
     flex-direction: column;
-
     width: 100%;
-    margin: 4% 0;
+    margin: 2% 0;
 }
 .aboutUsImages {
     grid-area: img;
@@ -64,11 +64,13 @@
 
 .myWorkContent {
     display: grid;
-    width: 90%;
-    grid-template-columns: 30% 70%;
+    width: 100%;
+    grid-template-columns: 40% 60%;
     grid-template-rows: auto auto;
-    grid-template-areas: 'photo text' 'gallery gallery';
-    border: 1px solid gray;
+    grid-template-areas:
+        'photo text'
+        'gallery gallery';
+    margin: 0 5%;
 }
 .myWorkPhoto {
     grid-area: photo;
@@ -80,6 +82,11 @@
 }
 .myWorkText {
     grid-area: text;
+    display: flex;
+}
+.myWorkText h2, .myWorkText p {
+    width: 100%;
+    text-align: center;
 }
 .myWorkGallery {
     grid-area: gallery;
@@ -93,6 +100,10 @@
 }
 
 @media screen and (min-width: 900px) {
+    .homePage {
+        width: 80%;
+        margin: auto;
+    }
     .GetInTouchArea {
         justify-content: flex-start;
     }
@@ -104,7 +115,7 @@
             "img img img"
             ". text ." ;
         width: 100%;
-        margin: 4% 0;
+        margin: 4% 0 0 0;
     }
     .aboutUsImages {
         grid-area: img;
