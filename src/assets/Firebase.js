@@ -21,6 +21,7 @@ const root = "https://testes-2998d-default-rtdb.firebaseio.com/"
 // test: https://testes-2998d-default-rtdb.firebaseio.com/
 
 export const firebaseRoutes = {
+    homePage: `${root}HomePageInformations.json`,
     products: `${root}ProductsList.json`,
     aboutMeTxt: `${root}AboutMeText.json`,
     socialNetworks: `${root}SocialNetworks.json`,

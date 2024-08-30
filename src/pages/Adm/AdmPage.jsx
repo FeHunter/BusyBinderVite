@@ -20,6 +20,7 @@ export function AdmPage() {
     const [visible, setVisible] = useState(0);
 
     useEffect(()=>{
+        loadHomePage()
         loadAboutMeText()
         socialNetworksLinks()
         loadContacts()
@@ -53,6 +54,16 @@ export function AdmPage() {
         }catch (erro){
             console.log(erro)
         }
+    }
+
+    // HOME PAGE
+    const [homePage, setHomePage] = useState()
+    async function loadHomePage (){
+        const data = await loadFromtFirebase(firebaseRoutes.homePage, false)
+        setHomePage(data)
+    }
+    function uploadHomePage (values){
+        uploadToFirebase(firebaseRoutes.homePage, 'PUT', values)
     }
 
     // SOCIAL MEDIA LINKS
@@ -100,9 +111,10 @@ export function AdmPage() {
                 <div className={style.formsArea}>
                     {visible === 0 && (
                         <>
-                            <p className={style.formTitle}><i class="fa-solid fa-house"></i> Register new product</p>
+                            <p className={style.formTitle}><i class="fa-solid fa-house"></i> Home Page</p>
                             <HomePageForm
-                                initialValues={{ briefPresentation: '', presentationImages: [], briefAboutMe: '', aboutMeCoverImage: [], workImagesSlider: [] }}
+                                initialValues={homePage ? { briefPresentation: homePage.briefPresentation, presentationImages: homePage.presentationImages, briefAboutMe: homePage.briefAboutMe, aboutMeCoverImage: homePage.aboutMeCoverImage, workImagesSlider: homePage.workImagesSlider } : { briefPresentation: '', presentationImages: [], briefAboutMe: '', aboutMeCoverImage: [], workImagesSlider: [] }}
+                                getValues={uploadHomePage}
                             />
                         </>
                     )}
