@@ -23,7 +23,6 @@ LAYOUT:
 export function HomePage (){
 
     const [allItems, setAllItems] = useState([])
-    const [cartItems, setCartItems] = useState([])
 
     useEffect(()=>{
         loadCartItems()
@@ -35,21 +34,6 @@ export function HomePage (){
         setAllItems(data)
     }
 
-    // Add item to the cart
-    const addItemToCart = (item) => {
-        let update = [cartItems];
-        // Item obj
-        const newItem = {
-            id: item.id,
-            type: item.type,
-            name: item.name,
-            price: item.price,
-            img: item.img,
-        }
-        update.push(newItem)
-        setCartItems(update)
-    }
-
     return (
         <>
         <Header/>
@@ -59,26 +43,16 @@ export function HomePage (){
             {/* Cover content - ABOUT */}
             <section>
                 <div className={style.aboutUsContent}>
-                    <ImagesContent src={"./src/Images/About_Pic.jpg"} alt={"About us image"} />
-                    <p>{contentText.aboutUS}</p>
+                    <div className={style.aboutUsImages}>
+                        <ImagesContent src={"./src/Images/About_Pic.jpg"} alt={"About us image"} />
+                        <ImagesContent src={"./src/Images/About_Pic.jpg"} alt={"About us image"} />
+                        <ImagesContent src={"./src/Images/About_Pic.jpg"} alt={"About us image"} />
+                    </div>
+                    <div className={style.aboutUsContentText}>
+                        <p>{contentText.aboutUS}</p>
+                    </div>
                 </div>
             </section>
-
-            {/* products Highlights
-            <section className={style.highlightsProducts}>
-                {
-                    allItems ?
-                        allItems.map((item, index) => {
-                            return <ProdcutCard
-                                key={`Product_Card_${index}`}
-                                item={item}
-                                addToCartFunc={()=>{addItemToCart(item)}}
-                            />
-                        })
-                    :
-                    <></>
-                }
-            </section> */}
 
             {/* Slider Show */}
             <section className={style.sliderShowContent}>

@@ -4,6 +4,7 @@ import { Header } from "../components/Header/Header"
 import style from "./AboutMe.module.css"
 import { firebaseRoutes, loadFromtFirebase } from "../assets/Firebase"
 import { useEffect } from "react"
+import { SliderShow } from "../components/SliderShow/SliderShow"
 
 export function AboutMe (){
 
@@ -37,7 +38,7 @@ export function AboutMe (){
                 </div>
                 <div className={style.sliderContent}>
                     <h2>Photo Gallery</h2>
-                    {/* <SliderShow contentToShow={"ff"} /> */}
+                    <SliderShow gallery={true} contentToShow={'f'} />
                 </div>
             </section>
             <Footer/>
