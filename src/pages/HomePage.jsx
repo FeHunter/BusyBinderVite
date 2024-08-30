@@ -1,4 +1,3 @@
-import Slider from "react-slick";
 import titleText, { contentText } from "../assets/SiteText";
 import { Header } from "../components/Header/Header";
 import { ImagesContent } from "../components/ImagesContent/ImagesContent";
@@ -8,6 +7,8 @@ import style from "./HomePage.module.css";
 import { useEffect, useState } from "react";
 import { Footer } from "../components/Footer/Footer";
 import { SliderShow } from "../components/SliderShow/SliderShow";
+import { firebaseRoutes, loadFromtFirebase } from "../assets/Firebase";
+// import { ContactMeForm } from "../components/Forms/AboutMeForm"
 
 /*
 LAYOUT:
@@ -28,10 +29,9 @@ export function HomePage (){
     },[])
 
     // Load Itens from firebase - debugging load from local
-    const loadCartItems = () => {
-        fetch("/src/assets/DebugPurpose/RegisterItems.json")
-        .then(response => response.json())
-        .then(json => setAllItems(json));
+    async function loadCartItems () {
+        const data = await loadFromtFirebase(firebaseRoutes.products, true)
+        setAllItems(data)
     }
 
     // Add item to the cart
@@ -63,7 +63,7 @@ export function HomePage (){
                 </div>
             </section>
 
-            {/* products Highlights */}
+            {/* products Highlights
             <section className={style.highlightsProducts}>
                 {
                     allItems ?
@@ -76,6 +76,16 @@ export function HomePage (){
                         })
                     :
                     <></>
+                }
+            </section> */}
+
+            {/* Slider Show */}
+            <section className={style.sliderShowContent}>
+                {
+                    allItems ? 
+                        <SliderShow contentToShow={allItems} product={true} />
+                    :
+                        <></>
                 }
             </section>
 
@@ -104,14 +114,10 @@ export function HomePage (){
                 </div>
             </section>
 
-            {/* Slider Show */}
+            {/* Ask a Question */}
             <section className={style.sliderShowContent}>
-                {
-                    allItems ? 
-                        <SliderShow contentToShow={allItems} product={true} />
-                    :
-                        <></>
-                }
+                <p>Get in touch</p>
+                {/* <ContactMeForm  /> */}
             </section>
 
         </section>
