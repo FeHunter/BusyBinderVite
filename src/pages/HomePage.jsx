@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { Footer } from "../components/Footer/Footer";
 import { SliderShow } from "../components/SliderShow/SliderShow";
 import { firebaseRoutes, loadFromtFirebase } from "../assets/Firebase";
+import { GetInTouchForm } from "../components/Forms/GetInTouchForm/GetInTouchForm";
 // import { ContactMeForm } from "../components/Forms/AboutMeForm"
 
 /*
@@ -115,9 +116,8 @@ export function HomePage (){
             </section>
 
             {/* Ask a Question */}
-            <section className={style.sliderShowContent}>
-                <p>Get in touch</p>
-                {/* <ContactMeForm  /> */}
+            <section className={style.GetInTouchArea}>
+                <GetInTouchForm />
             </section>
 
         </section>
