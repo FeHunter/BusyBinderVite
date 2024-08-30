@@ -8,9 +8,14 @@ import { AboutMeForm } from "../../components/Forms/AboutMeForm/AboutMeForm";
 import { ButtonAdmHeader } from "../../components/Buttons/Buttons";
 import { firebaseRoutes, loadFromtFirebase, uploadToFirebase } from "../../assets/Firebase";
 import { ContactsForm } from "../../components/Forms/ContactsForm/ContactsForm";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
+import PagesRoutes from "../../assets/PagesRoutes";
 
 export function AdmPage() {
 
+    const navigate = useNavigate()
     const [visible, setVisible] = useState(0);
 
     useEffect(()=>{
@@ -33,12 +38,17 @@ export function AdmPage() {
             })
             .then ((data)=> {
                 if (!data.ok){
+                    toast("Something went wrong, try again!")
                     throw new Error(data.status)
                 }
                 data.json()
-                alert("Product was added to the list")
+                toast("Success!")
             })
-            .then (product => console.log(product))
+            .finally (() => {
+                setTimeout(() => {
+                    navigate(PagesRoutes.ProductsList)
+                }, 1000);
+            })
         }catch (erro){
             console.log(erro)
         }
@@ -76,6 +86,7 @@ export function AdmPage() {
     
     return (
         <>
+            <ToastContainer/>
             <Header />
             <section className={style.admPage}>
                 <div className={style.buttonArea}>

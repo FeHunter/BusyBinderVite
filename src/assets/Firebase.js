@@ -2,6 +2,7 @@ import { useState } from "react";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { toast } from "react-toastify";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCQfTeBCoSZLbMNOEsitbOfZSSKM-hbmuk",
@@ -85,13 +86,16 @@ export async function uploadToFirebase (routeUrl, method, values){
     body: JSON.stringify(values)
   }).then ((data)=> {
     if (!data.ok){
+        toast("Something went wrong, try again!")
         throw new Error(data.status)
+    }else {
+      toast("Success!")
     }
 })
 // Reload Page
-setTimeout(() => {
-  location.reload()
-}, 100);
+// setTimeout(() => {
+//   location.reload()
+// }, 100);
 }
 
 /* CONVERT DATA FROM FIREBASE TO ARRAY OF OBJECTS */
