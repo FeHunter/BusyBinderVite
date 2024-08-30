@@ -12,6 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import PagesRoutes from "../../assets/PagesRoutes";
+import { HomePageForm } from "../../components/Forms/HomePageForm/HomePageForm";
 
 export function AdmPage() {
 
@@ -100,11 +101,9 @@ export function AdmPage() {
                     {visible === 0 && (
                         <>
                             <p className={style.formTitle}><i class="fa-solid fa-house"></i> Register new product</p>
-                            <h2>Home page settings</h2>
-                            <p>Fotos Inicias</p>
-                            <p>Texto apresentação</p>
-                            <p>Images sobre o autor</p>
-                            <p>Texto sobre o autor</p>
+                            <HomePageForm
+                                initialValues={{ briefPresentation: '', presentationImages: [], briefAboutMe: '', aboutMeCoverImage: [], workImagesSlider: [] }}
+                            />
                         </>
                     )}
                     {visible === 1 && (
