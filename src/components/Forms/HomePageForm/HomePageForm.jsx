@@ -15,19 +15,19 @@ export function HomePageForm({ initialValues, getValues }) {
 
     async function uploadImage() {
         if (presentationImage1) {
-            await uploadToStorage(presentationImage1, "HomePageImg1", storageUploaddRoutes.HomePageFolder);
+            await uploadToStorage(presentationImage1, "HomePageImg1", storageUploaddRoutes.pagesImages);
             toast("Presentation Image-1 successfully uploaded")
         }
         if (presentationImage2) {
-            await uploadToStorage(presentationImage2, "HomePageImg2", storageUploaddRoutes.HomePageFolder);
+            await uploadToStorage(presentationImage2, "HomePageImg2", storageUploaddRoutes.pagesImages);
             toast("Presentation Image-2 successfully uploaded")
         }
         if (presentationImage3) {
-            await uploadToStorage(presentationImage3, "HomePageImg3", storageUploaddRoutes.HomePageFolder);
+            await uploadToStorage(presentationImage3, "HomePageImg3", storageUploaddRoutes.pagesImages);
             toast("Presentation Image-3 successfully uploaded")
         }
         if (aboutWorkImageCover) {
-            await uploadToStorage(aboutWorkImageCover, "MyWorkCoverImage", storageUploaddRoutes.HomePageFolder);
+            await uploadToStorage(aboutWorkImageCover, "MyWorkCoverImage", storageUploaddRoutes.pagesImages);
             toast("My Work Cover Image successfully uploaded")
         }
     }
@@ -96,7 +96,7 @@ export function HomePageForm({ initialValues, getValues }) {
                         <p className={style.formSectionsLabel}>Brief About me</p>
                         <div className={style.itemForm}>
                             <label htmlFor="briefAboutMe">About me *</label>
-                            <Field id="briefAboutMe" type="text" name="briefAboutMe" placeholder="type..." as="textarea" className={style.fieldInput} />
+                            <Field id="briefAboutMe" type="text" name="briefAboutMe" placeholder="type..." as="textarea" className={style.textAreaField} />
                             <ErrorMessage name="briefAboutMe" component="p" className={style.errorMessage} />
                         </div>
                         <div className={style.itemForm}>

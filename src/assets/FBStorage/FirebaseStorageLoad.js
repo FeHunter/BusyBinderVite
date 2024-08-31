@@ -4,14 +4,15 @@ import { storage } from '../Firebase';
 const rootUrl = "gs://testes-2998d.appspot.com/"
 export const storageUploaddRoutes = {
     defaultFolder: `${rootUrl}Default`,
-    HomePageFolder: `${rootUrl}HomePageImages`,
+    pagesImages: `${rootUrl}ImagesForPages`,
 }
 export const storageLoadRoutes = {
     defaultImage: `${rootUrl}Default/no-image.png`,
-    presentationImage1: `${storageUploaddRoutes.HomePageFolder}/HomePageImg1.jpeg`,
-    presentationImage2: `${storageUploaddRoutes.HomePageFolder}/HomePageImg2.jpeg`,
-    presentationImage3: `${storageUploaddRoutes.HomePageFolder}/HomePageImg3.jpeg`,
-    myWorkCoverImage: `${storageUploaddRoutes.HomePageFolder}/MyWorkCoverImage.jpeg`,
+    presentationImage1: `${storageUploaddRoutes.pagesImages}/HomePageImg1.jpeg`,
+    presentationImage2: `${storageUploaddRoutes.pagesImages}/HomePageImg2.jpeg`,
+    presentationImage3: `${storageUploaddRoutes.pagesImages}/HomePageImg3.jpeg`,
+    myWorkCoverImage: `${storageUploaddRoutes.pagesImages}/MyWorkCoverImage.jpeg`,
+    aboutMeImage: `${storageUploaddRoutes.pagesImages}/AboutMePageImage.jpeg`,
 }
 
 /* LOAD STORAGE IMAGES */

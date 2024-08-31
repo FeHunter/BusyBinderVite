@@ -5,13 +5,16 @@ import style from "./AboutMe.module.css"
 import { firebaseRoutes, loadFromtFirebase } from "../assets/Firebase"
 import { useEffect } from "react"
 import { SliderShow } from "../components/SliderShow/SliderShow"
+import { loadFromStorage, storageLoadRoutes } from "../assets/FBStorage/FirebaseStorageLoad"
 
 export function AboutMe (){
 
+    const [storageImages, setStorageImages] = useState({});
     const [gallery, setGallery] = useState([])
 
     useEffect(()=>{
         loadAboutMeText()
+        loadDefaultImage()
     },[])
 
     // ABOUT ME TEXT
@@ -19,20 +22,33 @@ export function AboutMe (){
     async function loadAboutMeText (){
         const data = await loadFromtFirebase(firebaseRoutes.aboutMeTxt, false)
         setAboutMeText(data)
-        console.log(data)
     }
+
+    // Load default image from Firebase Storage
+    const defaultImage = "./src/Images/no-image.png"
+    async function loadDefaultImage() {
+        try {
+            const aboutMeImage = await loadFromStorage(storageLoadRoutes.aboutMeImage);
+            setStorageImages((prev) => ({ ...prev, aboutMeImage: aboutMeImage }));
+        } catch (error) {
+            console.error("Error loading default image:", error);
+        }
+    }
+
 
     return (
         <>
             <Header/>
             <section className={style.aboutMe}>
                 <div className={style.presentationContent}>
-                    <img className={style.presentationImage} src="src/Images/About_Pic.jpg" alt="busy binder image" />
+                    <img className={style.presentationImage}
+                        src={storageImages.aboutMeImage ? storageImages.aboutMeImage : defaultImage} alt="busy binder image"
+                    />
                     <div className={style.presentationTextContent}>
                         <h2>A few words about me</h2>
                         {
                             aboutMeText ?
-                                aboutMeText.description
+                                <p style={{ whiteSpace: 'pre-wrap' }}>{aboutMeText.description}</p>
                             :
                                 <p><i class="fa-solid fa-gear"></i> working on that...</p>
                         }
