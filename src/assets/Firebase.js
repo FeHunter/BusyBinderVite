@@ -1,16 +1,16 @@
-import { useState } from "react";
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 import { toast } from "react-toastify";
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCQfTeBCoSZLbMNOEsitbOfZSSKM-hbmuk",
-  authDomain: "busybinder-b494f.firebaseapp.com",
-  projectId: "busybinder-b494f",
-  storageBucket: "busybinder-b494f.appspot.com",
-  messagingSenderId: "901115992266",
-  appId: "1:901115992266:web:74d835c51f76b9c103fc33"
+  apiKey: "AIzaSyD-2Tk85fwpl1hcf4cboQjFWQ-f_a2UUR0",
+  authDomain: "testes-2998d.firebaseapp.com",
+  databaseURL: "https://testes-2998d-default-rtdb.firebaseio.com",
+  projectId: "testes-2998d",
+  storageBucket: "testes-2998d.appspot.com",
+  messagingSenderId: "368784317342",
+  appId: "1:368784317342:web:9b6406fdcf56aa8168548f"
 };
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
@@ -27,6 +27,12 @@ export const firebaseRoutes = {
     socialNetworks: `${root}SocialNetworks.json`,
     contacts: `${root}Contacts.json`,
 };
+
+
+// Inicialize o Storage
+const storage = getStorage(app);
+export { storage };
+
 
 // DEFAULT LOAD PRODUCTS
 export async function loadProducts () {
@@ -93,10 +99,6 @@ export async function uploadToFirebase (routeUrl, method, values){
       toast("Success!")
     }
 })
-// Reload Page
-// setTimeout(() => {
-//   location.reload()
-// }, 100);
 }
 
 /* CONVERT DATA FROM FIREBASE TO ARRAY OF OBJECTS */

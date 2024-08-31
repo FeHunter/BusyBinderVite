@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import PagesRoutes from "../../assets/PagesRoutes";
 import { HomePageForm } from "../../components/Forms/HomePageForm/HomePageForm";
+import { storageUploaddRoutes, uploadToStorage } from "../../assets/FBStorage/FirebaseStorageLoad";
 
 export function AdmPage() {
 
