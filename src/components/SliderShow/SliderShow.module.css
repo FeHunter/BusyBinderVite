@@ -34,7 +34,7 @@
 }
 
 /* ANIMATIONS */
-.sliderContent, .animaitonComingLeft, .animaitonComingRight {
+.sliderContent, .animationComingLeft, .animationComingRight {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -44,15 +44,13 @@
     transition: .3s;
 }
 
-.animaitonComingLeft {
-    /* justify-content: flex-end; */
+.animationComingLeft {
     margin-left: 10%;
     transition: .3s;
     opacity: 0;
 }
 
-.animaitonComingRight {
-    /* justify-content: flex-start; */
+.animationComingRight {
     margin-right: 10%;
     transition: .3s;
     opacity: 0;
@@ -65,6 +63,29 @@
     background-size: cover;
     margin: 0 1%;
 }
+
+/* NAVEGATION DOTS */
+.navigationDots {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .activeDot {
+    background-color: #333; /* Cor para o ponto ativo */
+  }
+  
 
 @media screen and (min-width: 900px) {
     .sliderShow {

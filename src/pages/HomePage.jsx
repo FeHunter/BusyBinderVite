@@ -9,6 +9,8 @@ import { Footer } from "../components/Footer/Footer";
 import { SliderShow } from "../components/SliderShow/SliderShow";
 import { firebaseRoutes, loadFromtFirebase } from "../assets/Firebase";
 import { GetInTouchForm } from "../components/Forms/GetInTouchForm/GetInTouchForm";
+import PagesRoutes from "../assets/PagesRoutes";
+import { useNavigate } from "react-router-dom";
 // import { ContactMeForm } from "../components/Forms/AboutMeForm"
 
 /*
@@ -22,6 +24,7 @@ LAYOUT:
 
 export function HomePage (){
 
+    const navigation = useNavigate()
     const [allItems, setAllItems] = useState([])
 
     useEffect(()=>{
@@ -51,9 +54,9 @@ export function HomePage (){
             <section>
                 <div className={style.aboutUsContent}>
                     <div className={style.aboutUsImages}>
-                        <ImagesContent src={"./src/Images/About_Pic.jpg"} alt={"About us image"} />
-                        <ImagesContent src={"./src/Images/About_Pic.jpg"} alt={"About us image"} />
-                        <ImagesContent src={"./src/Images/About_Pic.jpg"} alt={"About us image"} />
+                        <ImagesContent src={"./src/Images/no-image.png"} alt={"About us image"} />
+                        <ImagesContent src={"./src/Images/no-image.png"} alt={"About us image"} />
+                        <ImagesContent src={"./src/Images/no-image.png"} alt={"About us image"} />
                     </div>
                     <div className={style.aboutUsContentText}>
                         <p>{homePage ? homePage.briefPresentation : <></>}</p>
@@ -75,11 +78,12 @@ export function HomePage (){
             <section className={style.highlightsProducts}>
                 <div className={style.myWorkContent}>
                     <div className={style.myWorkPhoto}>
-                        <img src="./src/Images/About_Pic.jpg" />
+                        <img src="./src/Images/no-image.png" />
                     </div>
                     <div className={style.myWorkText}>
                         <h2>My art work</h2>
                         <p>{homePage ? homePage.briefAboutMe  : '...'}</p>
+                        <button onClick={()=>{navigation(PagesRoutes.AboutMe)}}>Read more</button>
                     </div>
                     <div className={style.myWorkGallery}>
                         <SliderShow

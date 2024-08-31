@@ -1,84 +1,91 @@
-import { useEffect, useState } from "react"
-import style from "./SliderShow.module.css"
-import { ProdcutCard } from "../ProdcutCard/ProdcutCard"
+import { useEffect, useState } from "react";
+import style from "./SliderShow.module.css";
+import { ProdcutCard } from "../ProdcutCard/ProdcutCard";
 
-/*
-product = bool
-gallery = bool
-*/
+export function SliderShow({ contentToShow, product, gallery }) {
+  const [index, setIndex] = useState(0);
+  const [currentItem, setCurrentItem] = useState({});
+  const [animation, setAnimation] = useState(style.sliderContent);
 
-export function SliderShow ({contentToShow, product, gallery}) {
+  useEffect(() => {
+    setCurrentItem(contentToShow[index]);
+  }, [contentToShow, index]);
 
-    const [index, setIndex] = useState(0)
-    const [currentItem, setCurrentItem] = useState({})
-    const [animation, setAnimation] = useState(style.sliderContent)
+  const previousSlide = () => {
+    animateSlider("left");
+    setTimeout(() => {
+      setIndex((prevIndex) =>
+        prevIndex > 0 ? prevIndex - 1 : contentToShow.length - 1
+      );
+    }, 300);
+  };
 
-    useEffect(()=>{
-        setCurrentItem(contentToShow[index])
-        // console.log(contentToShow)
-    }, [contentToShow, index])
+  const nextSlider = () => {
+    animateSlider("right");
+    setTimeout(() => {
+      setIndex((prevIndex) =>
+        prevIndex < contentToShow.length - 1 ? prevIndex + 1 : 0
+      );
+    }, 300);
+  };
 
-    const previousSlide = () => {
-        setTimeout(() => {
-            if (index > 0){
-                setIndex((index) => index -= 1)
-            }else {
-                setIndex(contentToShow.length-1)
-            }
-        }, 300);
-        animationSliderLeft()
-    }
-    const nextSlider = () => {
-        setTimeout(() => {
-            if (index < contentToShow.length-1){
-                setIndex((index) => index += 1)
-            } else {
-                setIndex(0)
-            }
-        }, 300);
-        animationSliderRight()
-    }
+  const animateSlider = (direction) => {
+    setAnimation(
+      direction === "left" ? style.animationComingRight : style.animationComingLeft
+    );
+    setTimeout(() => {
+      setAnimation(style.sliderContent);
+    }, 300);
+  };
 
-    const animationSliderLeft = () => {
-        // Start Animation
-        setAnimation(style.animaitonComingRight)
-        setTimeout(() => {
-            setTimeout(() => {
-                // End Animation
-                setAnimation(style.sliderContent)
-            }, 200);
-        }, 200);
-    }
-    const animationSliderRight = () => {
-        // Start Animation
-        setAnimation(style.animaitonComingLeft)
-        setTimeout(() => {
-            setTimeout(() => {
-                // End Animation
-                setAnimation(style.sliderContent)
-            }, 200);
-        }, 200);
-    }
+  const getNextThreeImages = () => {
+    const total = contentToShow.length;
+    const firstIndex = index;
+    const secondIndex = (index + 1) % total;
+    const thirdIndex = (index + 2) % total;
 
-    return (
-        <section className={style.sliderShow}>
-            <div className={style.left} onClick={previousSlide}><i class="fa-solid fa-chevron-left"></i></div>
-            <div className={style.center}>
-              <div className={animation}>
-                {
-                    currentItem ?
-                        product == true ? <ProdcutCard item={currentItem} />
-                        : gallery == true ? (<>
-                            <img src={contentToShow[index]} className={style.sliderImages}  />
-                            <img src={contentToShow[index+1]} className={style.sliderImages}  />
-                            <img src={contentToShow[index+2]} className={style.sliderImages}  />
-                        </>) : <></>
-                    :
-                        <></>
-                }
-              </div>
-            </div>
-            <div className={style.right} onClick={nextSlider}><i class="fa-solid fa-chevron-right"></i></div>
-        </section>
-    )
+    return [contentToShow[firstIndex], contentToShow[secondIndex], contentToShow[thirdIndex]];
+  };
+
+  const handleDotClick = (dotIndex) => {
+    setIndex(dotIndex);
+  };
+
+  return (
+    <section className={style.sliderShow}>
+      <div className={style.left} onClick={previousSlide}>
+        <i className="fa-solid fa-chevron-left"></i>
+      </div>
+      <div className={style.center}>
+        <div className={animation}>
+          {currentItem ? (
+            product ? (
+              <ProdcutCard item={currentItem} />
+            ) : gallery ? (
+              getNextThreeImages().map((imageSrc, i) => (
+                <img key={i} src={imageSrc} className={style.sliderImages} />
+              ))
+            ) : (
+              <></>
+            )
+          ) : (
+            <></>
+          )}
+        </div>
+        {/* Adiciona os Pontinhos de Navegação */}
+        <div className={style.navigationDots}>
+            {contentToShow.map((_, dotIndex) => (
+            <span
+                key={dotIndex}
+                className={`${style.dot} ${index === dotIndex ? style.activeDot : ""}`}
+                onClick={() => handleDotClick(dotIndex)}
+            ></span>
+            ))}
+        </div>
+      </div>
+      <div className={style.right} onClick={nextSlider}>
+        <i className="fa-solid fa-chevron-right"></i>
+      </div>
+    </section>
+  );
 }

@@ -71,6 +71,7 @@
         'photo text'
         'gallery gallery';
     margin: 0 5%;
+    border: 1px solid black;
 }
 .myWorkPhoto {
     grid-area: photo;
@@ -78,22 +79,34 @@
     align-items: center;
 }
 .myWorkPhoto img {
-    width: 100%;
+    width: 80%;
 }
 .myWorkText {
     grid-area: text;
     display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
-.myWorkText h2, .myWorkText p {
-    width: 100%;
-    text-align: center;
+.myWorkText button {
+    width: 30%;
+    margin-left: 5%;
+    padding: 1%;
+    background-color: var(--background-color);
+    border: 1px solid var(--button-border);
+    border-radius: 10px;
 }
+.myWorkText button:hover {
+    cursor: pointer;
+    color: white;
+    background-color: var(--button-border);
+}
+
 .myWorkGallery {
     grid-area: gallery;
     flex-direction: row;
 }
 
-.myWorkPhoto , .myWorkText, .myWorkGallery {
+.myWorkPhoto, .myWorkGallery {
     display: flex;
     flex-direction: column;
     padding: 1%;
