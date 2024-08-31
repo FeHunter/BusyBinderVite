@@ -49,12 +49,12 @@ export function HomePage() {
     // Load default image from Firebase Storage
     const defaultImage = "./src/Images/no-image.png"
     async function loadDefaultImage() {
-        console.log(storageLoadRoutes.presentationImage1)
         try {
             const urlImg1 = await loadFromStorage(storageLoadRoutes.presentationImage1);
             const urlImg2 = await loadFromStorage(storageLoadRoutes.presentationImage2);
             const urlImg3 = await loadFromStorage(storageLoadRoutes.presentationImage3);
-            setStorageImages((prev) => ({ ...prev, presentationImage1: urlImg1, presentationImage2: urlImg2, presentationImage3: urlImg3 }));
+            const myWorkCoverImage = await loadFromStorage(storageLoadRoutes.myWorkCoverImage);
+            setStorageImages((prev) => ({ ...prev, presentationImage1: urlImg1, presentationImage2: urlImg2, presentationImage3: urlImg3, myWorkCoverImage: myWorkCoverImage }));
         } catch (error) {
             console.error("Error loading default image:", error);
         }
@@ -94,7 +94,7 @@ export function HomePage() {
                 <section className={style.highlightsProducts}>
                     <div className={style.myWorkContent}>
                         <div className={style.myWorkPhoto}>
-                            <img src="./src/Images/no-image.png" alt="My Work" />
+                            <img src={storageImages.myWorkCoverImage ? storageImages.myWorkCoverImage : defaultImage} alt="My Work image" />
                         </div>
                         <div className={style.myWorkText}>
                             <h2>My art work</h2>

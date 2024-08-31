@@ -11,6 +11,7 @@ export const storageLoadRoutes = {
     presentationImage1: `${storageUploaddRoutes.HomePageFolder}/HomePageImg1.jpeg`,
     presentationImage2: `${storageUploaddRoutes.HomePageFolder}/HomePageImg2.jpeg`,
     presentationImage3: `${storageUploaddRoutes.HomePageFolder}/HomePageImg3.jpeg`,
+    myWorkCoverImage: `${storageUploaddRoutes.HomePageFolder}/MyWorkCoverImage.jpeg`,
 }
 
 /* LOAD STORAGE IMAGES */
@@ -21,22 +22,26 @@ export async function loadFromStorage(route) {
     //   console.log("loaded URL: " + url);
       return url
     } catch (error) {
-      console.error("Erro ao carregar a URL: ", error);
-      throw error
+      console.error("Erro to donwload: ", error);
+      return null
     }
 }
 
 /* UPLOAD IMAGE TO STORAGE */
 export async function uploadToStorage(file, fileName, route) {
-    if (file) {
-        const storageRef = ref(storage, `${route}/${fileName}.jpeg`)
-        await uploadBytes(storageRef, file, { contentType: 'image/jpeg' })
-        .then((snapshot) => {
-            console.log('Uploaded a blob or file!');
-        })
-        .catch(error => {
-            console.log("Error: " + error)
-        })
+    try {
+        if (file) {
+            const storageRef = ref(storage, `${route}/${fileName}.jpeg`)
+            await uploadBytes(storageRef, file, { contentType: 'image/jpeg' })
+            .then((snapshot) => {
+                console.log('Uploaded a blob or file!');
+            })
+            .catch(error => {
+                console.log("Error: " + error)
+            })
+        }
+    }catch(error){
+        console.log("Erro to upload: " + error)
     }
 }
 
