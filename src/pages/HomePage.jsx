@@ -1,4 +1,3 @@
-import titleText, { contentText } from "../assets/SiteText";
 import { Header } from "../components/Header/Header";
 import { ImagesContent } from "../components/ImagesContent/ImagesContent";
 import { PageTitle } from "../components/PageTitle/PageTitle";
@@ -53,7 +52,7 @@ export function HomePage (){
         <>
         <Header/>
         <section className={style.homePage}>
-            <PageTitle title={titleText.pageTitle} />
+            <PageTitle title={"Busy Binder"} />
             
             {/* Cover content - ABOUT */}
             <section>
@@ -70,11 +69,11 @@ export function HomePage (){
             </section>
 
             {/* highlightsProducts */}
-            <section className={style.sliderShowContent}>
+            <section className={style.highlightsProducts}>
                 {
-                    highlightsProducts ? 
+                    highlightsProducts && highlightsProducts.length > 0 ? 
                         highlightsProducts.map((item, index ) => {
-                            <ProdcutCard item={item} key={`Product_HightLight_${index}`}  />
+                            return <ProdcutCard item={item} key={`Product_HightLight_${index}`}  />
                         })
                     :
                         <>loading...</>

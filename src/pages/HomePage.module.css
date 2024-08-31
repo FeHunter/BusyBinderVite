@@ -44,6 +44,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     width: 100%;
+    margin: 5% 0;
 }
 
 .GetInTouchArea {
@@ -71,8 +72,7 @@
     grid-template-areas:
         'photo text'
         'gallery gallery';
-    margin: 0 5%;
-    border: 1px solid black;
+    margin: 5% 0;
 }
 .myWorkPhoto {
     grid-area: photo;
@@ -105,6 +105,7 @@
 .myWorkGallery {
     grid-area: gallery;
     flex-direction: row;
+    margin-top: 2%;
 }
 
 .myWorkPhoto, .myWorkGallery {
