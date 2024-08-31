@@ -5,6 +5,7 @@ import style from "./ProductsList.module.css";
 import { ProdcutCard } from "../components/ProdcutCard/ProdcutCard";
 import { ButtonListChange } from "../components/Buttons/Buttons";
 import { loadProducts } from "../assets/Firebase";
+import { Loading } from "../assets/Loading";
 
 export function ProductsList() {
     // Local list navigation
@@ -106,7 +107,7 @@ export function ProductsList() {
                                 />
                             ))
                             :
-                            <></>
+                            <Loading/>
                     }
                 </div>
                 {/* List Control */}

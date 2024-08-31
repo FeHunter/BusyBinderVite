@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import PagesRoutes from "../assets/PagesRoutes";
 import { localStorageRoutes } from "../assets/localStorageRoutes";
 import { loadProducts } from "../assets/Firebase";
+import { Loading } from "../assets/Loading";
 
 /*
 To fix:
@@ -19,6 +20,8 @@ export function ProductPage (){
     const { id } = useParams();
     const navigate = useNavigate();
 
+    const [loading, setLoading] = useState(true)
+
     const [allItems, setAllItems] = useState([]);
     const [allProducts, setAllProducts] = useState({});
     const [product, setProduct] = useState({});
@@ -26,10 +29,6 @@ export function ProductPage (){
 
     useEffect(()=>{
         getProducts();
-        window.scroll({
-            behavior: 'smooth',
-             top: 0
-        })
     },[]);
 
     // Load Requested product
@@ -39,6 +38,12 @@ export function ProductPage (){
             setAllProducts(products)
             const index = products.findIndex((product) => product.id == id) // GET PRODUCT INDEX
             setProduct(products[index])
+            // end load and fix scroll position
+            setLoading(false)
+            window.scroll({
+                behavior: 'smooth',
+                 top: 0
+            })
         }catch (error){
             console.log(error)
         }
@@ -91,64 +96,67 @@ export function ProductPage (){
     return (
         <>
             <Header/>
-            <section className={style.productPage}>
-                {/* Product Information */}
-                <div className={style.headerInformations}>
-                    <img
-                        className={style.productImage}
-                        src={product.imgCoverFile ? product.imgCoverFile : product.imgCoverLink ? product.imgCoverLink : ""}
-                        alt={`${product.name}_image`} 
-                    />
-                    <div className={style.productInformation}>
-                        <>
-                            <p className={style.productType}>{product.type}</p>
-                            <p className={style.productName}>{product.name}</p>
-                            <p className={style.productPrice}>${product.price}</p>
-                            <p className={style.productDescription}>{product.description}</p>
-                        </>
-                        <div className={style.productActionsContent}>
-                            <FieldNumber
-                                type="number" 
-                                min="1" 
-                                placeholder="amt" 
-                                value={amount} 
-                                onChange={(e)=>{setAmount(e.target.value)}}
-                            />
-                            <ButtonToBuy label={"Buy"} onClick={AddToCart} />
+            {loading ?
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '50vh'}}><Loading/></div> :
+                <section className={style.productPage}>
+                    {/* Product Information */}
+                    <div className={style.headerInformations}>
+                        <img
+                            className={style.productImage}
+                            src={product.imgCoverFile ? product.imgCoverFile : product.imgCoverLink ? product.imgCoverLink : ""}
+                            alt={`${product.name}_image`} 
+                        />
+                        <div className={style.productInformation}>
+                            <>
+                                <p className={style.productType}>{product.type}</p>
+                                <p className={style.productName}>{product.name}</p>
+                                <p className={style.productPrice}>${product.price}</p>
+                                <p className={style.productDescription}>{product.description}</p>
+                            </>
+                            <div className={style.productActionsContent}>
+                                <FieldNumber
+                                    type="number" 
+                                    min="1" 
+                                    placeholder="amt" 
+                                    value={amount} 
+                                    onChange={(e)=>{setAmount(e.target.value)}}
+                                />
+                                <ButtonToBuy label={"Buy"} onClick={AddToCart} />
+                            </div>
                         </div>
                     </div>
-                </div>
-                {/* Product Images */}
-                <div className={style.imagesContent}>
-                    <div className={style.allImagesContent}>
-                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                    {/* Product Images */}
+                    <div className={style.imagesContent}>
+                        <div className={style.allImagesContent}>
+                            <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                            <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                            <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                            <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                            <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                            <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                        </div>
                     </div>
-                </div>
-                {/* Similar Products */}
-                <div className={style.similarProductsContent}>
-                    <h2>Similar Products</h2>
-                    <div className={style.productsContent}>
-                        {
-                            allItems ?
-                                allItems.map((item, index) => {
-                                    if (item){
-                                        return <ProdcutCard
-                                            key={`Product_Card_${index}`}
-                                            item={item}
-                                        />
-                                    }
-                                })
-                            :
-                            <></>
-                        }
+                    {/* Similar Products */}
+                    <div className={style.similarProductsContent}>
+                        <h2>Similar Products</h2>
+                        <div className={style.productsContent}>
+                            {
+                                allItems ?
+                                    allItems.map((item, index) => {
+                                        if (item){
+                                            return <ProdcutCard
+                                                key={`Product_Card_${index}`}
+                                                item={item}
+                                            />
+                                        }
+                                    })
+                                :
+                                <Loading/>
+                            }
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            }
             <Footer/>
         </>
     );
