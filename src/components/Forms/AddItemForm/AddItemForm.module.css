@@ -21,15 +21,22 @@
     width: 100%;
 }
 
-.fieldInput {
+.fieldInput, .textAreaField {
     padding: 2% 1%;
     margin: 1% 0;
     border-radius: 10px;
     border: 1px solid var(--button-border);
     background-color: var(--background-color);
 }
-.fieldInput:focus {
+.fieldInput:focus, .textAreaField:focus {
     background-color: antiquewhite;
+}
+
+.textAreaField {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 200px;
+    max-height: 200px;
 }
 
 .errorMessage {

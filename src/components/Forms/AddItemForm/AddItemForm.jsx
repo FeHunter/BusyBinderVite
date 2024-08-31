@@ -3,6 +3,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import { ButtonToConfirm } from "../../Buttons/Buttons";
 import { useState } from "react";
+import { storageUploaddRoutes, uploadToStorage } from "../../../assets/FBStorage/FirebaseStorageLoad";
+import { toast } from "react-toastify";
 
 export function AddItemForm ({addNewProduct}){
 
@@ -19,7 +21,8 @@ export function AddItemForm ({addNewProduct}){
         description: "",
     }
 
-    const [uploadType, setUploadType] = useState(true);
+    const [uploadType, setUploadType] = useState(true)
+    const [productCover, setProductCover] = useState(null)
 
     let schemaValidation = !uploadType ?
             yup.object().shape({
@@ -27,7 +30,6 @@ export function AddItemForm ({addNewProduct}){
                 description: yup.string().required().min(5, "Invalid"),
                 price: yup.number().required(),
                 type: yup.string().required().min(2, "Invalid"),
-                imgCoverFile: yup.string().required(),
             })
         :
         yup.object().shape({
@@ -42,15 +44,25 @@ export function AddItemForm ({addNewProduct}){
         addNewProduct(values)
     }
 
+    async function uploadProductCover (name) {
+        uploadToStorage(productCover, name, storageUploaddRoutes.productsImages)
+        .finally(()=>{
+            toast("product cover was successfully uploaded")
+        })
+    }
+
     return (
         <Formik
             initialValues={{...product}}
             validationSchema={schemaValidation}
-            onSubmit={(valeus)=>{
-                valeus.amount = 1 // Default amount value
-                valeus.id = `${new Date().getDay().toString()}_${new Date().getSeconds()}_${valeus.name}`;
-                valeus.postDate = new Date()
-                addProduct(valeus);
+            onSubmit={(values)=>{
+                values.amount = 1 // Default amount value
+                values.id = `${new Date().getDay().toString()}_${new Date().getSeconds()}_${values.name}`;
+                values.postDate = new Date()
+                if (productCover){
+                    uploadProductCover(`${values.name}${values.id}`)
+                }
+                addProduct(values);
             }}
         >
             <Form className={style.formContent}>
@@ -61,7 +73,7 @@ export function AddItemForm ({addNewProduct}){
                 </div>
                 <div className={style.itemForm}>
                     <label htmlFor="description">Description *</label> 
-                    <Field id="description" type="text" as="textarea" rows="5" name="description" placeholder="About the product..." className={style.fieldInput} />
+                    <Field id="description" type="text" as="textarea" rows="5" name="description" placeholder="About the product..." className={style.textAreaField} />
                     <ErrorMessage name="description" component="p" className={style.errorMessage}/>
                 </div>
                 <div className={style.towItemForm}>
@@ -102,7 +114,16 @@ export function AddItemForm ({addNewProduct}){
                         <>
                             <div className={style.itemForm}>
                                 <label htmlFor="imgCoverFile">Image File *</label>
-                                <Field id="imgCoverFile" type="file" name="imgCoverFile" className={style.fieldInput} />
+                                <input
+                                    name="imgCoverFile" type="file" className={style.fieldInput}
+                                    onChange={(event) => {
+                                        // Acessar o arquivo selecionado
+                                        const file = event.target.files[0];
+                                        if (file) {
+                                            setProductCover(file);
+                                        }
+                                    }}
+                                />
                                 <ErrorMessage name="imgCoverFile" component="p" className={style.errorMessage}/>
                             </div>
                         </>

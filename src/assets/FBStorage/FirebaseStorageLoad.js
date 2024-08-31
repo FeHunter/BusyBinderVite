@@ -5,6 +5,7 @@ const rootUrl = "gs://testes-2998d.appspot.com/"
 export const storageUploaddRoutes = {
     defaultFolder: `${rootUrl}Default`,
     pagesImages: `${rootUrl}ImagesForPages`,
+    productsImages: `${rootUrl}ProductsImages`
 }
 export const storageLoadRoutes = {
     defaultImage: `${rootUrl}Default/no-image.png`,
@@ -13,6 +14,7 @@ export const storageLoadRoutes = {
     presentationImage3: `${storageUploaddRoutes.pagesImages}/HomePageImg3.png`,
     myWorkCoverImage: `${storageUploaddRoutes.pagesImages}/MyWorkCoverImage.png`,
     aboutMeImage: `${storageUploaddRoutes.pagesImages}/AboutMePageImage.png`,
+    productsImages: `${storageUploaddRoutes.productsImages}/`,
 }
 
 /* LOAD STORAGE IMAGES */

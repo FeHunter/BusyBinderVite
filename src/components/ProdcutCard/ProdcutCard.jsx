@@ -4,6 +4,8 @@ import { ImagesContent } from "../ImagesContent/ImagesContent";
 import style from "./ProdcutCard.module.css";
 import { localStorageRoutes } from "../../assets/localStorageRoutes";
 import PagesRoutes from "../../assets/PagesRoutes";
+import { loadFromStorage, storageLoadRoutes } from "../../assets/FBStorage/FirebaseStorageLoad";
+import { useEffect, useState } from "react";
 
 export function ProdcutCard ({item}){
 
@@ -48,10 +50,25 @@ export function ProdcutCard ({item}){
         }
     }
 
+    useEffect(()=>{
+        loadProductImage()
+    },[])
+
+    const [proudctCover, setProductCover] = useState(null)
+    async function loadProductImage() {
+        const coverUrl = `${storageLoadRoutes.productsImages}${item.name+item.id}.png`
+        try {
+            const urlImgage = await loadFromStorage(coverUrl);
+            setProductCover(urlImgage);
+        } catch (error) {
+            console.error("Error loading default image:", error);
+        }
+    }
+
     return (
         <div className={style.prodcutCard}>
             <ImagesContent
-                src={item.imgCoverFile ? item.imgCoverFile : item.imgCoverLink ? item.imgCoverLink : ""}
+                src={proudctCover ? proudctCover : item.imgCoverLink ? item.imgCoverLink : ""}
                 alt={`${item.name}_image`} size={'100%'} onClick={goToDetails}
             />
             <div className={style.prodcutInfos}>

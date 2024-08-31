@@ -9,6 +9,7 @@ import PagesRoutes from "../assets/PagesRoutes";
 import { localStorageRoutes } from "../assets/localStorageRoutes";
 import { loadProducts } from "../assets/Firebase";
 import { Loading } from "../assets/Loading";
+import { loadFromStorage, storageLoadRoutes } from "../assets/FBStorage/FirebaseStorageLoad";
 
 /*
 To fix:
@@ -28,8 +29,9 @@ export function ProductPage (){
     const [amount, setAmount] = useState(1);
 
     useEffect(()=>{
-        getProducts();
-    },[]);
+        getProducts()
+        loadProductImage()
+    },[loading]);
 
     // Load Requested product
     const getProducts = async () => {
@@ -93,6 +95,17 @@ export function ProductPage (){
         navigate(PagesRoutes.Cart);
     };
 
+    const [proudctCover, setProductCover] = useState(null)
+    async function loadProductImage() {
+        const coverUrl = `${storageLoadRoutes.productsImages}${product.name+product.id}.png`
+        try {
+            const urlImgage = await loadFromStorage(coverUrl);
+            setProductCover(urlImgage);
+        } catch (error) {
+            console.error("Error loading default image:", error);
+        }
+    }
+
     return (
         <>
             <Header/>
@@ -103,7 +116,7 @@ export function ProductPage (){
                     <div className={style.headerInformations}>
                         <img
                             className={style.productImage}
-                            src={product.imgCoverFile ? product.imgCoverFile : product.imgCoverLink ? product.imgCoverLink : ""}
+                            src={proudctCover ? proudctCover : product.imgCoverLink ? product.imgCoverLink : ""}
                             alt={`${product.name}_image`} 
                         />
                         <div className={style.productInformation}>
