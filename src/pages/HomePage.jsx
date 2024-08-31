@@ -11,6 +11,7 @@ import { GetInTouchForm } from "../components/Forms/GetInTouchForm/GetInTouchFor
 import PagesRoutes from "../assets/PagesRoutes";
 import { useNavigate } from "react-router-dom";
 import { loadFromStorage, storageLoadRoutes } from "../assets/FBStorage/FirebaseStorageLoad";
+import { Loading } from "../assets/Loading";
 
 /*
 LAYOUT:
@@ -22,7 +23,9 @@ LAYOUT:
 */
 
 export function HomePage() {
+    
     const navigate = useNavigate();
+
     const [highlightsProducts, setHighlightsProducts] = useState([]);
     const [storageImages, setStorageImages] = useState({});
     const [homePage, setHomePage] = useState();
@@ -69,9 +72,9 @@ export function HomePage() {
                 <section>
                     <div className={style.aboutUsContent}>
                         <div className={style.aboutUsImages}>
-                            <ImagesContent src={storageImages.presentationImage1 ? storageImages.presentationImage1 : defaultImage} alt={"BusyBinder image 1"} />
-                            <ImagesContent src={storageImages.presentationImage2 ? storageImages.presentationImage2 : defaultImage} alt={"BusyBinder image 2"} />
-                            <ImagesContent src={storageImages.presentationImage3 ? storageImages.presentationImage3 : defaultImage} alt={"BusyBinder image 3"} />
+                            {storageImages.presentationImage1 ? <ImagesContent src={storageImages.presentationImage1} alt={"BusyBinder image 1"} /> : <Loading/>}
+                            {storageImages.presentationImage2 ? <ImagesContent src={storageImages.presentationImage2} alt={"BusyBinder image 1"} /> : <Loading/>}
+                            {storageImages.presentationImage3 ? <ImagesContent src={storageImages.presentationImage3} alt={"BusyBinder image 1"} /> : <Loading/>}
                         </div>
                         <div className={style.aboutUsContentText}>
                             <p>{homePage ? homePage.briefPresentation : <></>}</p>
@@ -94,7 +97,7 @@ export function HomePage() {
                 <section className={style.highlightsProducts}>
                     <div className={style.myWorkContent}>
                         <div className={style.myWorkPhoto}>
-                            <img src={storageImages.myWorkCoverImage ? storageImages.myWorkCoverImage : defaultImage} alt="My Work image" />
+                            {storageImages.myWorkCoverImage ? <img src={storageImages.myWorkCoverImage ? storageImages.myWorkCoverImage : defaultImage} alt="My Work image" /> : <Loading/>}
                         </div>
                         <div className={style.myWorkText}>
                             <h2>My art work</h2>
