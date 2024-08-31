@@ -8,9 +8,9 @@ export const storageUploaddRoutes = {
 }
 export const storageLoadRoutes = {
     defaultImage: `${rootUrl}Default/no-image.png`,
-    presentationImage1: `${rootUrl}${storageUploaddRoutes.HomePageFolder}/HomePageImg1`,
-    presentationImage2: `${rootUrl}${storageUploaddRoutes.HomePageFolder}/HomePageImg2`,
-    presentationImage3: `${rootUrl}${storageUploaddRoutes.HomePageFolder}/HomePageImg3`,
+    presentationImage1: `${storageUploaddRoutes.HomePageFolder}/HomePageImg1.jpeg`,
+    presentationImage2: `${storageUploaddRoutes.HomePageFolder}/HomePageImg2.jpeg`,
+    presentationImage3: `${storageUploaddRoutes.HomePageFolder}/HomePageImg3.jpeg`,
 }
 
 /* LOAD STORAGE IMAGES */

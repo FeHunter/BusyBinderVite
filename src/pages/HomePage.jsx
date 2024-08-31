@@ -47,7 +47,9 @@ export function HomePage() {
     }
 
     // Load default image from Firebase Storage
+    const defaultImage = "./src/Images/no-image.png"
     async function loadDefaultImage() {
+        console.log(storageLoadRoutes.presentationImage1)
         try {
             const urlImg1 = await loadFromStorage(storageLoadRoutes.presentationImage1);
             const urlImg2 = await loadFromStorage(storageLoadRoutes.presentationImage2);
@@ -67,9 +69,9 @@ export function HomePage() {
                 <section>
                     <div className={style.aboutUsContent}>
                         <div className={style.aboutUsImages}>
-                            <ImagesContent src={storageImages.presentationImage1 ? storageImages.presentationImage1 : ''} alt={"BusyBinder image 1"} />
-                            <ImagesContent src={storageImages.presentationImage2 ? storageImages.presentationImage2 : ''} alt={"BusyBinder image 2"} />
-                            <ImagesContent src={storageImages.presentationImage3 ? storageImages.presentationImage3 : ''} alt={"BusyBinder image 3"} />
+                            <ImagesContent src={storageImages.presentationImage1 ? storageImages.presentationImage1 : defaultImage} alt={"BusyBinder image 1"} />
+                            <ImagesContent src={storageImages.presentationImage2 ? storageImages.presentationImage2 : defaultImage} alt={"BusyBinder image 2"} />
+                            <ImagesContent src={storageImages.presentationImage3 ? storageImages.presentationImage3 : defaultImage} alt={"BusyBinder image 3"} />
                         </div>
                         <div className={style.aboutUsContentText}>
                             <p>{homePage ? homePage.briefPresentation : <></>}</p>
