@@ -3,6 +3,7 @@
     margin: auto;
 }
 
+/* START CONTENT IMAGES AND BRIEF */
 .aboutUsContent {
     display: flex;
     flex-direction: column;
@@ -120,6 +121,7 @@
     .GetInTouchArea {
         justify-content: flex-start;
     }
+    /* START CONTENT IMAGES AND BRIEF */
     .aboutUsContent {
         display: grid;
         grid-template-columns: 33% 33% 33%;

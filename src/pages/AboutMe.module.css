@@ -78,7 +78,7 @@ p {
 
     .sliderContent {
         flex-direction: column;
-        width: 30%;
+        width: 80%;
     }
     .sliderImage {
         width: 30%;

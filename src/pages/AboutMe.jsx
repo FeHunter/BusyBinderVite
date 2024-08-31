@@ -8,6 +8,8 @@ import { SliderShow } from "../components/SliderShow/SliderShow"
 
 export function AboutMe (){
 
+    const [gallery, setGallery] = useState([])
+
     useEffect(()=>{
         loadAboutMeText()
     },[])
@@ -38,7 +40,7 @@ export function AboutMe (){
                 </div>
                 <div className={style.sliderContent}>
                     <h2>Photo Gallery</h2>
-                    <SliderShow gallery={true} contentToShow={'f'} />
+                    <SliderShow gallery={true} contentToShow={gallery} />
                 </div>
             </section>
             <Footer/>

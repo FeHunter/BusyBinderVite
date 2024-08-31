@@ -25,7 +25,7 @@ LAYOUT:
 export function HomePage (){
 
     const navigation = useNavigate()
-    const [allItems, setAllItems] = useState([])
+    const [highlightsProducts, setHighlightsProducts] = useState([])
 
     useEffect(()=>{
         loadCartItems()
@@ -35,7 +35,12 @@ export function HomePage (){
     // Load Itens from firebase - debugging load from local
     async function loadCartItems () {
         const data = await loadFromtFirebase(firebaseRoutes.products, true)
-        setAllItems(data)
+        // GET ONLY FOUR PRODUCTS
+        const highlight = []
+        for (let i=0; i < 3; i ++){
+            highlight.push(data[i])
+        }
+        setHighlightsProducts(highlight)
     }
 
     const [homePage, setHomePage] = useState()
@@ -64,13 +69,15 @@ export function HomePage (){
                 </div>
             </section>
 
-            {/* Slider Show */}
+            {/* highlightsProducts */}
             <section className={style.sliderShowContent}>
                 {
-                    allItems ? 
-                        <SliderShow contentToShow={allItems} product={true} />
+                    highlightsProducts ? 
+                        highlightsProducts.map((item, index ) => {
+                            <ProdcutCard item={item} key={`Product_HightLight_${index}`}  />
+                        })
                     :
-                        <></>
+                        <>loading...</>
                 }
             </section>
 
