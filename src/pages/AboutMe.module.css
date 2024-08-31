@@ -59,7 +59,8 @@ p {
         margin-bottom: 5%;
     }
     .presentationImage {
-        width: 40%;
+        width: 50%;
+        max-width: 50%;
         border-top-right-radius: 0px;
         border-bottom-left-radius: 0px;
         border-top-left-radius: 100px;

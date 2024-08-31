@@ -6,6 +6,7 @@ import { firebaseRoutes, loadFromtFirebase } from "../assets/Firebase"
 import { useEffect } from "react"
 import { SliderShow } from "../components/SliderShow/SliderShow"
 import { loadFromStorage, storageLoadRoutes } from "../assets/FBStorage/FirebaseStorageLoad"
+import { Loading } from "../assets/Loading"
 
 export function AboutMe (){
 
@@ -41,9 +42,7 @@ export function AboutMe (){
             <Header/>
             <section className={style.aboutMe}>
                 <div className={style.presentationContent}>
-                    <img className={style.presentationImage}
-                        src={storageImages.aboutMeImage ? storageImages.aboutMeImage : defaultImage} alt="busy binder image"
-                    />
+                    {storageImages.aboutMeImage ? <img className={style.presentationImage} src={storageImages.aboutMeImage ? storageImages.aboutMeImage : defaultImage} alt="busy binder image" /> : <Loading/>}
                     <div className={style.presentationTextContent}>
                         <h2>A few words about me</h2>
                         {
