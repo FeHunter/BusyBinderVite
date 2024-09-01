@@ -101,9 +101,9 @@ export function CartPage() {
           <table className={style.tableCart}>
             <thead>
               <tr>
+                <th>Remove</th>
                 <th></th>
-                <th></th>
-                <th>Item</th>
+                <th style={{textAlign: 'left'}}>Item</th>
                 <th>Price</th>
                 <th title="Amount">Amt</th>
                 <th>Total</th>
@@ -114,7 +114,7 @@ export function CartPage() {
                 items.map((item, index) => {
                   const imgSrc = imageLinks[item.id] || item.imgCoverLink || './src/Images/no-image.png';
                   return (
-                    <tr key={`tr_item_${index}`}>
+                    <tr key={`tr_item_${index}`} className={style.tableRow}>
                       <td>
                         <ButtonToDelete onClick={() => removeFromCart(item)} />
                       </td>
@@ -221,7 +221,7 @@ export function CartPage() {
               </tr>
             </tbody>
           </table>
-          <ButtonToConfirm />
+          <ButtonToConfirm icon={"Confirm Order"} />
         </section>
       </section>
       <Footer />

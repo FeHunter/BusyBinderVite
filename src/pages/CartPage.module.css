@@ -37,8 +37,12 @@
     width: 30% !important;
     text-align: left;
 }
-
-.tableCart tr:hover {
+.tableRow {
+    min-height: 100px;
+    height: 100px;
+    max-width: 100px;
+}
+.tableRow:hover {
     background-color: rgba(0, 0, 0, .04);
 }
 
