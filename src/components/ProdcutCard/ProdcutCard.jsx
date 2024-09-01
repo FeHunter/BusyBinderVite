@@ -51,7 +51,9 @@ export function ProdcutCard ({item}){
     }
 
     useEffect(()=>{
-        loadProductImage()
+        if (!item.imgCoverLink){
+            loadProductImage()
+        }
     },[])
 
     const [proudctCover, setProductCover] = useState(null)
@@ -59,6 +61,7 @@ export function ProdcutCard ({item}){
         const coverUrl = `${storageLoadRoutes.productsImages}${item.name+item.id}.png`
         try {
             const urlImgage = await loadFromStorage(coverUrl);
+            console.log(urlImgage)
             setProductCover(urlImgage);
         } catch (error) {
             console.error("Error loading default image:", error);
