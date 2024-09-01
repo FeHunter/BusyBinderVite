@@ -30,40 +30,47 @@ export function ProductPage (){
 
     useEffect(()=>{
         getProducts()
+    },[]);
+
+    useEffect(()=>{
         if (!product.imgCoverLink || product.imgCoverLink === ''){
             loadProductImage()
         }
-    },[loading]);
+    },[loading])
 
     // Load Requested product
     const getProducts = async () => {
         try {
+            setLoading(true)
             const products = await loadProducts()
             setAllProducts(products)
             const index = products.findIndex((product) => product.id == id) // GET PRODUCT INDEX
             setProduct(products[index])
             // end load and fix scroll position
-            setLoading(false)
             window.scroll({
                 behavior: 'smooth',
                  top: 0
             })
         }catch (error){
             console.log(error)
+        }finally {
+            setLoading(false)
         }
     }
 
     // Load Similar products - only 4 Items from local JSON
     useEffect(()=>{
-        try {
-            const randomStart = Math.floor(Math.random() * (allProducts.length - 4)); 
-            let onlyFour = [];
-            for (let i= randomStart; i < randomStart + 4; i++){
-                onlyFour.push(allProducts[i]);
+        if (allItems.length < 3){
+            try {
+                const randomStart = Math.floor(Math.random() * (allProducts.length - 4)); 
+                let onlyFour = [];
+                for (let i= randomStart; i < randomStart + 4; i++){
+                    onlyFour.push(allProducts[i]);
+                }
+                setAllItems(onlyFour);
+            }catch (error){
+                console.log(error)
             }
-            setAllItems(onlyFour);
-        }catch (error){
-            console.log(error)
         }
     }, [allProducts])
 
@@ -101,77 +108,79 @@ export function ProductPage (){
     async function loadProductImage() {
         const coverUrl = `${storageLoadRoutes.productsImages}${product.name+product.id}.png`
         try {
+            setLoading(true)
             const urlImgage = await loadFromStorage(coverUrl);
             setProductCover(urlImgage);
         } catch (error) {
             console.error("Error loading default image:", error);
+            return './src/Images/no-image.png'
+        }
+        finally {
+            setLoading(false)
         }
     }
 
     return (
         <>
             <Header/>
-            {loading ?
-                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '50vh'}}><Loading/></div> :
-                <section className={style.productPage}>
-                    {/* Product Information */}
-                    <div className={style.headerInformations}>
-                        <img
-                            className={style.productImage}
-                            src={proudctCover ? proudctCover : product.imgCoverLink ? product.imgCoverLink : ""}
-                            alt={`${product.name}_image`} 
-                        />
-                        <div className={style.productInformation}>
-                            <>
-                                <p className={style.productType}>{product.type}</p>
-                                <p className={style.productName}>{product.name}</p>
-                                <p className={style.productPrice}>${product.price}</p>
-                                <p className={style.productDescription}>{product.description}</p>
-                            </>
-                            <div className={style.productActionsContent}>
-                                <FieldNumber
-                                    type="number" 
-                                    min="1" 
-                                    placeholder="amt" 
-                                    value={amount} 
-                                    onChange={(e)=>{setAmount(e.target.value)}}
-                                />
-                                <ButtonToBuy label={"Buy"} onClick={AddToCart} />
-                            </div>
+            <section className={style.productPage}>
+                {/* Product Information */}
+                <div className={style.headerInformations}>
+                    <img
+                        className={style.productImage}
+                        src={proudctCover ? proudctCover : product.imgCoverLink ? product.imgCoverLink : ""}
+                        alt={`${product.name}_image`}
+                    />
+                    <div className={style.productInformation}>
+                        <>
+                            <p className={style.productType}>{product.type}</p>
+                            <p className={style.productName}>{product.name}</p>
+                            <p className={style.productPrice}>${product.price}</p>
+                            <p className={style.productDescription}>{product.description}</p>
+                        </>
+                        <div className={style.productActionsContent}>
+                            <FieldNumber
+                                type="number" 
+                                min="1" 
+                                placeholder="amt" 
+                                value={amount} 
+                                onChange={(e)=>{setAmount(e.target.value)}}
+                            />
+                            <ButtonToBuy label={"Buy"} onClick={AddToCart} />
                         </div>
                     </div>
-                    {/* Product Images */}
-                    <div className={style.imagesContent}>
-                        <div className={style.allImagesContent}>
-                            <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                            <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                            <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                            <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                            <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                            <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                        </div>
+                </div>
+                {/* Product Images */}
+                <div className={style.imagesContent}>
+                    <div className={style.allImagesContent}>
+                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
                     </div>
-                    {/* Similar Products */}
-                    <div className={style.similarProductsContent}>
-                        <h2>Similar Products</h2>
-                        <div className={style.productsContent}>
-                            {
-                                allItems ?
-                                    allItems.map((item, index) => {
-                                        if (item){
-                                            return <ProdcutCard
-                                                key={`Product_Card_${index}`}
-                                                item={item}
-                                            />
-                                        }
-                                    })
-                                :
-                                <Loading/>
-                            }
-                        </div>
+                </div>
+                {/* Similar Products */}
+                <div className={style.similarProductsContent}>
+                    <h2>Similar Products</h2>
+                    <div className={style.productsContent}>
+                        {
+                            allItems ?
+                                allItems.map((item, index) => {
+                                    if (item){
+                                        return <ProdcutCard
+                                            key={`Product_Card_${index}`}
+                                            item={item}
+                                        />
+                                    }
+                                })
+                            :
+                            <Loading/>
+                        }
                     </div>
-                </section>
-            }
+                </div>
+            </section>
             <Footer/>
         </>
     );
