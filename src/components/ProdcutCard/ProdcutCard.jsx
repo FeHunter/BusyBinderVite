@@ -61,7 +61,6 @@ export function ProdcutCard ({item}){
         const coverUrl = `${storageLoadRoutes.productsImages}${item.name+item.id}.png`
         try {
             const urlImgage = await loadFromStorage(coverUrl);
-            console.log(urlImgage)
             setProductCover(urlImgage);
         } catch (error) {
             console.error("Error loading default image:", error);
