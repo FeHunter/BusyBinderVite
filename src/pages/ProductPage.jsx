@@ -30,7 +30,9 @@ export function ProductPage (){
 
     useEffect(()=>{
         getProducts()
-        loadProductImage()
+        if (!product.imgCoverLink || product.imgCoverLink === ''){
+            loadProductImage()
+        }
     },[loading]);
 
     // Load Requested product
