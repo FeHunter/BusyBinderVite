@@ -51,7 +51,7 @@ export function ProdcutCard ({item}){
     }
 
     useEffect(()=>{
-        if (!item.imgCoverLink){
+        if (!item.imgCoverLink && item.imgCoverLink !== ''){
             loadProductImage()
         }
     },[])
