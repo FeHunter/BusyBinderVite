@@ -20,13 +20,21 @@ export const storageLoadRoutes = {
 /* LOAD STORAGE IMAGES */
 export async function loadFromStorage(route) {
     const imageRef = ref(storage, route);
-    try {
-      const url = await getDownloadURL(imageRef);
-    //   console.log("loaded URL: " + url);
-      return url
-    } catch (error) {
-      console.error("Erro to donwload: ", error);
-      return null
+    const localStorageUrl = localStorage.getItem(route);
+
+    // if localstorage was the file return it
+    if (localStorageUrl) {
+        return localStorageUrl;
+    }
+    // if not load from serve
+    if (!localStorageUrl){
+        const url = await getDownloadURL(imageRef);
+        try {
+            localStorage.setItem(route, url);
+            return url;
+        } catch (error) {
+            return null;
+        }
     }
 }
 
