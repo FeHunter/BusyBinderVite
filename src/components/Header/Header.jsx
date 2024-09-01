@@ -9,6 +9,9 @@ import { CartIcon } from "../Cart/CartIcon/CartIcon";
 
 export function Header () {
 
+    // ADM BUTTON
+    const storedToken = localStorage.getItem("token");
+
     const navigate = useNavigate();
 
     const [mobileMenu, setMobileMenu] = useState(false);
@@ -39,7 +42,7 @@ export function Header () {
                 <LinkToPage to={PagesRoutes.ProductsList}>Albums</LinkToPage>
                 <LinkToPage to={PagesRoutes.AboutMe}>About Me</LinkToPage>
                 <LinkToPage to={PagesRoutes.Contacts}>Contacts</LinkToPage>
-                <LinkToPage to={PagesRoutes.AdmPage}>Adm Page</LinkToPage>
+                {storedToken ? <LinkToPage to={PagesRoutes.AdmPage}>Adm Page</LinkToPage> : <></>}
             </div>
             {/* cart */}
             <div className={style.cart}>
@@ -50,14 +53,14 @@ export function Header () {
             <motion.div
                 className={style.floatWindow}
                 style={{
-                    position: 'absolute',
+                    position: 'fixed',
                     display: mobileMenu ? 'flex' : 'none',
                     flexDirection: 'column',
                     width: '90%',
                     height: '100%',
                     top: 0,
                     right: 0,
-                    background: 'whitesmoke'
+                    backgroundColor: '#F3ECE2'
                 }}
                 initial="hidden"
                 animate={mobileMenu ? "visible" : "hidden"}
@@ -76,7 +79,7 @@ export function Header () {
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.ProductsList}>Albums</LinkToPage></span>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.AboutMe}>About Me</LinkToPage></span>
                     <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.Contacts}>Contacts</LinkToPage></span>
-                    <span className={style.buttonsMobileMenuLink}><LinkToPage to={PagesRoutes.AdmPage}>Adm Page</LinkToPage></span>
+                    <span className={style.buttonsMobileMenuLink}>{storedToken ? <LinkToPage to={PagesRoutes.AdmPage}>Adm Page</LinkToPage> : <></>}</span>
                 </div>
             </motion.div>
         </header>
