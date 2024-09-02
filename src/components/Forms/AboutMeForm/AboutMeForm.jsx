@@ -4,7 +4,7 @@ import { ButtonToConfirm } from "../../Buttons/Buttons";
 import * as yup from "yup";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import { storageLoadRoutes, storageUploaddRoutes, uploadToStorage } from "../../../assets/FBStorage/FirebaseStorageLoad";
+import { deleteAllFilesInFolder, sliderAboutMeLength, storageLoadRoutes, storageUploaddRoutes, uploadToStorage } from "../../../assets/FBStorage/FirebaseStorageLoad";
 
 export function AboutMeForm({ initialValues, readValues }) {
     const [aboutMeImage, setAboutImage] = useState(null);
@@ -26,6 +26,8 @@ export function AboutMeForm({ initialValues, readValues }) {
     async function uploadSliderImages() {
         if (sliderImages.length > 0) {
             try {
+                deleteAllFilesInFolder(storageLoadRoutes.sliderAboutMe)
+                // Save all images
                 await Promise.all(
                     sliderImages.map((img, index) =>
                         uploadToStorage(img, `AboutMeSliderImage${index}`, storageLoadRoutes.sliderAboutMe)
@@ -94,7 +96,7 @@ export function AboutMeForm({ initialValues, readValues }) {
                         type="file"
                         multiple
                         className={style.fieldInput}
-                        onChange={(event) => {
+                        onBlur={(event) => {
                             const files = event.target.files;
                             if (files) {
                                 setSliderImages(Array.from(files)); // Converte FileList para Array

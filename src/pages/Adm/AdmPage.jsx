@@ -34,32 +34,28 @@ export function AdmPage() {
         const storedUser = JSON.parse(localStorage.getItem("user"));
         const storedToken = localStorage.getItem("token");
     
-        // If there is a stored token, attempt to refresh the user session
-        if (storedToken && storedUser) {
+        if (storedToken && storedUser && auth.currentUser) { // Verifica se auth.currentUser não é null
             auth.currentUser.getIdToken(/* forceRefresh */ true)
                 .then((token) => {
-                    // Set user and token in local storage
                     setUser(storedUser);
                     localStorage.setItem("token", token);
-                    // toast("Logged in successfully with existing token!");
-                    setLogged(true)
+                    setLogged(true);
                 })
                 .catch(() => {
-                    // Token is invalid or expired, fallback to login with email and password
                     if (values) {
                         doLoginWithEmail(values, auth);
                     } else {
                         toast("Session expired, please log in again.");
                     }
-                    setLogged(false)
+                    setLogged(false);
                 });
         } else if (values) {
-            // If no stored token, do login with email and password
             doLoginWithEmail(values, auth);
         } else {
             toast("Please provide login details.");
         }
     }
+    
     
     // Function to log in with email and password
     function doLoginWithEmail(values, auth) {

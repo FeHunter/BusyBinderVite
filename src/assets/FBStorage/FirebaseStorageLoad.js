@@ -1,8 +1,8 @@
-import { getDownloadURL, ref, uploadBytes, uploadBytesResumable } from 'firebase/storage';
+import { deleteObject, getDownloadURL, listAll, ref, uploadBytes  } from 'firebase/storage';
 import { storage } from '../Firebase';
-import { useEffect } from 'react';
 
 const rootUrl = "gs://testes-2998d.appspot.com/"
+
 export const storageUploaddRoutes = {
     defaultFolder: `${rootUrl}Default`,
     pagesImages: `${rootUrl}ImagesForPages`,
@@ -19,6 +19,9 @@ export const storageLoadRoutes = {
     sliderHomePage: `${storageUploaddRoutes.pagesImages}/HomePageSlider`,
     sliderAboutMe: `${storageUploaddRoutes.pagesImages}/AboutMeSlider`,
 }
+
+export const sliderAboutMeLength = `${storageUploaddRoutes.pagesImages}/AboutMeSlider/lenth.json`
+
 
 /* LOAD STORAGE */
 export async function loadFromStorage(route) {
@@ -45,25 +48,43 @@ export async function loadFromStorage(route) {
 export async function uploadToStorage(file, fileName, route) {
     try {
         if (file) {
-            const storageRef = ref(storage, `${route}/${fileName}.png`)
+            const storageRef = ref(storage, `${route}/${fileName}.png`);
             await uploadBytes(storageRef, file, { contentType: 'image/png' })
-            .then((snapshot) => {
-                console.log('Uploaded a blob or file!');
-            })
-            .catch(error => {
-                console.log("Error: " + error)
-            })
+                .then((snapshot) => {
+                    console.log('Novo arquivo foi carregado com sucesso!');
+                })
+                .catch((error) => {
+                    console.log("Erro ao fazer o upload:", error);
+                });
         }
-    }catch(error){
-        console.log("Erro to upload: " + error)
+    } catch (error) {
+        console.log("Erro ao processar o upload:", error);
     }
 }
 
-/* LOAD IMAGES TO SLIDER */
-export async function loadSliderImages(route) {
-    const refload = ref(storage, storageLoadRoutes.sliderAboutMe)
 
-    const url = await getDownloadURL(refload)
-    console.log(url)
+
+/* LOAD IMAGES TO SLIDER */
+export async function loadSliderImages() {
+
 }
 
+// Função para deletar todos os arquivos de uma pasta
+export async function deleteAllFilesInFolder(route) {
+    try {
+        const folderRef = ref(storage, route);
+        const folderContents = await listAll(folderRef);
+        const deletePromises = folderContents.items.map((itemRef) =>
+            deleteObject(itemRef).catch((error) => {
+                console.log(`Erro ao deletar o arquivo ${itemRef.fullPath}:`, error);
+                throw error;
+            })
+        );
+
+        await Promise.all(deletePromises);
+        console.log("Todos os arquivos antigos foram deletados.");
+    } catch (error) {
+        console.log("Erro ao deletar arquivos na pasta:", error);
+        throw error; // Repassa o erro para a função de upload lidar com ele
+    }
+}

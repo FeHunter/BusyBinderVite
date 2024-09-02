@@ -4,18 +4,18 @@ import { Header } from "../components/Header/Header";
 import style from "./AboutMe.module.css";
 import { firebaseRoutes, loadFromtFirebase } from "../assets/Firebase";
 import { SliderShow } from "../components/SliderShow/SliderShow";
-import { loadFromStorage, storageLoadRoutes } from "../assets/FBStorage/FirebaseStorageLoad";
+import { loadFromStorage, loadSliderImages, storageLoadRoutes } from "../assets/FBStorage/FirebaseStorageLoad";
 import { Loading } from "../assets/Loading";
 
 export function AboutMe() {
 
-    const [gallery, setGallery] = useState([]);
-    const [aboutMeText, setAboutMeText] = useState(null);
-    const defaultImage = "./src/Images/no-image.png";
+    const [gallery, setGallery] = useState([])
+    const [aboutMeText, setAboutMeText] = useState(null)
+    const defaultImage = "./src/Images/no-image.png"
 
     useEffect(() => {
-        loadAboutMeText();
-        loadProductImage();
+        loadAboutMeText()
+        loadProductImage()
     }, []);
 
     // Carrega o texto da seção "About Me"
