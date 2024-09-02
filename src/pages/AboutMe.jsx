@@ -15,6 +15,7 @@ export function AboutMe() {
 
     useEffect(() => {
         loadAboutMeText()
+        loadProductImage()
         loadGallary()
     }, []);
 
