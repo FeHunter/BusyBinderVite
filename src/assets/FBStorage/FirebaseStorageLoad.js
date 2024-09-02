@@ -65,11 +65,57 @@ export async function uploadToStorage(file, fileName, route) {
 
 
 /* LOAD IMAGES TO SLIDER */
-export async function loadSliderImages() {
+const generateHash = (data) => {
+    return data.map(item => item.path).join('|');
+};
 
+export async function loadAllImagesFromFolder(route) {
+    const folderRef = ref(storage, route);
+    const storedDataKey = `images_${route}`;
+    const storedHashKey = `images_hash_${route}`;
+
+    // Tenta obter os dados armazenados e o hash
+    const storedData = JSON.parse(localStorage.getItem(storedDataKey)) || [];
+    const storedHash = localStorage.getItem(storedHashKey);
+
+    try {
+        const folderContents = await listAll(folderRef);
+        
+        // Filtra apenas arquivos de imagem, se necessário
+        const imagePromises = folderContents.items.map(async (itemRef) => {
+            try {
+                const url = await getDownloadURL(itemRef);
+                return { path: itemRef.fullPath, url };
+            } catch (error) {
+                console.error(`Erro ao obter URL de download para o arquivo ${itemRef.fullPath}:`, error);
+                return null;
+            }
+        });
+
+        // Aguarda a resolução de todas as promessas de URL
+        const images = await Promise.all(imagePromises);
+        const validImages = images.filter(image => image !== null);
+        
+        // Gera o hash dos dados recebidos
+        const currentHash = generateHash(validImages);
+
+        // Se o hash dos dados atuais for diferente do armazenado, atualiza o localStorage
+        if (storedHash !== currentHash) {
+            localStorage.setItem(storedDataKey, JSON.stringify(validImages));
+            localStorage.setItem(storedHashKey, currentHash);
+            console.log(`Imagens carregadas e localStorage atualizado: ${validImages.length}`);
+        } else {
+            console.log(`Dados já estão atualizados no localStorage: ${validImages.length}`);
+        }
+
+        return validImages;
+    } catch (error) {
+        console.error("Erro ao carregar imagens da pasta:", error);
+        throw error;
+    }
 }
 
-// Função para deletar todos os arquivos de uma pasta
+// Delete all files on the folder
 export async function deleteAllFilesInFolder(route) {
     try {
         const folderRef = ref(storage, route);
@@ -88,3 +134,15 @@ export async function deleteAllFilesInFolder(route) {
         throw error; // Repassa o erro para a função de upload lidar com ele
     }
 }
+
+// // Get folder size
+// async function countFilesInFolder(route) {
+//     const folderRef = ref(storage, route);
+//     try {
+//         const folderContents = await listAll(folderRef);
+//         const fileCount = folderContents.items.length;
+//         return fileCount;
+//     } catch (error) {
+//         throw error;
+//     }
+// }

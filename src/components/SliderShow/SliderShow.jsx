@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import style from "./SliderShow.module.css";
 import { ProdcutCard } from "../ProdcutCard/ProdcutCard";
 
-export function SliderShow({ contentToShow, product, gallery }) {
+export function SliderShow({ contentToShow = [], product, gallery }) {
   const [index, setIndex] = useState(0);
   const [currentItem, setCurrentItem] = useState({});
   const [animation, setAnimation] = useState(style.sliderContent);
 
   useEffect(() => {
-    setCurrentItem(contentToShow[index]);
+    if (Array.isArray(contentToShow)) {
+      setCurrentItem(contentToShow[index]);
+    }
   }, [contentToShow, index]);
 
   const previousSlide = () => {
@@ -44,7 +46,7 @@ export function SliderShow({ contentToShow, product, gallery }) {
     const secondIndex = (index + 1) % total;
     const thirdIndex = (index + 2) % total;
 
-    return [contentToShow[firstIndex], contentToShow[secondIndex], contentToShow[thirdIndex]];
+    return Array.isArray(contentToShow) ? [contentToShow[firstIndex], contentToShow[secondIndex], contentToShow[thirdIndex]] : [];
   };
 
   const handleDotClick = (dotIndex) => {
@@ -62,7 +64,7 @@ export function SliderShow({ contentToShow, product, gallery }) {
             product ? (
               <ProdcutCard item={currentItem} />
             ) : gallery ? (
-              getNextThreeImages().map((imageSrc, i) => (
+              Array.isArray(getNextThreeImages()) && getNextThreeImages().map((imageSrc, i) => (
                 <img key={i} src={imageSrc} className={style.sliderImages} />
               ))
             ) : (
@@ -74,7 +76,7 @@ export function SliderShow({ contentToShow, product, gallery }) {
         </div>
         {/* Adiciona os Pontinhos de Navegação */}
         <div className={style.navigationDots}>
-            {contentToShow.map((_, dotIndex) => (
+            {Array.isArray(contentToShow) && contentToShow.map((_, dotIndex) => (
             <span
                 key={dotIndex}
                 className={`${style.dot} ${index === dotIndex ? style.activeDot : ""}`}

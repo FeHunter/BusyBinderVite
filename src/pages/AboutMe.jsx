@@ -4,7 +4,7 @@ import { Header } from "../components/Header/Header";
 import style from "./AboutMe.module.css";
 import { firebaseRoutes, loadFromtFirebase } from "../assets/Firebase";
 import { SliderShow } from "../components/SliderShow/SliderShow";
-import { loadFromStorage, loadSliderImages, storageLoadRoutes } from "../assets/FBStorage/FirebaseStorageLoad";
+import { loadAllImagesFromFolder, loadFromStorage, storageLoadRoutes } from "../assets/FBStorage/FirebaseStorageLoad";
 import { Loading } from "../assets/Loading";
 
 export function AboutMe() {
@@ -15,7 +15,7 @@ export function AboutMe() {
 
     useEffect(() => {
         loadAboutMeText()
-        loadProductImage()
+        loadGallary()
     }, []);
 
     // Carrega o texto da seção "About Me"
@@ -25,6 +25,18 @@ export function AboutMe() {
             setAboutMeText(data);
         } catch (error) {
             console.error("Erro ao carregar o texto sobre mim:", error);
+        }
+    }
+    async function loadGallary(params) {
+        try {
+            const data = await loadAllImagesFromFolder(storageLoadRoutes.sliderAboutMe);
+            // Extrai apenas os caminhos dos objetos recebidos
+            const paths = data.map(item => item.url);
+            console.log(paths)
+            // Define o estado com os caminhos extraídos
+            setGallery(paths);
+        } catch (error) {
+            console.error("Erro ao carregar galeria:", error);
         }
     }
 
