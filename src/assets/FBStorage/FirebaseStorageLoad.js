@@ -20,9 +20,6 @@ export const storageLoadRoutes = {
     sliderAboutMe: `${storageUploaddRoutes.pagesImages}/AboutMeSlider`,
 }
 
-export const sliderAboutMeLength = `${storageUploaddRoutes.pagesImages}/AboutMeSlider/lenth.json`
-
-
 /* LOAD STORAGE */
 export async function loadFromStorage(route) {
     const imageRef = ref(storage, route);

@@ -3,7 +3,7 @@ import style from "./HomePageForm.module.css";
 import * as yup from 'yup';
 import { ButtonToConfirm } from "../../Buttons/Buttons";
 import { useState } from "react";
-import { storageLoadRoutes, storageUploaddRoutes, uploadToStorage } from "../../../assets/FBStorage/FirebaseStorageLoad";
+import { deleteAllFilesInFolder, storageLoadRoutes, storageUploaddRoutes, uploadToStorage } from "../../../assets/FBStorage/FirebaseStorageLoad";
 import { toast } from "react-toastify";
 
 export function HomePageForm({ initialValues, getValues }) {
@@ -12,6 +12,7 @@ export function HomePageForm({ initialValues, getValues }) {
     const [presentationImage2, setPresentationImage2] = useState(null);
     const [presentationImage3, setPresentationImage3] = useState(null);
     const [aboutWorkImageCover, setAboutWorkImageCover] = useState(null);
+    const [sliderImages, setSliderImages] = useState([]);
 
     async function uploadImage() {
         if (presentationImage1) {
@@ -32,6 +33,24 @@ export function HomePageForm({ initialValues, getValues }) {
         }
     }
 
+    async function uploadSliderImages() {
+        if (sliderImages.length > 0) {
+            try {
+                deleteAllFilesInFolder(storageLoadRoutes.sliderHomePage)
+                // Save all images
+                await Promise.all(
+                    sliderImages.map((img, index) =>
+                        uploadToStorage(img, `HomePageSliderImage${index}`, storageLoadRoutes.sliderHomePage)
+                    )
+                );
+                toast("Slider images successfully uploaded");
+            } catch (error) {
+                toast("Error on uploading slider images");
+                console.log("Error to upload SliderImages: " + error);
+            }
+        }
+    }
+
     const validation = yup.object({
         briefPresentation: yup.string().max(50).required(),
         briefAboutMe: yup.string().max(300).required(),
@@ -41,9 +60,10 @@ export function HomePageForm({ initialValues, getValues }) {
         <Formik
             initialValues={initialValues}
             validationSchema={validation}
-            onSubmit={(values) => {
-                uploadImage();
-                getValues(values);
+            onSubmit={async (values) => {
+                await uploadImage()
+                await uploadSliderImages()
+                getValues(values)
             }}
         >
             <Form className={style.formContent}>
@@ -114,7 +134,18 @@ export function HomePageForm({ initialValues, getValues }) {
                         </div>
                         <div className={style.itemForm}>
                             <label htmlFor="workImagesSlider">My work images slider *</label>
-                            <input id="workImagesSlider" multiple type="file" className={style.fieldInput} />
+                            <input
+                                name="workImagesSlider"
+                                type="file"
+                                multiple
+                                className={style.fieldInput}
+                                onBlur={(event) => {
+                                    const files = event.target.files;
+                                    if (files) {
+                                        setSliderImages(Array.from(files)); // Converte FileList para Array
+                                    }
+                                }}
+                            />
                         </div>
                         <div className={style.itemForm}>
                             <ButtonToConfirm type="submit" icon="Update" />

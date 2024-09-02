@@ -10,7 +10,7 @@ import { firebaseRoutes, loadFromtFirebase } from "../assets/Firebase";
 import { GetInTouchForm } from "../components/Forms/GetInTouchForm/GetInTouchForm";
 import PagesRoutes from "../assets/PagesRoutes";
 import { useNavigate } from "react-router-dom";
-import { loadFromStorage, storageLoadRoutes } from "../assets/FBStorage/FirebaseStorageLoad";
+import { loadAllImagesFromFolder, loadFromStorage, storageLoadRoutes } from "../assets/FBStorage/FirebaseStorageLoad";
 import { Loading } from "../assets/Loading";
 
 /*
@@ -29,11 +29,13 @@ export function HomePage() {
     const [highlightsProducts, setHighlightsProducts] = useState([]);
     const [storageImages, setStorageImages] = useState({});
     const [homePage, setHomePage] = useState();
+    const [gallery, setGallery] = useState([]);
 
     useEffect(() => {
-        loadCartItems();
-        loadHomePage();
-        loadDefaultImage();
+        loadCartItems()
+        loadHomePage()
+        loadDefaultImage()
+        loadGallary()
     }, []);
 
     // Load Items from Firebase
@@ -47,6 +49,20 @@ export function HomePage() {
     async function loadHomePage() {
         const data = await loadFromtFirebase(firebaseRoutes.homePage, false);
         setHomePage(data);
+    }
+
+    // load slider gallery
+    async function loadGallary(params) {
+        try {
+            const data = await loadAllImagesFromFolder(storageLoadRoutes.sliderHomePage);
+            // Extrai apenas os caminhos dos objetos recebidos
+            const paths = data.map(item => item.url);
+            console.log(paths)
+            // Define o estado com os caminhos extraídos
+            setGallery(paths);
+        } catch (error) {
+            console.error("Erro ao carregar galeria:", error);
+        }
     }
 
     // Load default image from Firebase Storage
@@ -106,14 +122,7 @@ export function HomePage() {
                         </div>
                         <div className={style.myWorkGallery}>
                             <SliderShow
-                                contentToShow={[
-                                    "https://i.pinimg.com/originals/6b/e7/d5/6be7d50e8f41712cb4ba00b6146f83e3.jpg",
-                                    "https://www.shutterstock.com/shutterstock/photos/44528956/display_1500/stock-vector-collection-of-mexican-stickers-isolated-on-white-44528956.jpg",
-                                    "/src/Images/aux_book_3.png",
-                                    "https://tse1.mm.bing.net/th/id/OIP.qrhPfwVDWRGPW0l6zIrH7AHaHa?rs=1&pid=ImgDetMain",
-                                    "/src/Images/aux_book_2.png",
-                                    "https://tse2.mm.bing.net/th/id/OIP.j5bVjUSlcHcCYkLjZFzvGwAAAA?rs=1&pid=ImgDetMain"
-                                ]}
+                                contentToShow={gallery}
                                 gallery={true}
                             />
                         </div>

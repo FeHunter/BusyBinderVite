@@ -4,7 +4,7 @@ import { ButtonToConfirm } from "../../Buttons/Buttons";
 import * as yup from "yup";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import { deleteAllFilesInFolder, sliderAboutMeLength, storageLoadRoutes, storageUploaddRoutes, uploadToStorage } from "../../../assets/FBStorage/FirebaseStorageLoad";
+import { deleteAllFilesInFolder, storageLoadRoutes, storageUploaddRoutes, uploadToStorage } from "../../../assets/FBStorage/FirebaseStorageLoad";
 
 export function AboutMeForm({ initialValues, readValues }) {
     const [aboutMeImage, setAboutImage] = useState(null);
