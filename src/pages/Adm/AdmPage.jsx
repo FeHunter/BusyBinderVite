@@ -15,6 +15,7 @@ import { json, useNavigate } from "react-router-dom";
 import PagesRoutes from "../../assets/PagesRoutes";
 import { HomePageForm } from "../../components/Forms/HomePageForm/HomePageForm";
 import { AdmLoginForm } from "../../components/Forms/AdmLoginForm/AdmLoginForm";
+import { EditProductPage } from "./EditProductPage";
 
 export function AdmPage() {
 
@@ -167,9 +168,10 @@ export function AdmPage() {
                         <div className={style.buttonArea}>
                             <ButtonAdmHeader onClick={() => setVisible(0)} label={<><i class="fa-solid fa-house"></i>Home Page</>} />
                             <ButtonAdmHeader onClick={() => setVisible(1)} label={<><i class="fa-solid fa-bag-shopping"></i>Add new Product</>} />
-                            <ButtonAdmHeader onClick={() => setVisible(2)} label={<><i class="fa-solid fa-share-nodes"></i>Social Links</>} />
-                            <ButtonAdmHeader onClick={() => setVisible(3)} label={<><i class="fa-regular fa-address-card"></i>About me</>} />
-                            <ButtonAdmHeader onClick={() => setVisible(4)} label={<><i class="fa-regular fa-envelope"></i>Contacts</>} />
+                            <ButtonAdmHeader onClick={() => setVisible(2)} label={<><i class="fa-solid fa-note-sticky"></i>Albums</>} />
+                            <ButtonAdmHeader onClick={() => setVisible(3)} label={<><i class="fa-solid fa-share-nodes"></i>Social Links</>} />
+                            <ButtonAdmHeader onClick={() => setVisible(4)} label={<><i class="fa-regular fa-address-card"></i>About me</>} />
+                            <ButtonAdmHeader onClick={() => setVisible(5)} label={<><i class="fa-regular fa-envelope"></i>Contacts</>} />
                         </div>
                         <div className={style.formsArea}>
                             {visible === 0 && (
@@ -189,6 +191,12 @@ export function AdmPage() {
                             )}
                             {visible === 2 && (
                                 <>
+                                    <p className={style.formTitle}><><i class="fa-solid fa-note-sticky"></i>Albums</></p>
+                                    <EditProductPage />
+                                </>
+                            )}
+                            {visible === 3 && (
+                                <>
                                     <p className={style.formTitle}><i class="fa-solid fa-share-nodes"></i> Social Links</p>
                                     <SocialMediaForm
                                         initialValues={socialNetworks ? {instagram: socialNetworks.instagram, facebook: socialNetworks.facebook, tiktok: socialNetworks.tiktok} : {instagram: '', facebook: '', tiktok: ''}}
@@ -196,7 +204,7 @@ export function AdmPage() {
                                     />
                                 </>
                             )}
-                            {visible === 3 && (
+                            {visible === 4 && (
                                 <>
                                     <p className={style.formTitle}><i class="fa-regular fa-address-card"></i> About Me</p>
                                     <AboutMeForm
@@ -205,7 +213,7 @@ export function AdmPage() {
                                     />
                                 </>
                             )}
-                            {visible === 4 && (
+                            {visible === 5 && (
                                 <>
                                     <p className={style.formTitle}><i class="fa-regular fa-envelope"></i> Contacts</p>
                                     <ContactsForm
