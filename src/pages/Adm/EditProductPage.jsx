@@ -13,7 +13,7 @@ export function EditProductPage (){
 
     useEffect(() => {
         getProducts()
-    }, []);
+    }, [loadedList]);
 
     // Load Products
     const getProducts = async () => {
@@ -40,7 +40,6 @@ export function EditProductPage (){
         // change item on the list
         let listToUpdate = [...loadedList]
         listToUpdate[indexToUpdate] = {...values}
-        console.log(listToUpdate)
 
         // Update on serve
         await fetch(firebaseRoutes.products, {
@@ -50,9 +49,37 @@ export function EditProductPage (){
         .then(res => {
             if (res.ok){
                 toast(`${albumToEdit.name} was updated with success!`)
+                setAlbumToEdit(null)
+            }else {
+                toast(`Something went wrong, try again.`)
             }
         })
         .catch(error => console.log(error))
+    }
+
+    const deleteItem = async (album) => {
+        // Find index to change album
+        const indexToDelete = loadedList.findIndex(item => item.id === album.id)
+
+        // change item on the list
+        let listToUpdate = [...loadedList]
+        listToUpdate.splice(indexToDelete, 1)
+
+        // Update on serve
+        await fetch(firebaseRoutes.products, {
+            method: 'put',
+            body: JSON.stringify(listToUpdate)
+        })
+        .then(res => {
+            if (res.ok){
+                toast(`${albumToEdit.name} was deleted from the album!`)
+                setAlbumToEdit(null)
+            }else {
+                toast(`Something went wrong, try again.`)
+            }
+        })
+        .catch(error => console.log(error))
+
     }
 
     return (
@@ -77,7 +104,7 @@ export function EditProductPage (){
                                         <td>{album.name}</td>
                                         <td>{album.price}</td>
                                         <td><button onClick={()=>{changeAlbumToEdit(index)}}><i class="fa-solid fa-pen-to-square"></i></button></td>
-                                        <td><button onClick={()=>{}}><i class="fa-solid fa-trash"></i></button></td>
+                                        <td><button onClick={()=>{deleteItem(album)}}><i class="fa-solid fa-trash"></i></button></td>
                                     </tr>
                                 })
                                 :
