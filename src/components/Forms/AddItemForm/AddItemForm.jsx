@@ -6,7 +6,7 @@ import { useState } from "react";
 import { storageUploaddRoutes, uploadToStorage } from "../../../assets/FBStorage/FirebaseStorageLoad";
 import { toast } from "react-toastify";
 
-export function AddItemForm ({addNewProduct}){
+export function AddItemForm ({addNewProduct, initialValues}){
 
     const product = {
         id: "",
@@ -53,7 +53,7 @@ export function AddItemForm ({addNewProduct}){
 
     return (
         <Formik
-            initialValues={{...product}}
+            initialValues={initialValues ? initialValues : {...product}}
             validationSchema={schemaValidation}
             onSubmit={(values)=>{
                 values.amount = 1 // Default amount value
