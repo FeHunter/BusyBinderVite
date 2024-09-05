@@ -4,6 +4,7 @@ import { firebaseRoutes, loadProducts } from '../../assets/Firebase';
 import { AddItemForm } from '../../components/Forms/AddItemForm/AddItemForm';
 import { Loading } from '../../assets/Loading';
 import { toast } from 'react-toastify';
+import { deleteAllFilesInFolder, storageLoadRoutes } from '../../assets/FBStorage/FirebaseStorageLoad';
 
 export function EditProductPage (){
 
@@ -65,6 +66,8 @@ export function EditProductPage (){
         let listToUpdate = [...loadedList]
         listToUpdate.splice(indexToDelete, 1)
 
+        // Remove other images of the product
+        deleteAllFilesInFolder(`${storageLoadRoutes.productsSliderImages}/${album.name}`)
         // Update on serve
         await fetch(firebaseRoutes.products, {
             method: 'put',
