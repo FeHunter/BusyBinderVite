@@ -7,6 +7,7 @@ export const storageUploaddRoutes = {
     defaultFolder: `${rootUrl}Default`,
     pagesImages: `${rootUrl}ImagesForPages`,
     productsImages: `${rootUrl}ProductsImages`,
+    productsSliderImages: `${rootUrl}ProductsSliderImages`,
 }
 export const storageLoadRoutes = {
     defaultImage: `${rootUrl}Default/no-image.png`,
@@ -18,6 +19,7 @@ export const storageLoadRoutes = {
     productsImages: `${storageUploaddRoutes.productsImages}/`,
     sliderHomePage: `${storageUploaddRoutes.pagesImages}/HomePageSlider`,
     sliderAboutMe: `${storageUploaddRoutes.pagesImages}/AboutMeSlider`,
+    productsSliderImages: `${storageUploaddRoutes.productsSliderImages}`, // Other images of the product
 }
 
 /* LOAD STORAGE */

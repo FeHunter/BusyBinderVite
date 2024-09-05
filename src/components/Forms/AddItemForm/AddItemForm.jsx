@@ -2,8 +2,8 @@ import style from "./AddItemForm.module.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import { ButtonToConfirm } from "../../Buttons/Buttons";
-import { useState } from "react";
-import { storageUploaddRoutes, uploadToStorage } from "../../../assets/FBStorage/FirebaseStorageLoad";
+import { useEffect, useState } from "react";
+import { deleteAllFilesInFolder, storageLoadRoutes, storageUploaddRoutes, uploadToStorage } from "../../../assets/FBStorage/FirebaseStorageLoad";
 import { toast } from "react-toastify";
 
 export function AddItemForm ({addNewProduct, initialValues}){
@@ -12,7 +12,7 @@ export function AddItemForm ({addNewProduct, initialValues}){
         id: "",
         imgCoverFile : "",
         imgCoverLink : "",
-        images: "",
+        images: [],
         name : "",
         type : "",
         price : "",
@@ -23,6 +23,7 @@ export function AddItemForm ({addNewProduct, initialValues}){
 
     const [uploadType, setUploadType] = useState(true)
     const [productCover, setProductCover] = useState(null)
+    const [productImages, setProductImages] = useState(null)
 
     let schemaValidation = !uploadType ?
             yup.object().shape({
@@ -50,6 +51,24 @@ export function AddItemForm ({addNewProduct, initialValues}){
             toast("product cover was successfully uploaded")
         })
     }
+    async function uploadProductImages (productName){
+        console.log(productImages)
+        if (productImages.length > 0) {
+            try {
+                deleteAllFilesInFolder(`${storageLoadRoutes.productsSliderImages}/${productName}`)
+                // Save all images
+                await Promise.all(
+                    productImages.map((img, index) =>
+                        uploadToStorage(img, `${img.name}_${index}`, `${storageLoadRoutes.productsSliderImages}/${productName}`)
+                    )
+                );
+                toast("products images successfully uploaded");
+            } catch (error) {
+                toast("Error on uploading products images");
+                console.log("Error to upload products images: " + error);
+            }
+        }
+    }
 
     return (
         <Formik
@@ -62,6 +81,7 @@ export function AddItemForm ({addNewProduct, initialValues}){
                 if (productCover){
                     uploadProductCover(`${values.name}${values.id}`)
                 }
+                uploadProductImages(values.name)
                 addProduct(values);
             }}
         >
@@ -132,7 +152,12 @@ export function AddItemForm ({addNewProduct, initialValues}){
                 </div>
                 <div className={style.itemForm} >
                         <label htmlFor="images">Products Images</label>
-                        <Field id="images" type="file" multiple="multiple" name="images" placeholder="category of the product..." className={style.fieldInput} style={{border: 'none'}} />
+                        <input
+                            name="images" type="file" className={style.fieldInput} multiple="multiple"
+                            onChange={(event)=>{
+                                setProductImages(Array.from(event.target.files))
+                            }}
+                        />
                     </div>
                 <br/>
                 <ButtonToConfirm type="submit" icon={"Register Item"} onClick={()=>{}} />
