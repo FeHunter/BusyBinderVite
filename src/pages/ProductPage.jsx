@@ -42,11 +42,14 @@ export function ProductPage (){
 
     // load product images
     useEffect(()=>{
+        loadProductImages()
+    },[product])
+    const loadProductImages = async () => {
         if (product){
-            const images = loadAllImagesFromFolder(`${storageLoadRoutes.productsSliderImages}/${product.name}/`)
+            const images = await loadAllImagesFromFolder(`${storageLoadRoutes.productsSliderImages}/${product.name}/`)
             setProductImages(images)
         }
-    },[product])
+    }
 
     // Load Requested product
     const getProducts = async () => {
@@ -163,12 +166,14 @@ export function ProductPage (){
                 {/* Product Images */}
                 <div className={style.imagesContent}>
                     <div className={style.allImagesContent}>
-                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
-                        <img src="../src/Images/aux_book_1.png" alt={`product_image`} width={'20%'} />
+                        {
+                            productImages && productImages.length > 0 ?
+                                productImages.map((img, index) => {
+                                    return <img src={img.url} alt={`product_image`} width={'20%'} key={`img_product_${index}`} />
+                                })
+                            :
+                                <></>
+                        }
                     </div>
                 </div>
                 {/* Similar Products */}
