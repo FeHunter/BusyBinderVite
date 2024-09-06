@@ -9,7 +9,7 @@ import PagesRoutes from "../assets/PagesRoutes";
 import { localStorageRoutes } from "../assets/localStorageRoutes";
 import { loadProducts } from "../assets/Firebase";
 import { Loading } from "../assets/Loading";
-import { loadFromStorage, storageLoadRoutes } from "../assets/FBStorage/FirebaseStorageLoad";
+import { loadAllImagesFromFolder, loadFromStorage, storageLoadRoutes } from "../assets/FBStorage/FirebaseStorageLoad";
 
 /*
 To fix:
@@ -23,20 +23,30 @@ export function ProductPage (){
 
     const [loading, setLoading] = useState(true)
 
-    const [allItems, setAllItems] = useState([]);
-    const [allProducts, setAllProducts] = useState({});
-    const [product, setProduct] = useState({});
-    const [amount, setAmount] = useState(1);
+    const [allItems, setAllItems] = useState([])
+    const [allProducts, setAllProducts] = useState({})
+    const [product, setProduct] = useState({})
+    const [productImages, setProductImages] = useState([])
+    const [amount, setAmount] = useState(1)
 
     useEffect(()=>{
         getProducts()
     },[]);
 
+    // Load product cover
     useEffect(()=>{
         if (!product.imgCoverLink || product.imgCoverLink === ''){
             loadProductImage()
         }
     },[loading])
+
+    // load product images
+    useEffect(()=>{
+        if (product){
+            const images = loadAllImagesFromFolder(`${storageLoadRoutes.productsSliderImages}/${product.name}/`)
+            setProductImages(images)
+        }
+    },[product])
 
     // Load Requested product
     const getProducts = async () => {
