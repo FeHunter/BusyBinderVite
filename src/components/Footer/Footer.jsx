@@ -8,8 +8,8 @@ import { firebaseRoutes, loadFromtFirebase } from "../../assets/Firebase"
 
 export function Footer (){
 
-    const [socialLinks, setSocialLinks] = useState({})
-    const [contacts, setContacts] = useState({})
+    const [socialLinks, setSocialLinks] = useState(null)
+    const [contacts, setContacts] = useState(null)
 
     useEffect(()=>{
         loadLinks()
@@ -39,13 +39,13 @@ export function Footer (){
             </div>
             <div className={style.sectionContent}>
                 <p className={style.footerTitle}>Contacts</p>
-                <ButtonToFooter label={contacts.email} />
-                <ButtonToFooter label={contacts.phone1} />
-                <ButtonToFooter label={contacts.phone2} />
+                <ButtonToFooter label={contacts ? contacts.email : ''} />
+                <ButtonToFooter label={contacts ? contacts.phone1 : ''} />
+                <ButtonToFooter label={contacts ? contacts.phone2 : ''} />
                 <div className={style.socialNetworkLinks}>
-                    <a href={socialLinks.instagram} target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href={socialLinks.facebook} target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                    <a href={socialLinks.tiktok} target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href={socialLinks ? socialLinks.instagram : ''} target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href={socialLinks ? socialLinks.facebook : ''} target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    <a href={socialLinks ? socialLinks.tiktok : ''} target="_blank"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
         </footer>

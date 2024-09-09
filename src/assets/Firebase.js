@@ -38,15 +38,20 @@ export { storage };
 export async function loadProducts () {
   const responde = await fetch(firebaseRoutes.products, {method: 'GET'});
   const data = await responde.json()
-  return convertData(data)
+  if (responde.ok){
+    return convertData(data)
+  }
+  return null
 }
 
 // GET - LOAD SOCIAL NETWORKS
 export async function getSocialNetWorks () {
-  const responde = await fetch(firebaseRoutes.socialNetworks, {method: 'GET'});
-  const data = await responde.json()
-  return data
-  // return convertData(data)
+  const response = await fetch(firebaseRoutes.socialNetworks, {method: 'GET'});
+  const data = await response.json()
+  if (response.ok){
+    return data
+  }
+  return null
 }
 // POST - UPDATE SOCIAL NETWORKS
 export async function postSocialNetwork (values){
@@ -75,11 +80,13 @@ export async function postSocialNetwork (values){
 export async function loadFromtFirebase (routeUrl, callConvertData){
   const response = await fetch(routeUrl)
   const data = await response.json()
-  if (callConvertData){
-    return convertData(data)
+  if (response.ok){
+    if (callConvertData){
+      return convertData(data)
+    }
+    return data
   }
-  return data
-
+  return null
 }
 // POST - UPDATE ABOUT ME TEXT
 export async function uploadToFirebase (routeUrl, method, values){
@@ -103,9 +110,11 @@ export async function uploadToFirebase (routeUrl, method, values){
 
 /* CONVERT DATA FROM FIREBASE TO ARRAY OF OBJECTS */
 function convertData(data) {
-  const ids = Object.keys(data);
-  const objs = Object.values(data);
-  return objs.map((obj, i) => {
-    return { id: ids[i], ...obj };
-  });
+  if (data){
+    const ids = Object.keys(data);
+    const objs = Object.values(data);
+    return objs.map((obj, i) => {
+      return { id: ids[i], ...obj };
+    });
+  }
 }
