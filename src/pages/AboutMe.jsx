@@ -45,12 +45,12 @@ export function AboutMe() {
     const [aboutMeImage, setAboutMeImage] = useState(null)
     async function loadProductImage() {
         try {
-            const urlImgage = await loadFromStorage(storageLoadRoutes.aboutMeImage);
-            console.log(urlImgage)
-            setAboutMeImage(urlImgage);
+            const urlImage = await loadFromStorage(storageLoadRoutes.aboutMeImage)
+            if (urlImage){
+                setAboutMeImage(urlImage)
+            }
         } catch (error) {
-            console.error("Error loading default image:", error);
-            return null
+            console.error("Error loading default image:", error)
         }
     }
 
@@ -59,15 +59,11 @@ export function AboutMe() {
             <Header />
             <section className={style.aboutMe}>
                 <div className={style.presentationContent}>
-                    {aboutMeImage ? (
-                        <img
-                            className={style.presentationImage}
-                            src={aboutMeImage ? aboutMeImage : defaultImage}
-                            alt="About Me"
-                        />
-                    ) : (
-                        <Loading />
-                    )}
+                    <img
+                        className={style.presentationImage}
+                        src={aboutMeImage ? aboutMeImage : defaultImage}
+                        alt="Busy binder About Me Image"
+                    />
                     <div className={style.presentationTextContent}>
                         <h2>A few words about me</h2>
                         {aboutMeText ? (

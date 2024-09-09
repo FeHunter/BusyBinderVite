@@ -41,8 +41,10 @@ export function HomePage() {
     // Load Items from Firebase
     async function loadCartItems() {
         const data = await loadFromtFirebase(firebaseRoutes.products, true);
-        const highlight = data.slice(0, 3); // Get only the first 3 products
-        setHighlightsProducts(highlight);
+        if (data){
+            const highlight = data.slice(0, 3); // Get only the first 3 products
+            setHighlightsProducts(highlight);
+        }
     }
 
     // Load Home Page Data
@@ -88,9 +90,9 @@ export function HomePage() {
                 <section>
                     <div className={style.aboutUsContent}>
                         <div className={style.aboutUsImages}>
-                            {storageImages.presentationImage1 ? <ImagesContent src={storageImages.presentationImage1} alt={"BusyBinder image 1"} /> : <Loading/>}
-                            {storageImages.presentationImage2 ? <ImagesContent src={storageImages.presentationImage2} alt={"BusyBinder image 1"} /> : <Loading/>}
-                            {storageImages.presentationImage3 ? <ImagesContent src={storageImages.presentationImage3} alt={"BusyBinder image 1"} /> : <Loading/>}
+                            <ImagesContent src={storageImages.length > 0 ? storageImages.presentationImage1 : defaultImage} alt={"BusyBinder image 1"} />
+                            <ImagesContent src={storageImages.length > 0 ? storageImages.presentationImage2 : defaultImage} alt={"BusyBinder image 2"} />
+                            <ImagesContent src={storageImages.length > 0 ? storageImages.presentationImage3 : defaultImage} alt={"BusyBinder image 3"} />
                         </div>
                         <div className={style.aboutUsContentText}>
                             <p>{homePage ? homePage.briefPresentation : <></>}</p>
@@ -105,7 +107,7 @@ export function HomePage() {
                             <ProdcutCard item={item} key={`Product_HighLight_${index}`} />
                         ))
                     ) : (
-                        <>loading...</>
+                        <Loading/>
                     )}
                 </section>
 
@@ -113,7 +115,7 @@ export function HomePage() {
                 <section className={style.highlightsProducts}>
                     <div className={style.myWorkContent}>
                         <div className={style.myWorkPhoto}>
-                            {storageImages.myWorkCoverImage ? <img src={storageImages.myWorkCoverImage ? storageImages.myWorkCoverImage : defaultImage} alt="My Work image" /> : <Loading/>}
+                            <img src={storageImages.length > 0 ? storageImages.myWorkCoverImage : defaultImage} alt="My Work image" />
                         </div>
                         <div className={style.myWorkText}>
                             <h2>My art work</h2>

@@ -9,8 +9,8 @@ import { firebaseRoutes, loadFromtFirebase } from "../assets/Firebase"
 
 export function ContactsPage () {
 
-    const [socialLinks, setSocialLinks] = useState({})
-    const [contacts, setContacts] = useState({})
+    const [socialLinks, setSocialLinks] = useState(null)
+    const [contacts, setContacts] = useState(null)
 
     useEffect(()=>{
         loadLinks()
@@ -19,12 +19,16 @@ export function ContactsPage () {
 
     async function loadLinks (){
         const data = await loadFromtFirebase(firebaseRoutes.socialNetworks, false)
-        setSocialLinks(data)
+        if (data){
+            setSocialLinks(data)
+        }
     }
 
     async function loadContacts (){
         const data = await loadFromtFirebase(firebaseRoutes.contacts, false)
-        setContacts(data)
+        if (data){
+            setContacts(data)
+        }
     }
 
     const validationSchema = yup.object({
@@ -39,14 +43,13 @@ export function ContactsPage () {
             <section className={style.contactsPage}>
                 <div className={style.content}>
                     <p className={style.pageTitle}>Contacts</p>
-                    <ButtonWebLink icon={<i class="fa-solid fa-envelope"></i>} label={contacts.email} />
-                    <ButtonWebLink icon={<i class="fa-solid fa-phone"></i>} label={contacts.phone1} />
-                    <ButtonWebLink icon={<i class="fa-solid fa-phone"></i>} label={contacts.phone2} />
-                    <p>Opening hours 08:00 to 18:00</p>
+                    <ButtonWebLink icon={<i class="fa-solid fa-envelope"></i>} label={contacts ? contacts.email : ''} />
+                    <ButtonWebLink icon={<i class="fa-solid fa-phone"></i>} label={contacts ? contacts.phone1 : ''} />
+                    <ButtonWebLink icon={<i class="fa-solid fa-phone"></i>} label={contacts ? contacts.phone2 : ''} />
                     <div className={style.socialNetworkLinks}>
-                        <ButtonWebLink link={socialLinks.instagram} label={<i class="fa-brands fa-instagram"></i>} />
-                        <ButtonWebLink link={socialLinks.facebook} label={<i class="fa-brands fa-facebook"></i>} />
-                        <ButtonWebLink link={socialLinks.tiktok} label={<i class="fa-brands fa-tiktok"></i>} />
+                        <ButtonWebLink link={socialLinks ? socialLinks.instagram : ''} label={<i class="fa-brands fa-instagram"></i>} />
+                        <ButtonWebLink link={socialLinks ? socialLinks.facebook : ''} label={<i class="fa-brands fa-facebook"></i>} />
+                        <ButtonWebLink link={socialLinks ? socialLinks.tiktok : ''} label={<i class="fa-brands fa-tiktok"></i>} />
                     </div>
                 </div>
                 <div className={style.content}>
